@@ -1,0 +1,51 @@
+.teamview-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.teamCard-container{
+    margin-top: 1rem;
+    border: 1px solid rgb(160, 25, 25);
+    border-radius: 12px;
+    background-color: white;
+    width: 250px;
+    height: 250px;
+    display: grid;
+    grid-template-areas: 
+    'profile-view'
+    'Pokesprite'
+    'Pokebio';
+    grid-template-rows: 1fr 2fr 1fr;
+    
+}
+
+.teamCard-delete{
+    grid-area: delete;
+    border: none;
+    color: white;
+    width: 50%;
+    height: 50%;
+    justify-items: end;
+    align-items: center;
+    margin-left: auto;
+    background-color: red;
+}
+
+.teamCard-delete:hover{
+    background-color: rgb(128, 0, 0);
+    cursor: pointer;
+}
+
+.teamCard-header{
+    
+    grid-area: profile-view;
+    display: grid;
+    grid-template-areas:
+    '. name delete';
+}
+
+.teamCard-header > h1{
+    grid-area: name
+}
+

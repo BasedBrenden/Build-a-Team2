@@ -1,0 +1,58 @@
+.container{
+    margin-top: 1rem;
+    border: 1px solid rgb(160, 25, 25);
+    border-radius: 12px;
+    background-color: white;
+    width: 500px;
+    height: 500px;
+    display: grid;
+    grid-template-areas: 
+    'profile-view'
+    'Pokesprite'
+    'Pokebio';
+    grid-template-rows: 1fr 2fr 1fr;
+    
+}
+
+.top-header{
+    
+    grid-area: profile-view;
+    display: grid;
+    grid-template-areas:
+    '. name add';
+}
+
+.top-header > h1{
+    grid-area: name
+}
+
+.top-header > button{
+    grid-area: add;
+    border: none;
+    color: white;
+    background-color: rgb(7, 201, 7);
+    width: 50%;
+    height: 50%;
+    justify-items: end;
+    align-items: center;
+    margin-left: auto;
+}
+
+.top-header > button:hover{
+    background-color: green;
+    cursor: pointer;
+}
+
+.poke-sprite{
+    grid-area: Pokesprite;
+    
+    justify-self:center;
+    align-self:center;
+    height: 100%;
+    
+}
+
+.poke-bio{
+
+    grid-area: Pokebio;
+}
