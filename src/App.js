@@ -1,6 +1,6 @@
 import PokeView from './components/PokeView';
 import './App.css';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import TeamView from './components/TeamView';
 
 function App() {
@@ -8,9 +8,10 @@ function App() {
   const [result, setresult] = useState([])
   const [premadeTeam, setPremadeTeam] = useState([])
 
-  window.onload = () =>{
+  useEffect(() => {
     renderTeam();
-  }
+  }, [])
+  
 
   const renderTeam = () =>{
     const newTeam = []
