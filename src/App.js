@@ -17,13 +17,16 @@ function App() {
   const renderTeam = () =>{
     const newTeam = []
 
-    fetch('https://batbackend.herokuapp.com/api/test/',{
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((response)=>response.json())
+    fetch('https://batbackend.herokuapp.com/')
+    .then((response)=>response.json()
+    /*
+      switch from localstorage to response.json
+    for (let i = 0; i < localStorage.length; ++i ) {
+      newTeam.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+      
+    }
+    setPremadeTeam([...newTeam])
+    setresult([])*/)
     .then((data) => alert(data))
     .catch((error) =>prompt(error))
 
