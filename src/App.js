@@ -2,6 +2,7 @@ import PokeView from './components/PokeView';
 import './App.css';
 import {useState, useEffect} from 'react'
 import TeamView from './components/TeamView';
+import Navbar from './components/Nav/Navbar';
 
 function App() {
 
@@ -15,6 +16,18 @@ function App() {
 
   const renderTeam = () =>{
     const newTeam = []
+
+    fetch('https://batbackend.herokuapp.com/api/test/',{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response)=>response.json())
+    .then((data) => alert(data))
+    .catch((error) =>prompt(error))
+
+
     for (let i = 0; i < localStorage.length; ++i ) {
       newTeam.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
       
@@ -48,9 +61,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <nav>
-          <p>Build-a-Team!</p>
-        </nav>
+        <Navbar />
       </div>
       <h1> Use this app to create a web app that helps you build your own pokemon team! </h1>
       <div className="Search">

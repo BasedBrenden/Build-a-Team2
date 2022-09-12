@@ -1,0 +1,18 @@
+.navbarDiv{
+    display: grid;
+    grid-template-areas:
+    '. title login';
+    grid-template-columns:repeat(3, 1fr);
+    align-items: center;
+    background-color: black;
+}
+
+.navbarDiv > p {
+    grid-area: title;
+    color: white;
+    font-weight: bolder;
+}
+
+.logInDiv{
+    grid-area: login
+}
