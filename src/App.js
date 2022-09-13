@@ -18,7 +18,7 @@ function App() {
     const newTeam = []
 
     fetch('https://batbackend.herokuapp.com/')
-    .then((response)=>response.json()
+    .then((response)=> {alert(response.json())}
     /*
       switch from localstorage to response.json
     for (let i = 0; i < localStorage.length; ++i ) {
@@ -27,7 +27,6 @@ function App() {
     }
     setPremadeTeam([...newTeam])
     setresult([])*/)
-    .then((data) => alert(data))
     .catch((error) =>prompt(error))
 
 
