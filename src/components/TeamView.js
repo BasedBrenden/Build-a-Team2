@@ -1,6 +1,12 @@
 import React from 'react'
 import './TeamView.css'
 
+/*Need to do
+
+ -Change onClick function to make a fetch request to destroy the pokemon from team
+*/
+
+
 const TeamView = ({fullTeam, updateTeamFunc}) => {
 
 

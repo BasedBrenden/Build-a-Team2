@@ -19,26 +19,16 @@ function App() {
 
     fetch('https://batbackend.herokuapp.com/')
     .then((response)=> {return response.json()}
-    /*
-      switch from localstorage to response.json
-    for (let i = 0; i < localStorage.length; ++i ) {
-      newTeam.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-      
-    }
-    setPremadeTeam([...newTeam])
-    setresult([])*/)
+    )
     .then((response)=>{
-      console.log(response.Username)
-    })
-    .catch((error) =>prompt(error))
-
-
-    for (let i = 0; i < localStorage.length; ++i ) {
-      newTeam.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-      
+    for (let i = 0; i < response.Team.length; ++i ) {
+      newTeam.push(response.Team[i]);
     }
     setPremadeTeam([...newTeam])
     setresult([])
+      console.log(newTeam);
+    })
+    .catch((error) =>prompt(error))
   }
   
   const updateSearch = async () =>{
