@@ -4,18 +4,15 @@ import './PokeView.css'
 const PokeView = ({name, id, image, type1, fullmadeTeam, updateTeamFunc, error}) => {
 
     const addPokemonToTeam = () =>{
-        const newPokemonInfo ={
-            pokeName: name,
-            pokeID: id,
-            pokeImage: image,
-            pokeType: type1
-        }
+
         console.log('yep, this button works');
         //Fetch request to update current team roster with a new pokemon to the end
-        fetch('https://batbackend.herokuapp.com/apir/',{
+        fetch('https://batbackend.herokuapp.com/apir',{
             method: 'POST',
             headers: {'Content-Type': 'application/json' },
-            body: JSON.stringify({newPokemon: newPokemonInfo}),
+            body: JSON.stringify({pokeName: name,
+                pokeID: id,
+                pokeImage: image}),
         })
         .then((response)=> response.json())
         .catch((error)=>{alert(error)})
