@@ -69,7 +69,7 @@ function App() {
         {result.map((pokemon) =>
         <PokeView key={pokemon.id}
         id={pokemon.id}
-        name={pokemon.name}
+        namei={pokemon.name}
         image={pokemon.sprites.front_default}
         type1={pokemon.types[0].type.name}
         updateTeamFunc = {renderTeam}

@@ -1,7 +1,7 @@
 import React from 'react'
 import './PokeView.css'
 
-const PokeView = ({name, id, image, type1, fullmadeTeam, updateTeamFunc, error}) => {
+const PokeView = ({namei, id, image, type1, fullmadeTeam, updateTeamFunc, error}) => {
 
     const addPokemonToTeam = () =>{
 
@@ -10,16 +10,17 @@ const PokeView = ({name, id, image, type1, fullmadeTeam, updateTeamFunc, error})
         fetch('https://batbackend.herokuapp.com/apir',{
             method: 'POST',
             headers: {'Content-Type': 'application/json' },
-            body: JSON.stringify({pokeName: name,
+            body: JSON.stringify({
                 pokeID: id,
-                pokeImage: image}),
+                pokeImage: image,
+                pokeName: namei}),
         })
-        .then((response)=> response.json())
+        .then((response)=> updateTeamFunc())
         .catch((error)=>{alert(error)})
         //localStorage.setItem(id, JSON.stringify(newPokemonInfo));
         //updateTeamFunc()
 
-        updateTeamFunc();
+        
 
         const resultCard = document.querySelector('.container');
         resultCard.innerHTML = ''
@@ -32,7 +33,7 @@ const PokeView = ({name, id, image, type1, fullmadeTeam, updateTeamFunc, error})
         <div className='container'>
         
             <div className="top-header">
-                <h1>{name}</h1>
+                <h1>{namei}</h1>
                 <button type='button' onClick={addPokemonToTeam}>+</button>
             </div>
         
