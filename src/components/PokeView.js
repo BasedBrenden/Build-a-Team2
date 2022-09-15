@@ -13,7 +13,8 @@ const PokeView = ({namei, id, image, type1, fullmadeTeam, updateTeamFunc, error}
             body: JSON.stringify({
                 pokeID: id,
                 pokeImage: image,
-                pokeName: namei}),
+                pokeName: namei,
+                pokeNamew: namei}),
         })
         .then((response)=> updateTeamFunc())
         .catch((error)=>{alert(error)})
