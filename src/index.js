@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import SignUpForm from './components/Nav/LogIn/SignUpPage';
 import reportWebVitals from './reportWebVitals';
 
 import {BrowserRouter, Routes, Route} from "react-router-dom";
@@ -11,6 +12,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path ="/" element={<App/>}/>
+      <Route path ="/sign-up" element={<SignUpForm/>}/>
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

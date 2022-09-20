@@ -4,7 +4,7 @@ const LogIn = () =>{
     return(
         <div>
             <button type="button">Log In</button>
-            <button type="button">Sign up</button>
+            <Link to="/sign-up"><button type="button">Sign up</button></Link>
         </div>
     )
 }
