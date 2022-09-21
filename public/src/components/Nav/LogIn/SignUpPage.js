@@ -7,13 +7,13 @@ const SignUpForm = () =>{
             username: document.getElementById("username").value,
             password: document.getElementById("password").value
         }
-
-        fetch('https://batbackend.herokuapp.com/sign-up',{
+        /*https://batbackend.herokuapp.com
+        http://localhost:3000/*/
+        fetch('http://localhost:3000/sign-up',{
         method: 'POST',
         headers: {'Content-Type': 'application/json' },
         body: JSON.stringify({username1: document.getElementById("username").value,
-        password1: document.getElementById("password").value,
-        dark: false}),
+        password1: document.getElementById("password").value}),
         })
         .then((response) => {console.log(response)})
         .catch((error) => alert(error))

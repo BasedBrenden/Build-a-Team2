@@ -6,6 +6,7 @@ import SignUpForm from './components/Nav/LogIn/SignUpPage';
 import reportWebVitals from './reportWebVitals';
 
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import LogInForm from './components/Nav/LogIn/LogInPage';
 
 
 ReactDOM.render(
@@ -13,6 +14,7 @@ ReactDOM.render(
     <Routes>
       <Route path ="/" element={<App/>}/>
       <Route path ="/sign-up" element={<SignUpForm/>}/>
+      <Route path ="/log-in" element={<LogInForm/>}/>
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
