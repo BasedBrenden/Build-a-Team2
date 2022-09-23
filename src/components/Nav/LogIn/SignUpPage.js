@@ -27,6 +27,7 @@ const SignUpForm = () =>{
         .then((userCredential) => {
             // Signed in 
             var user = userCredential.user;
+            console.log({user})
             // ...
         })
         .catch((error) => {
