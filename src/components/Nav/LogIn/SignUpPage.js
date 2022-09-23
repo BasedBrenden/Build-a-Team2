@@ -1,4 +1,8 @@
 import React from "react";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+const auth = getAuth();
+
 
 const SignUpForm = () =>{
 
@@ -9,7 +13,7 @@ const SignUpForm = () =>{
         }
         /*https://batbackend.herokuapp.com
         http://localhost:3000/*/
-        fetch('http://localhost:3000/sign-up',{
+        /*fetch('http://localhost:3000/sign-up',{
         method: 'POST',
         headers: {'Content-Type': 'application/json' },
         body: JSON.stringify({username1: document.getElementById("username").value,
@@ -17,7 +21,20 @@ const SignUpForm = () =>{
         })
         .then((response) => {console.log(response)})
         .catch((error) => alert(error))
-        console.log(userInfo);
+        console.log(userInfo);*/
+
+        createUserWithEmailAndPassword(auth, userInfo.username, userInfo.password)
+        .then((userCredential) => {
+            // Signed in 
+            var user = userCredential.user;
+            // ...
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorCode + ": " + errorMessage)
+            // ..
+        });
 
     }
 
