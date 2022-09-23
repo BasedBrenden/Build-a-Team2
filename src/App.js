@@ -60,7 +60,7 @@ function App() {
       <div>
         <Navbar />
       </div>
-      <h1> Live test! Use this app to create a web app that helps you build your own pokemon team! </h1>
+      <h1> Live test! Use this app to help you build your own pokemon team! </h1>
       <div className="Search">
         <input id='input' type="text" placeholder="begin searching for pokemon!"></input>
         <button type='button' onClick = {updateSearch}>Search!</button>
