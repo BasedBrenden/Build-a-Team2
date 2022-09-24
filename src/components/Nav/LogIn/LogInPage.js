@@ -1,22 +1,29 @@
 import React from "react"
+import {  auth, signInWithEmailAndPassword } from "../../../firebase";
+import { useNavigate } from "react-router-dom";
 
 
 const LogInForm = () =>{
-
+    const navigate = useNavigate();
     const LogInFunc = () =>{
-            fetch('http://localhost:3000/log-in',
-            {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    username: document.getElementById('username').value,
-                    password: document.getElementById('password').value
-                })
-            })
-            .then((response)=> {return response.json()})
-            .catch((error)=>{
-                console.log(error)
-            })
+        const userInfo = {
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value
+        }
+        signInWithEmailAndPassword(auth, userInfo.username, userInfo.password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log({user})
+            // ...
+            navigate(-1);
+
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode + ": "+ errorMessage)
+        });
 
     }
     return(

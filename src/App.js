@@ -1,6 +1,7 @@
 import PokeView from './components/PokeView';
 import './App.css';
 import {useState, useEffect} from 'react'
+import { auth, onAuthStateChanged } from './firebase';
 import TeamView from './components/TeamView';
 import Navbar from './components/Nav/Navbar';
 
@@ -17,18 +18,36 @@ function App() {
   const renderTeam = () =>{
     const newTeam = []
 
-    fetch('https://batbackend.herokuapp.com/')
-    .then((response)=> {return response.json()}
-    )
-    .then((response)=>{
-    for (let i = 0; i < response.Team.length; ++i ) {
-      newTeam.push(response.Team[i]);
-    }
-    setPremadeTeam([...newTeam])
-    setresult([])
-      console.log(newTeam);
-    })
-    .catch((error) =>prompt(error))
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        // ...
+        fetch('https://batbackend.herokuapp.com/eeee',{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                userId: uid}),
+        })
+        .then((response)=> { return response.json()})
+        .then((data) => {
+
+          for (let i = 0; i < data[0].Team.length; ++i ) {
+            newTeam.push(data[0].Team[i]);
+            }
+            setPremadeTeam([...newTeam])
+            setresult([])
+            console.log(newTeam);
+  
+        })
+        .catch((error) =>console.log(error))
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
+
+    
   }
   
   const updateSearch = async () =>{

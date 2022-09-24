@@ -1,11 +1,22 @@
 import React from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
-const auth = getAuth();
+import { auth, createUserWithEmailAndPassword } from "../../../firebase";
 
 
 const SignUpForm = () =>{
+    const navigate = useNavigate();
+    const createNewDbUser = (user)=>{
 
+        fetch('https://batbackend.herokuapp.com/sign-up',{
+        method: 'POST',
+        headers: {'Content-Type': 'application/json' },
+        body: JSON.stringify({username1: user}),
+        })
+        .then((response) => {console.log(response)})
+        .catch((error) => alert(error))
+        
+    }
     const SignUp = () =>{
         const userInfo = {
             username: document.getElementById("username").value,
@@ -18,8 +29,9 @@ const SignUpForm = () =>{
             // Signed in 
             var user = userCredential.user;
             console.log({user})
-            // ...
+            createNewDbUser(user.uid)
         })
+        .then(()=>{navigate(-1);})
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
