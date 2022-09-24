@@ -7,7 +7,6 @@ import { auth, createUserWithEmailAndPassword } from "../../../firebase";
 const SignUpForm = () =>{
     const navigate = useNavigate();
     const createNewDbUser = (user)=>{
-
         fetch('https://batbackend.herokuapp.com/sign-up',{
         method: 'POST',
         headers: {'Content-Type': 'application/json' },
@@ -15,14 +14,13 @@ const SignUpForm = () =>{
         })
         .then((response) => {console.log(response)})
         .catch((error) => alert(error))
-        
     }
     const SignUp = () =>{
+        
         const userInfo = {
             username: document.getElementById("username").value,
             password: document.getElementById("password").value
         }
-        
 
         createUserWithEmailAndPassword(auth, userInfo.username, userInfo.password)
         .then((userCredential) => {
