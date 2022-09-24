@@ -9,6 +9,7 @@ function App() {
 
   const [result, setresult] = useState([])
   const [premadeTeam, setPremadeTeam] = useState([])
+  const [userId, setUserId] = useState(" ");
 
   useEffect(() => {
     renderTeam();
@@ -22,8 +23,9 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
+        setUserId(uid)
         // ...
-        fetch('https://batbackend.herokuapp.com/eeee',{
+        fetch('https://batbackend.herokuapp.com/getTeam',{
             method: 'POST',
             headers: {'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -91,6 +93,8 @@ function App() {
         namei={pokemon.name}
         image={pokemon.sprites.front_default}
         type1={pokemon.types[0].type.name}
+        userId = {userId}
+        teamSize = {premadeTeam.length}
         updateTeamFunc = {renderTeam}
          />
         )}
@@ -99,7 +103,8 @@ function App() {
       <div className="TeamView-Container">
 
         <TeamView fullTeam={premadeTeam}
-        updateTeamFunc={renderTeam}/>
+        updateTeamFunc={renderTeam}
+        userId = {userId}/>
       </div>
 
     </div>

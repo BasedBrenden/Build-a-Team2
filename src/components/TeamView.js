@@ -8,14 +8,14 @@ import './TeamView.css'
 */
 
 
-const TeamView = ({fullTeam, updateTeamFunc}) => {
+const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
 
 
     const removePokemon = (pokeId) =>{
-        fetch('https://batbackend.herokuapp.com/apir/delete',{
+        fetch('https://batbackend.herokuapp.com/deletePoke',{
             method: 'POST',
             headers: {'Content-Type': 'application/json' },
-            body: JSON.stringify({id: pokeId}),
+            body: JSON.stringify({id: pokeId, Username: userId}),
         })
         .then((response)=>{
             console.log(response)
