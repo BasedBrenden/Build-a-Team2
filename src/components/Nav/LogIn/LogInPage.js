@@ -23,6 +23,7 @@ const LogInForm = () =>{
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            console.log(errorCode +": " + errorMessage)
             document.getElementById("error-field").innerHTML= "Please enter a valid email and password";
         });
 
