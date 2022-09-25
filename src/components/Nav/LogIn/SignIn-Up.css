@@ -1,0 +1,45 @@
+#main-container{
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+    grid-template-areas: 
+    '. view .';
+    
+}
+
+#sign-container{
+    grid-area: view;
+    margin-top: 4rem;
+    min-height:16rem;
+    border-radius: 6px;
+    background-color: white;
+    display: flex;
+    flex-flow: column;
+    row-gap: 1.5rem;
+    padding: 0 2rem;
+}
+
+#sign-container > input{
+
+    margin: 0 2rem;
+    height: 1.5rem;
+    border-radius: 3px;
+}
+
+#sign-container > input:focus{
+    box-shadow: 1px 1px 18px rgb(118, 197, 0);
+}
+
+#sign-container > button {
+    border: none;
+    border-radius: 6px;
+    width: 8rem;
+    height: 2rem;
+    color: white;
+    margin: auto;
+    background-color: rgb(59, 160, 59)
+}
+
+#sign-container > span{
+    height: 4rem;
+    text-align: center;
+}

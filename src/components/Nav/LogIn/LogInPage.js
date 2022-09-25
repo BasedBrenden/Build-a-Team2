@@ -1,6 +1,7 @@
 import React from "react"
 import {  auth, signInWithEmailAndPassword } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
+import "./SignIn-Up.css"
 
 
 const LogInForm = () =>{
@@ -22,15 +23,19 @@ const LogInForm = () =>{
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode + ": "+ errorMessage)
+            document.getElementById("error-field").innerHTML= "Please enter a valid email and password";
         });
 
     }
     return(
-        <div>
-            <input type="text" id="username"></input>
-            <input type="password" id="password"></input>
-            <button type="button" onClick={()=>{LogInFunc()}}>Log In!</button>
+        <div id="main-container">
+            <div id="sign-container">
+                <h1>Sign in</h1>
+                <input type="text" id="username" placeholder="Enter email"></input>
+                <input type="password" id="password" placeholder="Enter pasword"></input>
+                <button type="button" onClick={()=>{LogInFunc()}}>Log In!</button>
+                <span id="error-field"></span>
+            </div>
         </div>
     )
 }

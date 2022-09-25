@@ -9,7 +9,7 @@ function App() {
 
   const [result, setresult] = useState([])
   const [premadeTeam, setPremadeTeam] = useState([])
-  const [userId, setUserId] = useState('');
+  const [userId, setUserId] = useState('no');
 
   useEffect(() => {
     renderTeam();
@@ -47,6 +47,7 @@ function App() {
       } else {
         // User is signed out
         // ...
+        setUserId('no')
         setPremadeTeam([])
       }
     });
@@ -79,7 +80,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Navbar userCred= {userId}/>
+        <Navbar/>
       </div>
       <h1> Apollo is my most favorite dog! Use this app to help you build your own pokemon team! </h1>
       <div className="Search">

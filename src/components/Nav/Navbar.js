@@ -1,22 +1,33 @@
 import LogIn from "./LogIn/LogIn"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import './Navbar.css'
-import { auth, signOut } from '../../firebase'
+import { auth, signOut , onAuthStateChanged} from '../../firebase'
 
 
 
-const Navbar = (userCred) =>{
-    const [loggedIn, setLoggedIn] = useState(userCred)
+const Navbar = () =>{
+    const [loggedIn, setLoggedIn] = useState(false)
+
     const signOutClick = () =>{
 
-        signOut(auth).then(()=>{setLoggedIn('')}).catch((error)=>{console.log(error)})
+        signOut(auth).then(()=>{setLoggedIn(false)}).catch((error)=>{console.log(error)})
 
     }
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) =>{
+            if (user){
+                setLoggedIn(true)
+            } 
+        })
+    }, [])
+
+
     return(
         <div className="navbarDiv"> 
             <p>Build-a-Team!</p>
             <div className="logInDiv">
-                {(loggedIn !== '') ? <div> <button type="button" onClick={()=>{ signOutClick()}}>sign out</button></div> : <LogIn/> }
+                <div>{(loggedIn) ?  <button type="button" onClick={()=>{ signOutClick()}}>sign out</button> : <LogIn/>  } </div>
                 
             </div>
         </div>

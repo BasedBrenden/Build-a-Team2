@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import './SignIn-Up.css'
 
 import { auth, createUserWithEmailAndPassword } from "../../../firebase";
 
@@ -16,7 +17,7 @@ const SignUpForm = () =>{
         .catch((error) => alert(error))
     }
     const SignUp = () =>{
-        
+
         const userInfo = {
             username: document.getElementById("username").value,
             password: document.getElementById("password").value
@@ -33,7 +34,7 @@ const SignUpForm = () =>{
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
-            console.log(errorCode + ": " + errorMessage)
+            document.getElementById("error-field").innerHTML= "Please enter a valid email and password";
             // ..
         });
 
@@ -41,10 +42,14 @@ const SignUpForm = () =>{
 
 
     return(
-        <div>
-            <input type="text" id="username"></input>
-            <input type="password" id="password"></input>
-            <button type="button" onClick={()=>{SignUp()}}>Sign Up!</button>
+        <div id="main-container">
+            <div id="sign-container">
+                <h1>Sign up</h1>
+                <input type="text" id="username" placeholder="Enter email"></input>
+                <input type="password" id="password" placeholder="Enter pasword"></input>
+                <button type="button" onClick={()=>{SignUp()}}>Sign Up!</button>
+                <span id="error-field"> </span>
+            </div>
         </div>
     );
 
