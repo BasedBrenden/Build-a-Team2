@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { useState } from 'react'
 import './TeamView.css'
 
 /*Need to do
@@ -9,6 +9,9 @@ import './TeamView.css'
 
 
 const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
+
+    const [focusedPokemon, setFocusedPokemon] = useState('')
+
 
 
     const removePokemon = (pokeId) =>{
@@ -24,29 +27,47 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
         .catch((error) => console.log(error))
 
     }
+    
+    const updateFocused = (poke)=>{
+
+        setFocusedPokemon(poke)
+
+    }
 
 
     return (
         <div className="teamview-container">
 
 
+            <div id="info">
+                {(focusedPokemon === '') ? <span></span>:
+                 <div>
+                    <p> {focusedPokemon.pokeName}</p>
+                    <img src={focusedPokemon.pokeImage} className="Info-img" alt="woooo"></img>
+                    
+                </div>}
+            </div>
+            <div id="team">
+
             {fullTeam.map((pokemon)=>
                 
 
-                <div className='teamCard-container' key= {pokemon.pokeName}>
+                <div className='teamCard-container' key= {pokemon.pokeName} onClick={() => {updateFocused(pokemon)}}>
         
                 <div className="teamCard-header">
-                    <h1>{pokemon.pokeName}</h1>
-                    <button type='button' className="teamCard-delete" onClick={() => {removePokemon(pokemon.pokeID);}} value={pokemon.pokeID}>X</button>
+                    <p>{pokemon.pokeName}</p>
+                    <div>
+                        <button type='button' className="teamCard-delete" onClick={() => {removePokemon(pokemon.pokeID);}} value={pokemon.pokeID}>X</button>
+                    </div>
                 </div>
             
                 <img src={pokemon.pokeImage} alt='wooo' className="poke-sprite"></img>
-    
-                
-                    <p>{pokemon.pokeType}</p>
                 
             </div>
             )}
+
+            </div>
+    
         </div>
     )
 }

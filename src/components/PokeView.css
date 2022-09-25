@@ -29,6 +29,7 @@
 .top-header > button{
     grid-area: add;
     border: none;
+    border-top-right-radius: 11px;
     color: white;
     background-color: rgb(7, 201, 7);
     width: 50%;

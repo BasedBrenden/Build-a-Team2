@@ -70,7 +70,7 @@ function App() {
       return newTest2;
     }
     catch(error){
-      updateError.innerHTML = 'Enter a valid or new pokemon name'
+      updateError.innerHTML = 'Enter a valid pokemon name'
       console.log(error)
       return error
     }
@@ -82,7 +82,17 @@ function App() {
       <div>
         <Navbar/>
       </div>
-      <h1> Apollo is my most favorite dog! Use this app to help you build your own pokemon team! </h1>
+      <h1> Use this app to help build your own pokemon team! </h1>
+
+      <div className="TeamView-Container">
+
+        <TeamView 
+        searchResult = {result}
+        fullTeam={premadeTeam}
+        updateTeamFunc={renderTeam}
+        userId = {userId}/>
+      </div>
+
       <div className="Search">
         <input id='input' type="text" placeholder="begin searching for pokemon!"></input>
         <button type='button' onClick = {updateSearch}>Search!</button>
@@ -101,13 +111,6 @@ function App() {
         updateTeamFunc = {renderTeam}
          />
         )}
-      </div>
-
-      <div className="TeamView-Container">
-
-        <TeamView fullTeam={premadeTeam}
-        updateTeamFunc={renderTeam}
-        userId = {userId}/>
       </div>
 
     </div>

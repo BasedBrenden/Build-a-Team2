@@ -5,6 +5,7 @@
     '. view .';
     
 }
+ 
 
 #sign-container{
     grid-area: view;
@@ -16,6 +17,10 @@
     flex-flow: column;
     row-gap: 1.5rem;
     padding: 0 2rem;
+}
+
+#sign-container > h1{
+    color: black;
 }
 
 #sign-container > input{

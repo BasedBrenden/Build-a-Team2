@@ -1,51 +1,107 @@
 .teamview-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.teamCard-container{
-    margin-top: 1rem;
-    border: 1px solid rgb(160, 25, 25);
-    border-radius: 12px;
-    background-color: white;
-    width: 250px;
-    height: 250px;
     display: grid;
-    grid-template-areas: 
-    'profile-view'
-    'Pokesprite'
-    'Pokebio';
-    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-areas:
+    'info info info team'
+    'info info info team'
+    '. . . .';
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    background-color: white;
+    border-radius: 12px;
+    width: 70%;
+    height: 491px;
+    padding: 12px;
     
 }
 
-.teamCard-delete{
-    grid-area: delete;
-    border: none;
-    color: white;
-    width: 50%;
-    height: 50%;
-    justify-items: end;
-    align-items: center;
-    margin-left: auto;
-    background-color: red;
+#info{
+    grid-area: info;
 }
 
-.teamCard-delete:hover{
-    background-color: rgb(128, 0, 0);
-    cursor: pointer;
+#info >div> p{
+    text-align: center;
+    font-size:xx-large;
+    font-weight: 600;
+    margin-bottom: none;
+    
 }
+
+#info >div>img{
+
+    margin:auto;
+    width: 20%
+}
+
+.teamCard-container{
+    grid-area: team;
+    border: 1px solid white;
+    background-color: white;
+    width: 100%;
+    height: 4.99rem;
+    display: grid;
+    grid-template-areas: 
+    'Pokesprite profile-view';
+    grid-template-columns: 2fr 6fr ;
+    
+}
+
+.teamCard-container:hover{
+    cursor: pointer;
+    border-color: goldenrod;
+    border-radius: 12px;
+}
+
+
+
 
 .teamCard-header{
     
     grid-area: profile-view;
     display: grid;
     grid-template-areas:
-    '. name delete';
+    ' name . delete';
+    align-content: center;
+    
 }
 
-.teamCard-header > h1{
+.teamCard-header > div{
+    display: grid;
+    grid-area: delete;
+    height: 79.8333;
+    justify-content: end;
+
+}
+
+
+
+.teamCard-delete{
+    
+    border: none;
+    
+    font-size: large;
+    width: 2rem;
+    height: 50%;
+    background-color: white;
+    
+    color: red;
+}
+
+.teamCard-delete:hover{
+    color: rgb(128, 0, 0);
+    cursor: pointer;
+}
+
+.teamCard-header > p{
+    font-weight: 600;
+    letter-spacing: .12rem;
     grid-area: name
+}
+
+.poke-sprite{
+    
+    height: 100%;
+    align-content: center;
+    justify-content:center;
+    margin: none;
 }
 
