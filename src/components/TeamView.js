@@ -73,7 +73,7 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
     return (
         <div className="teamview-container">
             <div className="search2">
-                <input id='input' type="text" placeholder="begin searching for pokemon!"></input>
+                <input id='input' type="text" placeholder="Search for Pokemon"></input>
                 <button type='button' onClick={updateSearch}>Search!</button>
                 <h1 className="errorMessage"> </h1>
             </div>
