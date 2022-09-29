@@ -90,12 +90,12 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
             <div id="team">
                 {fullTeam.map((pokemon)=>
                     <div className='teamCard-container' key= {pokemon.pokeName} onClick={() => {updateFocused(pokemon)}}>
-                    <div className="teamCard-header">
-                        <p>{pokemon.pokeName}</p>
-                        <div>
-                            <button type='button' className="teamCard-delete" onClick={() => {removePokemon(pokemon.pokeID);}} value={pokemon.pokeID}>X</button>
+                        <div className="teamCard-header">
+                            <p>{pokemon.pokeName}</p>
+                            <div>
+                                <button type='button' className="teamCard-delete" onClick={() => {removePokemon(pokemon.pokeID);}} value={pokemon.pokeID}>X</button>
+                            </div>
                         </div>
-                    </div>
                     <img src={pokemon.pokeImage} alt='wooo' className="poke-sprite"></img>
                 </div>
                 )}
