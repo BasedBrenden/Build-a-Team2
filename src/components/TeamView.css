@@ -26,6 +26,10 @@
     border-bottom: double;
     margin-right: 1%;
 }
+
+.errorMessage{
+    color: black;
+}
 #info{
     grid-area: info;
 }
@@ -128,11 +132,11 @@
         'info'
         'team';
         grid-template-columns: 1fr;
-        grid-template-rows: min-content 2fr 1fr;
+        grid-template-rows: min-content 1fr 1fr;
         background-color: white;
         border-radius: 12px;
         width: 70%;
-        max-height: 550px;
+        min-height: 550px;
         padding: 12px;
         
     }
@@ -148,6 +152,12 @@
         'Pokesprite profile-view';
         grid-template-columns: 2fr 6fr ;
         
+    }
+
+    .errorMessage{
+        font-size: medium;
+        color: black;
+        margin-bottom: none;
     }
 
     
