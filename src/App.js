@@ -55,7 +55,7 @@ function App() {
     
   }
   
-  const updateSearch = async () =>{
+  /*const updateSearch = async () =>{
     let inputSearch = document.querySelector('#input').value
     const updateError = document.querySelector('.ErrorMessage')
 
@@ -74,7 +74,7 @@ function App() {
       console.log(error)
       return error
     }
-  }
+  }*/
 
 
   return (
@@ -83,7 +83,14 @@ function App() {
         <Navbar/>
       </div>
       <h1> Use this app to help build your own pokemon team! </h1>
+      {/*
+      <div className="Search">
+        <input id='input' type="text" placeholder="begin searching for pokemon!"></input>
+        <button type='button' onClick = {updateSearch}>Search!</button>
+        <h1 className="ErrorMessage"> </h1>
+      </div>
 
+  */}
       <div className="TeamView-Container">
 
         <TeamView 
@@ -93,12 +100,7 @@ function App() {
         userId = {userId}/>
       </div>
 
-      <div className="Search">
-        <input id='input' type="text" placeholder="begin searching for pokemon!"></input>
-        <button type='button' onClick = {updateSearch}>Search!</button>
-        <h1 className="ErrorMessage"> </h1>
-      </div>
-
+    {/*
       <div className="PokeView-Container">
         {result.map((pokemon) =>
         <PokeView key={pokemon.id}
@@ -112,7 +114,7 @@ function App() {
          />
         )}
       </div>
-
+        */}
     </div>
   );
 }
