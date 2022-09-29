@@ -8,7 +8,7 @@
     grid-template-rows: min-content min-content 1fr;
     background-color: white;
     border-radius: 12px;
-    width: 70%;
+    width: 100%;
     min-height: 550px;
     padding: 12px;
     
@@ -40,7 +40,71 @@
 }
 #info{
     grid-area: info;
-    font-size:xx-large;
+    font-size:xx-large;;
+}
+
+.infoContainer{
+    display: grid;
+    grid-template-areas: 
+    'infoName infoStats'
+    'infoAbility infoAbility';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.infoViewCard{
+    grid-area:infoName;
+}
+
+.info-image{
+    width: 100%;
+    height: auto;
+}
+
+.infoStats{
+
+    grid-area: infoStats;
+}
+
+.infoTypes{
+    display:flex;
+    flex-flow: row;
+
+    grid-area: infoStats;
+}
+
+.infoAbility{
+
+    grid-area: infoAbility;
+}
+
+.infoAbility > h2{
+
+    text-align: left;
+    margin: 0;
+    margin-left: 5%;
+    margin-bottom: 4%;
+    
+}
+
+.abilityTitle{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.abilityButton{
+    border: 1px solid rgb(0, 110, 255);
+    border-radius: 24px;
+    font-size: 20px;
+    min-width: 40%;
+    margin: 5%;
+    padding: 3%;
+}
+
+.abilityButton:hover{
+    background-color:rgb(0, 110, 255);
+    color: white;
 }
 
 #info >div> p{

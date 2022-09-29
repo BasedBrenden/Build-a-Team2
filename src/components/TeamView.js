@@ -7,6 +7,7 @@ import './TeamView.css'
 const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
 
     const [focusedPokemon, setFocusedPokemon] = useState('');
+    const [focusedAbility, setFocusedAbility] = useState('');
     const updateError = document.querySelector('.errorMessage')
 
     const addPokemonToTeam = () =>{
@@ -22,6 +23,12 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
                 pokeID: focusedPokemon.pokeID,
                 pokeImage: focusedPokemon.pokeImage,
                 pokeName: focusedPokemon.pokeName,
+                pokeAbility: focusedPokemon.pokeAbility, 
+                pokeAbilityEffect: focusedPokemon.pokeAbilityEffect,
+                pokeAbility2: focusedPokemon.pokeAbility2, 
+                pokeAbilityEffect2: focusedPokemon.pokeAbilityEffect2,
+                pokeType: focusedPokemon.pokeType,
+                pokeType2: focusedPokemon.pokeType2,
                 Username: userId}) 
             })
             .then(()=>{updateTeamFunc(); setFocusedPokemon('')})
@@ -46,6 +53,7 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
     
     const updateFocused = (poke)=>{
         setFocusedPokemon(poke)
+        setFocusedAbility('')
         updateTeamFunc();
     }
 
@@ -55,16 +63,56 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
           const test2 = await fetch('https://pokeapi.co/api/v2/pokemon/' + inputSearch.toLowerCase());
           const newTest2 = await test2.json();
           updateError.innerHTML = ' '
+
+          let foundAbilities = [newTest2.abilities[0].ability.name]
+          
+          let effect = await fetch(newTest2.abilities[0].ability.url)
+            .then((response)=>{
+             return response.json();
+            }).then((data)=>{
+                return data.effect_entries[1].short_effect;
+            })
+        
+          foundAbilities.push(effect)
+          if(newTest2.abilities.length > 1){
+            foundAbilities.push(newTest2.abilities[1].ability.name)
+            effect = await fetch(newTest2.abilities[1].ability.url)
+            .then((response)=>{
+             return response.json();
+            }).then((data)=>{
+                return data.effect_entries[1].short_effect;
+            })
+            foundAbilities.push(effect)
+          }else{
+            foundAbilities.push('')
+          }
+
+          let foundTypes = [newTest2.types[0].type.name];
+          if(newTest2.types.length > 1){
+
+            foundTypes.push(newTest2.types[1].type.name)
+          }else{
+            foundTypes.push('')
+          }
+
+          
           const converted = {
             pokeName: newTest2.name,
             pokeImage: newTest2.sprites.front_default,
-            pokeID: newTest2.id
+            pokeID: newTest2.id,
+            pokeAbility: foundAbilities[0], 
+            pokeAbilityEffect: foundAbilities[1],
+            pokeAbility2: foundAbilities[2], 
+            pokeAbilityEffect2: foundAbilities[3],
+            pokeType: foundTypes[0],
+            pokeType2: foundTypes[1],
           }
           setFocusedPokemon(converted)
           let searchUpdate = document.querySelector('#input')
           searchUpdate.value = ''
         }
         catch(error){
+            console.log(error)
           updateError.innerHTML = 'Enter a valid pokemon name'
         }
       }
@@ -80,10 +128,36 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
       
             <div id="info">
                 {(focusedPokemon === '') ? <span></span>:
-                 <div>
-                    <p> {focusedPokemon.pokeName}</p>
-                    <img src={focusedPokemon.pokeImage} className="Info-img" alt="woooo"></img>
-                    <button type='button' onClick={() =>{addPokemonToTeam()}}>+</button>
+                 <div className="infoContainer">
+                    <div className="infoViewCard">
+                        <p> {focusedPokemon.pokeName}</p>
+                        <img src={focusedPokemon.pokeImage} className="info-image" alt="woooo"></img>
+                        <button type='button' onClick={() =>{addPokemonToTeam()}}>+</button>
+                    </div>
+                    <div className="infoStats">
+                        <h2>ID:<span>{focusedPokemon.pokeID}</span></h2>
+                        <div className="infoTypes">
+                                <h2>Type: <span>{focusedPokemon.pokeType} {focusedPokemon.pokeType2}</span></h2>
+                        </div>
+                    </div>
+                    <div>
+                            
+                    </div>
+                    <div className = "infoAbility">
+                        <h2>Abilitites</h2>
+                            <div className="abilityTitle">
+                                <button type="button" className="abilityButton" onClick={()=>setFocusedAbility(focusedPokemon.pokeAbilityEffect)}>{focusedPokemon.pokeAbility}</button>
+                                {(focusedPokemon.pokeAbility2 === '') ?<span></span>:
+                                <button type="button" className="abilityButton" onClick={()=>setFocusedAbility(focusedPokemon.pokeAbilityEffect2)}>{focusedPokemon.pokeAbility2}</button>}
+                            </div>
+                            <div>
+
+                                <p>{focusedAbility}</p>
+                                
+                                
+                            </div>
+                        
+                    </div>
                 </div>}
             </div>
 

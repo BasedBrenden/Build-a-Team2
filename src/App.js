@@ -58,6 +58,9 @@ function App() {
           userId = {userId}
         />
       </div>
+      <div className="footer">
+        <span>Created by Brenden Thomas. Pokémon and Pokémon character names are trademarks of Nintendo.</span>
+      </div>
     </div>
   );
 }
