@@ -97,15 +97,15 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
 
           
           const converted = {
-            pokeName: newTest2.name,
+            pokeName: newTest2.name.toUpperCase(),
             pokeImage: newTest2.sprites.front_default,
             pokeID: newTest2.id,
-            pokeAbility: foundAbilities[0], 
+            pokeAbility: foundAbilities[0].toUpperCase(), 
             pokeAbilityEffect: foundAbilities[1],
-            pokeAbility2: foundAbilities[2], 
+            pokeAbility2: foundAbilities[2].toUpperCase(), 
             pokeAbilityEffect2: foundAbilities[3],
-            pokeType: foundTypes[0],
-            pokeType2: foundTypes[1],
+            pokeType: foundTypes[0].toUpperCase(),
+            pokeType2: foundTypes[1].toUpperCase(),
           }
           setFocusedPokemon(converted)
           let searchUpdate = document.querySelector('#input')
@@ -134,27 +134,37 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
                         <img src={focusedPokemon.pokeImage} className="info-image" alt="woooo"></img>
                         <button type='button' onClick={() =>{addPokemonToTeam()}}>+</button>
                     </div>
-                    <div className="infoStats">
-                        <h2>ID:<span>{focusedPokemon.pokeID}</span></h2>
-                        <div className="infoTypes">
-                                <h2>Type: <span>{focusedPokemon.pokeType} {focusedPokemon.pokeType2}</span></h2>
+                    <div id="infoStats">
+                        <div className="statTitle">
+                            <p>Dex No.:</p>
+                            <p>Type:</p>
+                            <p>OT:</p>
+                            <p>OT ID:</p>
+                            <p>Advantage: </p>
+                            <p>Weakness: </p>
                         </div>
+                        <div className="statContent">
+
+                            <p>{focusedPokemon.pokeID}</p>
+                            <p>{focusedPokemon.pokeType} {focusedPokemon.pokeType2}</p>
+                            <p>Brenden</p>
+                            <p> 1776 </p>
+                            <p>n/a</p>
+                            <p>n/a</p>
+                        </div>
+                        
+                        
                     </div>
-                    <div>
-                            
-                    </div>
+                  
                     <div className = "infoAbility">
-                        <h2>Abilitites</h2>
+                        <h2>Abilities</h2>
                             <div className="abilityTitle">
                                 <button type="button" className="abilityButton" onClick={()=>setFocusedAbility(focusedPokemon.pokeAbilityEffect)}>{focusedPokemon.pokeAbility}</button>
                                 {(focusedPokemon.pokeAbility2 === '') ?<span></span>:
                                 <button type="button" className="abilityButton" onClick={()=>setFocusedAbility(focusedPokemon.pokeAbilityEffect2)}>{focusedPokemon.pokeAbility2}</button>}
                             </div>
                             <div>
-
                                 <p>{focusedAbility}</p>
-                                
-                                
                             </div>
                         
                     </div>

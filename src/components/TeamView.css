@@ -5,17 +5,15 @@
     'info'
     'team';
     grid-template-columns: 1fr;
-    grid-template-rows: min-content min-content 1fr;
+    grid-template-rows: min-content 2fr 1fr;
     background-color: white;
     border-radius: 12px;
     width: 100%;
     min-height: 550px;
     padding: 12px;
-    
 }
 
 #input{
-
     font-size:17px;
 }
 
@@ -49,7 +47,7 @@
     'infoName infoStats'
     'infoAbility infoAbility';
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 48% 52%;
 }
 
 .infoViewCard{
@@ -59,31 +57,74 @@
 .info-image{
     width: 100%;
     height: auto;
+    
 }
 
-.infoStats{
-
+#infoStats{
+    border: 1px solid black;
+    border-radius: 12px;
+    font-size:small;
     grid-area: infoStats;
+    margin-top: 32px;
+    display: grid;
+    grid-template-areas:
+    'statTitle statContent';
+    grid-template-columns: 50% 50%;
+}
+
+.statTitle{
+    grid-area: statTitle;
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgb(55, 36, 224);
+    color: white;
+}
+
+
+
+div.statTitle p:nth-child(even){
+    margin: 0;
+    padding: 13px;
+    background-color: rgb(94, 79, 226);
+}
+
+.statContent{
+    display: flex;
+    flex-direction: column;
+    grid-area: statContent;
+}
+
+div.statContent p:nth-child(odd){
+    margin: 0;
+    padding: 13px;
+    background-color: rgb(168, 168, 168);
+}
+
+#infoStats > div{
+    border-bottom: 1px solid black;
+}
+
+.infoStats > p > span{
+    text-align: right;
+    color:rgb(0, 110, 255);
 }
 
 .infoTypes{
     display:flex;
     flex-flow: row;
-
     grid-area: infoStats;
 }
 
 .infoAbility{
-
     grid-area: infoAbility;
 }
 
 .infoAbility > h2{
-
     text-align: left;
     margin: 0;
-    margin-left: 5%;
-    margin-bottom: 4%;
+    margin-left: 1%;
     
 }
 
@@ -96,9 +137,10 @@
 .abilityButton{
     border: 1px solid rgb(0, 110, 255);
     border-radius: 24px;
-    font-size: 20px;
+    font-size: medium;
     min-width: 40%;
     margin: 5%;
+    margin-bottom: 4%;
     padding: 3%;
 }
 
@@ -115,7 +157,6 @@
 }
 
 #info >div>img{
-
     margin:auto;
     width: 20%
 }
@@ -130,7 +171,6 @@
     grid-template-areas: 
     'Pokesprite profile-view';
     grid-template-columns: 2fr 6fr;
-    
 }
 
 .teamCard-container:hover{
@@ -143,13 +183,11 @@
 
 
 .teamCard-header{
-    
     grid-area: profile-view;
     display: grid;
     grid-template-areas:
     ' name . delete';
     align-content: center;
-    
 }
 
 .teamCard-header > div{
@@ -162,14 +200,11 @@
 
 
 .teamCard-delete{
-    
     border: none;
-    
     font-size: large;
     width: 2rem;
     height: 50%;
     background-color: white;
-    
     color: red;
 }
 
@@ -185,7 +220,6 @@
 }
 
 .poke-sprite{
-    
     height: 100%;
     align-content: center;
     justify-content:center;
@@ -209,7 +243,6 @@
         width: 70%;
         min-height: 491px;
         padding: 12px;
-        
     }
 
     .teamCard-container{
@@ -222,7 +255,6 @@
         grid-template-areas: 
         'Pokesprite profile-view';
         grid-template-columns: 2fr 6fr;
-        
     }
 
     .errorMessage{

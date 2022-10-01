@@ -1,9 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import './SignIn-Up.css'
-
+import './SignIn-Up.css';
 import { auth, createUserWithEmailAndPassword } from "../../../firebase";
-
 
 const SignUpForm = () =>{
     const navigate = useNavigate();
