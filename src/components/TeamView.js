@@ -163,7 +163,7 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
                                 {(focusedPokemon.pokeAbility2 === '') ?<span></span>:
                                 <button type="button" className="abilityButton" onClick={()=>setFocusedAbility(focusedPokemon.pokeAbilityEffect2)}>{focusedPokemon.pokeAbility2}</button>}
                             </div>
-                            <div>
+                            <div id="abilityDescription">
                                 <p>{focusedAbility}</p>
                             </div>
                         

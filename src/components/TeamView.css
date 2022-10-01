@@ -47,7 +47,7 @@
     'infoName infoStats'
     'infoAbility infoAbility';
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 48% 52%;
+    grid-template-rows: .6fr 1fr;
 }
 
 .infoViewCard{
@@ -94,12 +94,15 @@ div.statTitle p:nth-child(even){
     display: flex;
     flex-direction: column;
     grid-area: statContent;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgb(168, 168, 168);
 }
 
-div.statContent p:nth-child(odd){
+div.statContent p:nth-child(even){
     margin: 0;
     padding: 13px;
-    background-color: rgb(168, 168, 168);
+    background-color: white;
 }
 
 #infoStats > div{
@@ -118,6 +121,7 @@ div.statContent p:nth-child(odd){
 }
 
 .infoAbility{
+    margin-top: 40px;
     grid-area: infoAbility;
 }
 
@@ -149,6 +153,10 @@ div.statContent p:nth-child(odd){
     color: white;
 }
 
+
+#abilityDescription{
+    min-height: 420px;
+}
 #info >div> p{
     text-align: center;
     font-weight: 600;
