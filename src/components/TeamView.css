@@ -47,7 +47,7 @@
     'infoName infoStats'
     'infoAbility infoAbility';
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: .6fr 1fr;
+    grid-template-rows: .6fr min-content;
 }
 
 .infoViewCard{
@@ -155,7 +155,7 @@ div.statContent p:nth-child(even){
 
 
 #abilityDescription{
-    min-height: 420px;
+    max-height: 420px;
 }
 #info >div> p{
     text-align: center;
