@@ -126,7 +126,7 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
                 <h1 className="errorMessage"> </h1>
             </div>
       
-            <div id="info">
+            <div className="info">
                 {(focusedPokemon === '') ? <span></span>:
                  <div className="infoContainer">
                     <div className="infoViewCard">
