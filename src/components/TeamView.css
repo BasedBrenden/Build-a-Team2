@@ -53,6 +53,10 @@
 .infoViewCard{
     grid-area:infoName;
 }
+.infoViewCard > p{
+    padding: 15px;
+    font-size: x-large;
+}
 
 .info-image{
     width: 100%;
