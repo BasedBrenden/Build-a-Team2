@@ -54,9 +54,12 @@
 
 .infoViewCard{
     grid-area:infoName;
+    margin-right: 0;
 }
 .infoViewCard > p{
     padding: 15px;
+    padding-right: 0;
+    padding-left: 0;
     font-size: x-large;
 }
 
@@ -277,7 +280,7 @@ div.statContent p:nth-child(even){
         grid-template-areas: 
         'infoName infoStats'
         'abilities abilities';
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: min-content;
     }
 
