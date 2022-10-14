@@ -5,7 +5,7 @@
     'info'
     'team';
     grid-template-columns: 1fr;
-    grid-template-rows: min-content 2fr 1fr;
+    grid-template-rows: min-content min-content 1fr;
     background-color: white;
     border-radius: 12px;
     width: 100%;
@@ -89,6 +89,10 @@
     border-bottom-left-radius: 10px;
     background-color: rgb(55, 36, 224);
     color: white;
+}
+
+.statTitleType{
+    height: 18.5%;
 }
 
 
@@ -243,6 +247,30 @@ div.statContent p:nth-child(even){
     margin: none;
 }
 
+.typeContainer{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    
+}
+
+.testClass{
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: .5rem 1.5rem;
+    color: white;
+    width: 2.5rem;
+    text-align: center;
+}
+.testClass2{
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: .5rem 1.5rem;
+    color: white;
+    width: 2.5rem;
+    text-align: center;
+}
+
 
 
 @media (min-width: 600px) {
@@ -292,4 +320,9 @@ div.statContent p:nth-child(even){
     .errorMessage{
         color: black;
     }
+
+    .statTitleType{
+        height: 6.4%;
+    }
+    
 }
