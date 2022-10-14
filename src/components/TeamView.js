@@ -192,30 +192,33 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
                         <button type='button' onClick={() =>{addPokemonToTeam()}}>+</button>
                     </div>
                     <div id="infoStats">
-                        <div className="statTitle">
-                            <p>Dex No.:</p>
-                            <p className = "statTitleType">Type:</p>
-                            <p>OT:</p>
-                            <p>OT ID:</p>
-                            <p>Advantage: </p>
-                            <p>Weakness: </p>
-                        </div>
-                        <div className="statContent">
-
-                            <p>{focusedPokemon.pokeID}</p>
-                            <p>
-                            <div className="typeContainer">
-                            <span className ="testClass">{focusedPokemon.pokeType}</span>
-                            {(focusedPokemon.pokeType2 === '') ?<span></span>: <span className ="testClass2">{focusedPokemon.pokeType2}</span>}
+                            <div id="infoStatsName">
+                                <p>Dex No.:</p>
+                                <p className ="pTest2">{focusedPokemon.pokeID}</p>
                             </div>
-                            </p>
-                            <p>Brenden</p>
-                            <p> 1776 </p>
-                            <p>n/a</p>
-                            <p>n/a</p>
-                        </div>
-                        
-                        
+                            <div id="infoStatsType">
+                                <p className = "statTitleType">Type:</p>
+                                <div className="typeContainer">
+                                    <span className ="testClass">{focusedPokemon.pokeType}</span>
+                                    {(focusedPokemon.pokeType2 === '') ?<span></span>: <span className ="testClass2">{focusedPokemon.pokeType2}</span>}
+                                </div>
+                            </div>
+                            <div id="infoStatsOT">
+                                <p>OT:</p>
+                                <p className ="pTest2">Brenden</p>
+                            </div>
+                            <div id="infoStatsOTID">
+                                <p>OT ID:</p>
+                                <p className = "pTest"> 1776 </p>
+                            </div>
+                            <div id="infoStatsAdv">
+                                <p>Advantage: </p>
+                                <p className ="pTest2">n/a</p>
+                            </div>
+                            <div id="infoStatsWeak">
+                                <p>Weakness: </p>
+                                <p className = "pTest">n/a</p>
+                            </div>   
                     </div>
                   
                     <div className = "infoAbility">

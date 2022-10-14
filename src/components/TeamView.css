@@ -69,26 +69,93 @@
     
 }
 
+.pTest{
+    width: 50%;
+    height: 100%;
+    border-left: 1px solid;
+    background-color: white;
+    margin-top: 0;
+    text-align: auto;
+}
+
+.pTest2{
+    width: 50%;
+    height: 100%;
+    border-left: 1px solid;
+    background-color: rgb(168, 168, 168);
+    padding-top: 13px;
+    margin-top: 0;
+    text-align: center;
+}
+
 #infoStats{
+    background-color: rgb(67, 48, 236);
     border: 1px solid black;
     border-radius: 12px;
     font-size:small;
     grid-area: infoStats;
     margin-top: 32px;
     display: grid;
-    grid-template-areas:
-    'statTitle statContent';
-    grid-template-columns: 50% 50%;
+    height: min-content;
+    grid-template-areas: 
+    'statsNo'
+    'statsType'
+    'statsTrainer'
+    'statsTrainerID'
+    'statsAdv'
+    'statsWeak'
+    ;
+    grid-template-rows: repeat(6, 1fr);
 }
 
-.statTitle{
-    grid-area: statTitle;
+div#infoStats:nth-child(even) >div >p{
+    width: 50%;
+}
+
+
+div#infoStats > div:nth-child(even){
+    background-color: rgb(94, 79, 226);
+}
+
+
+#infoStatsName{
+    grid-area: statsNo;
     display: flex;
-    flex-direction: column;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    background-color: rgb(55, 36, 224);
-    color: white;
+    flex-flow: row;
+}
+
+#infoStatsType{
+    grid-area: statsType;
+    display: flex;
+    flex-flow: row;
+    height: min-content;
+}
+
+#infoStatsOT{
+    grid-area: statsTrainer;
+    display: flex;
+    flex-flow: row;
+    height: 100%;
+}
+
+#infoStatsOTID{
+    grid-area: statsTrainerID;
+    display: flex;
+    flex-flow: row;
+}
+
+#infoStatsAdv{
+    grid-area: statsAdv;
+    display: flex;
+    flex-flow: row;
+}
+
+#infoStatsWeak{
+    grid-area: statsWeak;
+    display: flex;
+    flex-flow: row;
+    
+    
 }
 
 .statTitleType{
@@ -96,41 +163,8 @@
 }
 
 
-
-div.statTitle p:nth-child(even){
-    margin: 0;
-    padding: 13px;
-    background-color: rgb(94, 79, 226);
-}
-
-.statContent{
-    display: flex;
-    flex-direction: column;
-    grid-area: statContent;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background-color: rgb(168, 168, 168);
-}
-
-div.statContent p:nth-child(even){
-    margin: 0;
-    padding: 13px;
-    background-color: white;
-}
-
 #infoStats > div{
     border-bottom: 1px solid black;
-}
-
-.infoStats > p > span{
-    text-align: right;
-    color:rgb(0, 110, 255);
-}
-
-.infoTypes{
-    display:flex;
-    flex-flow: row;
-    grid-area: infoStats;
 }
 
 .infoAbility{
@@ -250,7 +284,11 @@ div.statContent p:nth-child(even){
 .typeContainer{
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    width: 50%;
+    height: 100%;
+    border-left: 1px solid;
+    background-color: white;
+    justify-content: center;
     
 }
 
@@ -261,6 +299,7 @@ div.statContent p:nth-child(even){
     color: white;
     width: 2.5rem;
     text-align: center;
+    margin: 10px;
 }
 .testClass2{
     border: 1px solid black;
@@ -269,11 +308,12 @@ div.statContent p:nth-child(even){
     color: white;
     width: 2.5rem;
     text-align: center;
+    margin: 10px;
 }
 
 
 
-@media (min-width: 600px) {
+@media (min-width: 1100px) {
 
     .teamview-container{
         display: grid;
