@@ -9,6 +9,7 @@ function App() {
   const [result, setresult] = useState([])
   const [premadeTeam, setPremadeTeam] = useState([])
   const [userId, setUserId] = useState('no');
+  const [trainerStats, setTrainerStats] = useState('');
 
   useEffect(() => {
     renderTeam();
@@ -34,6 +35,9 @@ function App() {
             }
             setPremadeTeam([...newTeam])
             setresult([])
+            setTrainerStats({
+              trainerName: data[0].trainerName,
+              trainerID: data[0].trainerID})
         })
         .catch((error) =>console.log(error))
       } else {
@@ -56,6 +60,7 @@ function App() {
           fullTeam={premadeTeam}
           updateTeamFunc={renderTeam}
           userId = {userId}
+          trainerStats = {trainerStats}
         />
       </div>
       <div className="footer">

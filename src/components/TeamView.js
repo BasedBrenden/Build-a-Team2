@@ -4,7 +4,7 @@ import './TeamView.css'
 
 
 
-const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
+const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
 
     const [focusedPokemon, setFocusedPokemon] = useState('');
     const [focusedAbility, setFocusedAbility] = useState('');
@@ -205,11 +205,11 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
                             </div>
                             <div id="infoStatsOT">
                                 <p>OT:</p>
-                                <p className ="pTest2">Brenden</p>
+                                <p className ="pTest2">{trainerStats.trainerName}</p>
                             </div>
                             <div id="infoStatsOTID">
                                 <p>OT ID:</p>
-                                <p className = "pTest"> 1776 </p>
+                                <p className = "pTest">{trainerStats.trainerID}</p>
                             </div>
                             <div id="infoStatsAdv">
                                 <p>Advantage: </p>

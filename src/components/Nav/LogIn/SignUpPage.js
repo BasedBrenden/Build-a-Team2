@@ -9,11 +9,15 @@ const SignUpForm = () =>{
         fetch('https://batbackend.herokuapp.com/sign-up',{
         method: 'POST',
         headers: {'Content-Type': 'application/json' },
-        body: JSON.stringify({username1: user}),
+        body: JSON.stringify(
+            {username1: user, 
+            trainerName: document.getElementById("trainerName").value,
+            trainerID: Math.floor(Math.random()* 99999)}),
         })
         .then((response) => {console.log(response)})
         .catch((error) => alert(error))
     }
+
     const SignUp = () =>{
 
         const userInfo = {
@@ -45,6 +49,7 @@ const SignUpForm = () =>{
             <div id="sign-container">
                 <h1>Sign up</h1>
                 <input type="text" id="username" placeholder="Enter email"></input>
+                <input type="text" id="trainerName" placeholder="Enter your trainer name"></input>
                 <input type="password" id="password" placeholder="Enter pasword"></input>
                 <button type="button" onClick={()=>{SignUp()}}>Sign Up!</button>
                 <span id="error-field"> </span>
