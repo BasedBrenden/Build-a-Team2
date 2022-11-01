@@ -1,6 +1,8 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { typeCompare, updateSearch, changeTypeColor } from '../Utils'
+import { useState, useEffect, useRef} from 'react'
 import './TeamView.css'
+import './TypeStyles.css'
 
 
 
@@ -8,67 +10,57 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
 
     const [focusedPokemon, setFocusedPokemon] = useState('');
     const [focusedAbility, setFocusedAbility] = useState('');
-    const updateError = document.querySelector('.errorMessage');
-
-    const changeTypeColor = (item) =>{
-        
-
-            if(item.innerHTML === "FIRE"){
-                item.style.backgroundColor = "Orange";
-            }else if(item.innerHTML === "FLYING"){
-                item.style.backgroundColor = "#55bec2";
-            }else if(item.innerHTML === "STEEL"){
-                item.style.backgroundColor = "#88888a";
-            }else if(item.innerHTML === "WATER"){
-                item.style.backgroundColor = "#0909e3";
-            }else if(item.innerHTML === "GRASS"){
-                item.style.backgroundColor = "#049413";
-            }else if(item.innerHTML === "DARK"){
-                item.style.backgroundColor = "#010801";
-            }else if(item.innerHTML === "ELECTRIC"){
-                item.style.backgroundColor = "#bdb000";
-            }else if(item.innerHTML === "BUG"){
-                item.style.backgroundColor = "#a9b820";
-            }else if(item.innerHTML === "PSYCHIC"){
-                item.style.backgroundColor = "#f85888";
-            }else if(item.innerHTML === "ROCK"){
-                item.style.backgroundColor = "#b8a038";
-            }else if(item.innerHTML === "GROUND"){
-                item.style.backgroundColor = "#927d44";
-            }else if(item.innerHTML === "FAIRY"){
-                item.style.backgroundColor = "#9b6470";
-            }else if(item.innerHTML === "FIGHTING"){
-                item.style.backgroundColor = "#c03028";
-            }else if(item.innerHTML === "GHOST"){
-                item.style.backgroundColor = "#705898";
-            }else if(item.innerHTML === "ICE"){
-                item.style.backgroundColor = "#638d8d";
-            }else if(item.innerHTML === "NORMAL"){
-                item.style.backgroundColor = "#6d6d4e";
-            }else if(item.innerHTML === "POISON"){
-                item.style.backgroundColor = "#682a68";
-            }else if(item.innerHTML === "DRAGON"){
-                item.style.backgroundColor = "#7238f8";
-            }else{
-                return;
-            }
-
-    }
+    const [focusedTypes, setFocusedTypes] = useState('');
 
     useEffect(() => {
         if(document.querySelector(".testClass")){
             const typeSelected = document.querySelector(".testClass");
             changeTypeColor(typeSelected)
+            if(document.querySelector(".testClass2")){
+                const typeSelected2 = document.querySelector(".testClass2");
+                changeTypeColor(typeSelected2)
+            }
         }
-        if(document.querySelector(".testClass2")){
-            const typeSelected2 = document.querySelector(".testClass2");
-            changeTypeColor(typeSelected2)
+
+        const allTypesOnPage = document.querySelectorAll(".testClass3");
+        for(let i=0; i < allTypesOnPage.length; i++){
+            let tempElem = allTypesOnPage[i]
+            console.log(tempElem.innerHTML)
+            changeTypeColor(tempElem)
         }
     }, [focusedPokemon])
     
+    const removePokemon = (pokeId) =>{
+        fetch('https://batbackend.herokuapp.com/deletePoke',{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json' },
+            body: JSON.stringify({id: pokeId, Username: userId}),
+        })
+        .then((response)=>{
+            updateTeamFunc();
+            setFocusedPokemon('');
+        })
+        .catch((error) => console.log(error))
+    }
+    
+    const updateFocused = (poke)=>{
+        setFocusedPokemon(poke)
+        let currTypes =[]
+        if(poke.pokeType){
+            if(poke.pokeType2){
+                currTypes = [poke.pokeType, poke.pokeType2]
+            }
+            else{
+                currTypes = [poke.pokeType]
+            }
+            setFocusedTypes(typeCompare(currTypes))
+        }
+        setFocusedAbility('')
+        updateTeamFunc();
+    }
 
     const addPokemonToTeam = () =>{
-
+        const updateError = document.querySelector('.errorMessage');
         //Fetch request to update current team roster with a new pokemon to the end
         if(fullTeam.length === 6){
             updateError.innerHTML = "Current team is too large! Try removing a pokemon and trying again"
@@ -90,96 +82,17 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
             })
             .then(()=>{updateTeamFunc(); setFocusedPokemon('')})
             .catch((error)=>{updateError.innerHTML = error})
-
         }
     }
 
-    const removePokemon = (pokeId) =>{
-        fetch('https://batbackend.herokuapp.com/deletePoke',{
-            method: 'POST',
-            headers: {'Content-Type': 'application/json' },
-            body: JSON.stringify({id: pokeId, Username: userId}),
-        })
-        .then((response)=>{
-            updateTeamFunc();
-            setFocusedPokemon('');
-        })
-        .catch((error) => console.log(error))
 
-    }
-    
-    const updateFocused = (poke)=>{
-        setFocusedPokemon(poke)
-        setFocusedAbility('')
-        updateTeamFunc();
-    }
-
-    const updateSearch = async () =>{
-        const inputSearch = document.querySelector('#input').value
-        try{
-          const test2 = await fetch('https://pokeapi.co/api/v2/pokemon/' + inputSearch.toLowerCase());
-          const newTest2 = await test2.json();
-          updateError.innerHTML = ' '
-
-          let foundAbilities = [newTest2.abilities[0].ability.name]
-          
-          let effect = await fetch(newTest2.abilities[0].ability.url)
-            .then((response)=>{
-             return response.json();
-            }).then((data)=>{
-                return data.effect_entries[1].short_effect;
-            })
-        
-          foundAbilities.push(effect)
-          if(newTest2.abilities.length > 1){
-            foundAbilities.push(newTest2.abilities[1].ability.name)
-            effect = await fetch(newTest2.abilities[1].ability.url)
-            .then((response)=>{
-             return response.json();
-            }).then((data)=>{
-                return data.effect_entries[1].short_effect;
-            })
-            foundAbilities.push(effect)
-          }else{
-            foundAbilities.push('')
-          }
-
-          let foundTypes = [newTest2.types[0].type.name];
-          if(newTest2.types.length > 1){
-
-            foundTypes.push(newTest2.types[1].type.name)
-          }else{
-            foundTypes.push('')
-          }
-
-          
-          const converted = {
-            pokeName: newTest2.name.toUpperCase(),
-            pokeImage: newTest2.sprites.front_default,
-            pokeID: newTest2.id,
-            pokeAbility: foundAbilities[0].toUpperCase(), 
-            pokeAbilityEffect: foundAbilities[1],
-            pokeAbility2: foundAbilities[2].toUpperCase(), 
-            pokeAbilityEffect2: foundAbilities[3],
-            pokeType: foundTypes[0].toUpperCase(),
-            pokeType2: foundTypes[1].toUpperCase(),
-          }
-          setFocusedPokemon(converted)
-          let searchUpdate = document.querySelector('#input')
-          searchUpdate.value = ''
-        }
-        catch(error){
-            console.log(error)
-          updateError.innerHTML = 'Enter a valid pokemon name'
-        }
-      }
 
 
     return (
         <div className="teamview-container">
             <div className="search2">
                 <input id='input' type="text" placeholder="Search for Pokemon"></input>
-                <button type='button' onClick={updateSearch}>Search!</button>
+                <button type='button' onClick={updateSearch(setFocusedPokemon)}>Search!</button>
                 <h1 className="errorMessage"> </h1>
             </div>
       
@@ -213,11 +126,23 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
                             </div>
                             <div id="infoStatsAdv">
                                 <p>Advantage: </p>
-                                <p className ="pTest2">n/a</p>
+                                <div className="pTest2">
+                                { (focusedTypes === '') ?<span></span>: focusedTypes[0].map((type) =>
+                                
+                                        <p className = "testClass3">{type}</p>
+                                    
+                                )}
+                                </div>
                             </div>
                             <div id="infoStatsWeak">
                                 <p>Weakness: </p>
-                                <p className = "pTest">n/a</p>
+                                <div className="pTest">
+                                { (focusedTypes === '') ?<span></span>: focusedTypes[1].map((type) =>
+                                
+                                        <p className = "testClass3">{type}</p>
+                                    
+                                )}
+                                </div>
                             </div>   
                     </div>
                   
@@ -245,8 +170,8 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
                                 <button type='button' className="teamCard-delete" onClick={() => {removePokemon(pokemon.pokeID);}} value={pokemon.pokeID}>X</button>
                             </div>
                         </div>
-                    <img src={pokemon.pokeImage} alt='wooo' className="poke-sprite"></img>
-                </div>
+                        <img src={pokemon.pokeImage} alt='wooo' className="poke-sprite"></img>
+                    </div>
                 )}
             </div>
         </div>

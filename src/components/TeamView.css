@@ -5,7 +5,7 @@
     'info'
     'team';
     grid-template-columns: 1fr;
-    grid-template-rows: min-content min-content 1fr;
+    grid-template-rows: min-content 1fr 1fr;
     background-color: white;
     border-radius: 12px;
     width: 100%;
@@ -49,7 +49,7 @@
     'infoName infoStats'
     'infoAbility infoAbility';
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: .6fr min-content;
+    grid-template-rows: 1fr min-content;
 }
 
 .infoViewCard{
@@ -96,7 +96,7 @@
     grid-area: infoStats;
     margin-top: 32px;
     display: grid;
-    height: min-content;
+    max-height: 750px;
     grid-template-areas: 
     'statsNo'
     'statsType'
@@ -105,7 +105,7 @@
     'statsAdv'
     'statsWeak'
     ;
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: .25fr .5fr .25fr .25fr 2fr 2fr;
 }
 
 div#infoStats:nth-child(even) >div >p{
@@ -148,13 +148,15 @@ div#infoStats > div:nth-child(even){
     grid-area: statsAdv;
     display: flex;
     flex-flow: row;
+    overflow: auto;
 }
 
 #infoStatsWeak{
     grid-area: statsWeak;
     display: flex;
     flex-flow: row;
-    
+    overflow: auto;
+    margin-right: 0px;
     
 }
 
@@ -311,6 +313,15 @@ div#infoStats > div:nth-child(even){
     margin: 10px;
 }
 
+.testClass3{
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: .5rem 1.5rem;
+    color: white;
+    width: 2.5rem;
+    text-align: center;
+    margin: 10px;
+}
 
 
 @media (min-width: 1100px) {
@@ -335,7 +346,7 @@ div#infoStats > div:nth-child(even){
         border: 1px solid white;
         background-color: white;
         max-width: 100%;
-        height: 16.5%;
+        height: 10rem;
         display: grid;
         grid-template-areas: 
         'Pokesprite profile-view';
