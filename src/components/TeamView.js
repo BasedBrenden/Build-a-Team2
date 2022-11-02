@@ -1,6 +1,6 @@
 import React from 'react'
 import { typeCompare, updateSearch, changeTypeColor } from '../Utils'
-import { useState, useEffect, useRef} from 'react'
+import { useState, useEffect} from 'react'
 import './TeamView.css'
 import './TypeStyles.css'
 

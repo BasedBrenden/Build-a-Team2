@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom"
 import Navbar from "./components/Nav/Navbar"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { auth, onAuthStateChanged } from './firebase';
 
 const App = () =>{
 
-    const [isLoggIn, setisLoggIn] = useState(false)
+    
     const navigate = useNavigate()
 
     const navigateToHome = () => {
