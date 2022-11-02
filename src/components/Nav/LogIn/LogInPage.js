@@ -1,6 +1,7 @@
 import React from "react"
 import {  auth, signInWithEmailAndPassword } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./SignIn-Up.css"
 
 
@@ -28,14 +29,23 @@ const LogInForm = () =>{
         });
 
     }
+
+    const featureNotAvail =() =>{
+        document.getElementById("error-field").innerHTML= "Feature not available atm :( sorry.";
+    }
     return(
         <div id="main-container">
             <div id="sign-container">
                 <h1>Sign in</h1>
+                
                 <input type="text" id="username" placeholder="Enter email"></input>
+                
                 <input type="password" id="password" placeholder="Enter pasword"></input>
                 <button type="button" onClick={()=>{LogInFunc()}}>Log In!</button>
                 <span id="error-field"></span>
+                <hr></hr>
+                <Link to="/" onClick={()=>{featureNotAvail()}}>Forgot Password?</Link>
+                
             </div>
         </div>
     )

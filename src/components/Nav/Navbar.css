@@ -12,6 +12,9 @@
     color: white;
     font-weight: bolder;
 }
+.navbarDiv > p:hover{
+    cursor: pointer
+}
 
 .logInDiv{
     grid-area: login

@@ -1,11 +1,12 @@
 body {
   -webkit-appearance: none;
+  appearance: none;
   height: 100%;
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
   width: 100%;
-  background-color: rgb(5, 163, 89);
+  background-color: rgb(126, 5, 163);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

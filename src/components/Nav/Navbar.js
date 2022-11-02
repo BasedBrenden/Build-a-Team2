@@ -1,18 +1,15 @@
-import LogIn from "./LogIn/LogIn"
-import { useState, useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import './Navbar.css'
-import { auth, signOut , onAuthStateChanged} from '../../firebase'
+import { auth, signOut } from '../../firebase'
 
 
 
 const Navbar = () =>{
-    const [loggedIn, setLoggedIn] = useState(false)
     const navigate = useNavigate();
     const signOutClick = () =>{
 
-        signOut(auth).then(()=>{setLoggedIn(false)}).catch((error)=>{console.log(error)})
-        
+        signOut(auth).catch((error)=>{console.log(error)})
+        navigate("/")
     }
 
     const toggleDropdown = () => {
@@ -22,23 +19,7 @@ const Navbar = () =>{
     }
 
     
-    useEffect(() => {
-        
-        /*if(auth.currentUser){
-            navigate("/Home")
-            console.log("Refresh")
-          }else{
-            navigate("/")
-          }*/
-
-          onAuthStateChanged(auth, (user) =>{
-            if (user){
-                setLoggedIn(true)
-            }else{
-                navigate("/")
-            }
-          })
-    }, [loggedIn])
+    
     
 
     window.onclick = function(event) {
@@ -51,20 +32,17 @@ const Navbar = () =>{
 
     return(
         <div className="navbarDiv"> 
-            <p>Build-a-Team!</p>
-            <div className="logInDiv">
-                <div>{(auth.currentUser) ?  
-                <div className="dropdown">
-                    <button onClick={()=>{toggleDropdown()}} className="accntBtn"><span className="material-symbols-outlined"> account_circle </span></button>
-                        <div id="myDropdown" className="dropdown-content">
-                        <button type="button" className="dropdown-acc"><Link to="/account">Account Settings</Link></button>
-                            <button type="button" className="dropdown-signout" onClick={()=>{ signOutClick()}}>Sign Out</button>
-                        </div>
-                </div> 
-                :<LogIn/>} 
-              </div>
-                
-            </div>
+            <p onClick={()=>{navigate("/Home")}}>Build-a-Team!</p>
+                <div className="logInDiv">
+                 
+                    <div className="dropdown">
+                        <button onClick={()=>{toggleDropdown()}} className="accntBtn"><span className="material-symbols-outlined"> account_circle </span></button>
+                            <div id="myDropdown" className="dropdown-content">
+                                <button type="button" className="dropdown-acc" onClick={()=>{navigate("/account")}} disabled={true} >Account Settings</button>
+                                <button type="button" className="dropdown-signout" onClick={()=>{ signOutClick()}}>Sign Out</button>
+                            </div>
+                    </div> 
+                </div>
         </div>
     )
 }

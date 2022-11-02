@@ -1,9 +1,10 @@
 import './App.css';
 import {useState, useEffect} from 'react'
+// eslint-disable-next-line no-unused-vars
 import { auth, onAuthStateChanged } from './firebase';
 import TeamView from './components/TeamView';
 import Navbar from './components/Nav/Navbar'
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
 
@@ -16,13 +17,14 @@ function HomePage() {
 
   useEffect(() => {
 
-    
-      renderTeam();
+    renderTeam();
       
-  }, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   
-  const renderTeam = () =>{
+  const renderTeam = async() =>{
     const newTeam = []
+    
     
       if(auth.currentUser){
         const uid = auth.currentUser.email;
