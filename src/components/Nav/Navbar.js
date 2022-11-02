@@ -12,7 +12,7 @@ const Navbar = () =>{
     const signOutClick = () =>{
 
         signOut(auth).then(()=>{setLoggedIn(false)}).catch((error)=>{console.log(error)})
-        navigate("/")
+        
     }
 
     const toggleDropdown = () => {
@@ -21,17 +21,29 @@ const Navbar = () =>{
 
     }
 
+    
     useEffect(() => {
-        onAuthStateChanged(auth, (user) =>{
+        
+        /*if(auth.currentUser){
+            navigate("/Home")
+            console.log("Refresh")
+          }else{
+            navigate("/")
+          }*/
+
+          onAuthStateChanged(auth, (user) =>{
             if (user){
                 setLoggedIn(true)
-            } 
-        })
-    }, [])
+            }else{
+                navigate("/")
+            }
+          })
+    }, [loggedIn])
+    
 
     window.onclick = function(event) {
         if (!event.target.matches('.material-symbols-outlined')) {
-            if(document.querySelector(".dropdown-content").classList.contains("show"))
+            if(document.querySelector(".dropdown-content") && document.querySelector(".dropdown-content").classList.contains("show"))
             document.querySelector(".dropdown-content").classList.toggle("show");
         }
       } 
@@ -41,7 +53,7 @@ const Navbar = () =>{
         <div className="navbarDiv"> 
             <p>Build-a-Team!</p>
             <div className="logInDiv">
-                <div>{(loggedIn) ?  
+                <div>{(auth.currentUser) ?  
                 <div className="dropdown">
                     <button onClick={()=>{toggleDropdown()}} className="accntBtn"><span className="material-symbols-outlined"> account_circle </span></button>
                         <div id="myDropdown" className="dropdown-content">

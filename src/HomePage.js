@@ -2,7 +2,8 @@ import './App.css';
 import {useState, useEffect} from 'react'
 import { auth, onAuthStateChanged } from './firebase';
 import TeamView from './components/TeamView';
-import Navbar from './components/Nav/Navbar';
+import Navbar from './components/Nav/Navbar'
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function HomePage() {
 
@@ -10,17 +11,22 @@ function HomePage() {
   const [premadeTeam, setPremadeTeam] = useState([])
   const [userId, setUserId] = useState('no');
   const [trainerStats, setTrainerStats] = useState('');
+  const navigate = useNavigate();
+ 
 
   useEffect(() => {
-    renderTeam();
+
+    
+      renderTeam();
+      
   }, [])
   
   const renderTeam = () =>{
     const newTeam = []
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        //loggedIn = true;
-        const uid = user.uid;
+    
+      if(auth.currentUser){
+        const uid = auth.currentUser.email;
+        
         setUserId(uid)
         fetch('https://batbackend.herokuapp.com/getTeam',{
             method: 'POST',
@@ -30,7 +36,8 @@ function HomePage() {
         })
         .then((response)=> { return response.json()})
         .then((data) => {
-          for (let i = 0; i < data[0].Team.length; ++i ) {
+          if(data[0]){
+            for (let i = 0; i < data[0].Team.length; ++i ) {
             newTeam.push(data[0].Team[i]);
             }
             setPremadeTeam([...newTeam])
@@ -38,15 +45,17 @@ function HomePage() {
             setTrainerStats({
               trainerName: data[0].trainerName,
               trainerID: data[0].trainerID})
+          }
+          
         })
         .catch((error) =>console.log(error))
-      } else {
-        // User is signed out
-        setUserId('no')
-        setPremadeTeam([])
+      }else{
+        navigate("/")
       }
-    });
-  }
+        
+      
+    };
+  
 
   return (
     <div className="App">

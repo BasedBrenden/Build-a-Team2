@@ -5,20 +5,9 @@ import { auth, onAuthStateChanged } from './firebase';
 
 const App = () =>{
 
-    
-    const navigate = useNavigate()
 
-    const navigateToHome = () => {
-        navigate('/Home');
-      };
       
-    useEffect(()=>{
-        onAuthStateChanged(auth,(user) =>{
-            if(user){
-                navigateToHome()
-            }
-        })
-    })
+    
     return(
         <div>
             <div>

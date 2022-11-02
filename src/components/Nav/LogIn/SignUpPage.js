@@ -11,7 +11,7 @@ const SignUpForm = () =>{
         headers: {'Content-Type': 'application/json' },
         body: JSON.stringify(
             {username1: user, 
-            trainerName: document.getElementById("trainerName").value,
+            trainerName: document.querySelector("#trainerName").value,
             trainerID: Math.floor(Math.random()* 99999)}),
         })
         .then((response) => {console.log(response)})
@@ -20,24 +20,20 @@ const SignUpForm = () =>{
 
     const SignUp = () =>{
 
-        const userInfo = {
-            username: document.getElementById("username").value,
-            password: document.getElementById("password").value
-        }
+        createNewDbUser(document.querySelector("#username").value)
 
-        createUserWithEmailAndPassword(auth, userInfo.username, userInfo.password)
+        createUserWithEmailAndPassword(auth, document.querySelector("#username").value,document.querySelector("#password").value)
         .then((userCredential) => {
             // Signed in 
-            var user = userCredential.user;
-            console.log({user})
-            createNewDbUser(user.uid)
+            console.log(userCredential.user.uid)
+            navigate("/Home")
+            
         })
-        .then(()=>{navigate("/Home");})
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorCode +": " + errorMessage)
-            document.getElementById("error-field").innerHTML= "Please enter a valid email and password";
+            document.querySelector("#error-field").innerHTML= "Please enter a valid email and password";
             // ..
         });
 
