@@ -1,6 +1,6 @@
 import LogIn from "./LogIn/LogIn"
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import './Navbar.css'
 import { auth, signOut , onAuthStateChanged} from '../../firebase'
 
@@ -8,11 +8,11 @@ import { auth, signOut , onAuthStateChanged} from '../../firebase'
 
 const Navbar = () =>{
     const [loggedIn, setLoggedIn] = useState(false)
-
+    const navigate = useNavigate();
     const signOutClick = () =>{
 
         signOut(auth).then(()=>{setLoggedIn(false)}).catch((error)=>{console.log(error)})
-
+        navigate("/")
     }
 
     const toggleDropdown = () => {

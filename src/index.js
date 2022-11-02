@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import HomePage from './HomePage';
 import SignUpForm from './components/Nav/LogIn/SignUpPage';
 import reportWebVitals from './reportWebVitals';
 
@@ -12,7 +13,8 @@ import AccountPage from './components/AccountPage';
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      <Route path ="/" element={<App/>}/>
+      <Route path = "/" element={<App/>}/>
+      <Route path ="/Home" element={<HomePage/>}/>
       <Route path ="/sign-up" element={<SignUpForm/>}/>
       <Route path ="/log-in" element={<LogInForm/>}/>
       <Route path ="/account" element={<AccountPage/>}/>

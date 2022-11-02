@@ -32,7 +32,7 @@ const SignUpForm = () =>{
             console.log({user})
             createNewDbUser(user.uid)
         })
-        .then(()=>{navigate(-1);})
+        .then(()=>{navigate("/Home");})
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;

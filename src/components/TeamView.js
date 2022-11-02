@@ -12,7 +12,8 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
     const [focusedAbility, setFocusedAbility] = useState('');
     const [focusedTypes, setFocusedTypes] = useState('');
 
-    useEffect(() => {
+    const typeAdvWeak = () =>{
+
         if(document.querySelector(".testClass")){
             const typeSelected = document.querySelector(".testClass");
             changeTypeColor(typeSelected)
@@ -28,6 +29,13 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
             console.log(tempElem.innerHTML)
             changeTypeColor(tempElem)
         }
+
+    }
+
+    useEffect(() => {
+        
+        typeAdvWeak();
+
     }, [focusedPokemon])
     
     const removePokemon = (pokeId) =>{
@@ -92,7 +100,7 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
         <div className="teamview-container">
             <div className="search2">
                 <input id='input' type="text" placeholder="Search for Pokemon"></input>
-                <button type='button' onClick={updateSearch(setFocusedPokemon)}>Search!</button>
+                <button type='button' onClick={()=>{updateSearch(setFocusedPokemon);}}>Search!</button>
                 <h1 className="errorMessage"> </h1>
             </div>
       
