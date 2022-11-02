@@ -1,5 +1,6 @@
 import LogIn from "./LogIn/LogIn"
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import './Navbar.css'
 import { auth, signOut , onAuthStateChanged} from '../../firebase'
 
@@ -14,6 +15,12 @@ const Navbar = () =>{
 
     }
 
+    const toggleDropdown = () => {
+
+        document.querySelector(".dropdown-content").classList.toggle("show");
+
+    }
+
     useEffect(() => {
         onAuthStateChanged(auth, (user) =>{
             if (user){
@@ -22,12 +29,28 @@ const Navbar = () =>{
         })
     }, [])
 
+    window.onclick = function(event) {
+        if (!event.target.matches('.material-symbols-outlined')) {
+            if(document.querySelector(".dropdown-content").classList.contains("show"))
+            document.querySelector(".dropdown-content").classList.toggle("show");
+        }
+      } 
+
 
     return(
         <div className="navbarDiv"> 
             <p>Build-a-Team!</p>
             <div className="logInDiv">
-                <div>{(loggedIn) ?  <button type="button" onClick={()=>{ signOutClick()}}>sign out</button> : <LogIn/>  } </div>
+                <div>{(loggedIn) ?  
+                <div className="dropdown">
+                    <button onClick={()=>{toggleDropdown()}} className="accntBtn"><span className="material-symbols-outlined"> account_circle </span></button>
+                        <div id="myDropdown" className="dropdown-content">
+                        <button type="button" className="dropdown-acc"><Link to="/account">Account Settings</Link></button>
+                            <button type="button" className="dropdown-signout" onClick={()=>{ signOutClick()}}>Sign Out</button>
+                        </div>
+                </div> 
+                :<LogIn/>} 
+              </div>
                 
             </div>
         </div>
