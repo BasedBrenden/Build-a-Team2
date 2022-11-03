@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react"
 import {  auth, signInWithEmailAndPassword } from "../firebase";
 import { useNavigate } from "react-router-dom";
