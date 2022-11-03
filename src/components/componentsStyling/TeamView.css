@@ -1,4 +1,4 @@
-.teamview-container{
+.teamviewContainer{
     display: grid;
     grid-template-areas:
     'search2'
@@ -63,7 +63,7 @@
     font-size: x-large;
 }
 
-.info-image{
+.infoImage{
     width: 100%;
     height: auto;
     
@@ -78,6 +78,16 @@
     text-align: auto;
 }
 
+.pTestFinal{
+    width: 50%;
+    height: 100%;
+    border-left: 1px solid;
+    background-color: white;
+    margin-top: 0;
+    text-align: auto;
+    
+}
+
 .pTest2{
     width: 50%;
     height: 100%;
@@ -88,15 +98,28 @@
     text-align: center;
 }
 
+.pTest2First{
+    width: 50%;
+    height: 100%;
+    border-left: 1px solid;
+    background-color: rgb(168, 168, 168);
+    padding-top: 13px;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 9px
+}
+
 #infoStats{
-    background-color: rgb(67, 48, 236);
+    background-color: rgb(48, 142, 236);
     border: 1px solid black;
     border-radius: 12px;
+    border-bottom-right-radius: 1px;
     font-size:small;
+    font-weight: 600;
     grid-area: infoStats;
     margin-top: 32px;
     display: grid;
-    max-height: 750px;
+    height: min-content;
     grid-template-areas: 
     'statsNo'
     'statsType'
@@ -105,8 +128,9 @@
     'statsAdv'
     'statsWeak'
     ;
-    grid-template-rows: .25fr .5fr .25fr .25fr 2fr 2fr;
+    grid-template-rows: .25fr .5fr .25fr .25fr min-content min-content;
 }
+
 
 div#infoStats:nth-child(even) >div >p{
     width: 50%;
@@ -114,7 +138,7 @@ div#infoStats:nth-child(even) >div >p{
 
 
 div#infoStats > div:nth-child(even){
-    background-color: rgb(94, 79, 226);
+    background-color: rgb(51, 95, 215);
 }
 
 
@@ -148,15 +172,17 @@ div#infoStats > div:nth-child(even){
     grid-area: statsAdv;
     display: flex;
     flex-flow: row;
-    overflow: auto;
+  
 }
 
 #infoStatsWeak{
     grid-area: statsWeak;
     display: flex;
     flex-flow: row;
-    overflow: auto;
+    justify-content: center;
     margin-right: 0px;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
     
 }
 
@@ -169,12 +195,12 @@ div#infoStats > div:nth-child(even){
     border-bottom: 1px solid black;
 }
 
-.infoAbility{
+#infoAbility{
     margin-top: 40px;
     grid-area: infoAbility;
 }
 
-.infoAbility > h2{
+#infoAbility > h2{
     text-align: left;
     margin: 0;
     margin-left: 1%;
@@ -218,7 +244,7 @@ div#infoStats > div:nth-child(even){
     width: 20%
 }
 
-.teamCard-container{
+.teamCardContainer{
     grid-area: team;
     border: 1px solid white;
     background-color: white;
@@ -230,7 +256,7 @@ div#infoStats > div:nth-child(even){
     grid-template-columns: 2fr 6fr;
 }
 
-.teamCard-container:hover{
+.teamCardContainer:hover{
     cursor: pointer;
     border-color: goldenrod;
     border-radius: 12px;
@@ -239,7 +265,7 @@ div#infoStats > div:nth-child(even){
 
 
 
-.teamCard-header{
+.teamCardHeader{
     grid-area: profile-view;
     display: grid;
     grid-template-areas:
@@ -247,7 +273,7 @@ div#infoStats > div:nth-child(even){
     align-content: center;
 }
 
-.teamCard-header > div{
+.teamCardHeader > div{
     display: grid;
     grid-area: delete;
     height: min-content;
@@ -256,7 +282,7 @@ div#infoStats > div:nth-child(even){
 
 
 
-.teamCard-delete{
+.teamCardDelete{
     border: none;
     font-size: large;
     width: 2rem;
@@ -265,18 +291,18 @@ div#infoStats > div:nth-child(even){
     color: red;
 }
 
-.teamCard-delete:hover{
+.teamCardDelete:hover{
     color: rgb(128, 0, 0);
     cursor: pointer;
 }
 
-.teamCard-header > p{
+.teamCardHeader > p{
     font-weight: 600;
     letter-spacing: .12rem;
     grid-area: name
 }
 
-.poke-sprite{
+.pokeSprite{
     height: 100%;
     align-content: center;
     justify-content:center;
@@ -299,7 +325,7 @@ div#infoStats > div:nth-child(even){
     border-radius: 6px;
     padding: .5rem 1.5rem;
     color: white;
-    width: 2.5rem;
+    width: 4rem;
     text-align: center;
     margin: 10px;
 }
@@ -308,7 +334,7 @@ div#infoStats > div:nth-child(even){
     border-radius: 6px;
     padding: .5rem 1.5rem;
     color: white;
-    width: 2.5rem;
+    width: 4rem;
     text-align: center;
     margin: 10px;
 }
@@ -316,17 +342,17 @@ div#infoStats > div:nth-child(even){
 .testClass3{
     border: 1px solid black;
     border-radius: 6px;
-    padding: .5rem 1.5rem;
+    padding: .5rem 2rem;
     color: white;
-    width: 2.5rem;
+    width: 3rem;
     text-align: center;
-    margin: 10px;
+    margin: 10px auto;
 }
 
 
 @media (min-width: 1100px) {
 
-    .teamview-container{
+    .teamviewContainer{
         display: grid;
         grid-template-areas:
         'search2 search2'
@@ -341,7 +367,7 @@ div#infoStats > div:nth-child(even){
         padding: 12px;
     }
 
-    .teamCard-container{
+    .teamCardContainer{
         grid-area: team;
         border: 1px solid white;
         background-color: white;
@@ -360,10 +386,12 @@ div#infoStats > div:nth-child(even){
         'infoName infoStats'
         'abilities abilities';
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: min-content;
+        grid-template-rows: 1fr min-content;
     }
 
-    .infoAbility{
+
+
+    #infoAbility{
         margin-top: 40px;
         grid-area: abilities;
     }
@@ -375,5 +403,29 @@ div#infoStats > div:nth-child(even){
     .statTitleType{
         height: 6.4%;
     }
+
+    .testClass3{
+        border: 1px solid black;
+        border-radius: 6px;
+        padding: .5rem 1.5rem;
+        color: white;
+        width: 4rem;
+        text-align: center;
+        margin: 10px auto;
+    }
     
+}
+
+@media(max-width: 500px){
+
+    .testClass3{
+        border: 1px solid black;
+        border-radius: 6px;
+        padding: .5rem 1.5rem;
+        color: white;
+        width: 3rem;
+        text-align: center;
+        margin: 10px auto;
+        font-size: smaller;
+    }
 }

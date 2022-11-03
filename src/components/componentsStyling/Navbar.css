@@ -25,7 +25,7 @@
     display: inline-block;
 }
 
-.dropdown-content {
+.dropdownContent {
     visibility: hidden;
     position: absolute;
     background-color: #f1f1f1;
@@ -45,12 +45,12 @@
     grid-gap: .5rem;
 }
 
-.dropdown-acc{
+.dropdownAcc{
     grid-area: account
 }
 
 
-.dropdown-signout{
+.dropdownSignout{
     grid-area: sign-out
 }
 
@@ -71,12 +71,12 @@
     cursor: pointer;
 }
 
-.dropdown-content > button{
+.dropdownContent > button{
     padding:7px 4px;
     background-color: transparent;
     border:none;
 }
-.dropdown-content > button:hover{
+.dropdownContent > button:hover{
     cursor: pointer;
     background-color: #cdcbcb;
     

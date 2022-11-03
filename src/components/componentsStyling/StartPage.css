@@ -1,0 +1,43 @@
+.startContainer{
+    display: grid;
+    grid-template-areas:
+    '. startWelcome .'
+    '. startSignIn .'
+    '. . .';
+    grid-template-rows: .20fr 1fr 1fr;
+}
+
+.startWelcome{
+    grid-area: startWelcome;
+    text-align: center;
+}
+
+.startWelcome > h2{
+    color: rgb(255, 247, 247);
+}
+
+.startSignIn{
+    grid-area: startSignIn;
+}
+
+
+
+
+@media (min-width:1200px){
+
+    .startContainer{
+        display: grid;
+        grid-template-areas:
+        '. . . .'
+        '. startWelcome startSignIn .'
+        '. . . .';
+        grid-template-rows: .20fr 1fr 1fr;
+    }
+
+    .startWelcome{
+        grid-area: startWelcome;
+        text-align: left;
+    }
+
+    
+}

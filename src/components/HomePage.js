@@ -1,10 +1,9 @@
-import './App.css';
 import {useState, useEffect} from 'react'
-// eslint-disable-next-line no-unused-vars
-import { auth, onAuthStateChanged } from './firebase';
-import TeamView from './components/TeamView';
-import Navbar from './components/Nav/Navbar'
+import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
+import TeamView from './TeamView';
+import Navbar from './Navbar'
+import './componentsStyling/HomePage.css';
 
 function HomePage() {
 
@@ -14,17 +13,13 @@ function HomePage() {
   const [trainerStats, setTrainerStats] = useState('');
   const navigate = useNavigate();
  
-
   useEffect(() => {
-
     renderTeam();
-      
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   
   const renderTeam = async() =>{
     const newTeam = []
-    
     
       if(auth.currentUser){
         const uid = auth.currentUser.email;
@@ -55,7 +50,6 @@ function HomePage() {
         navigate("/")
       }
         
-      
     };
   
 
@@ -65,7 +59,7 @@ function HomePage() {
         <Navbar/>
       </div>
       <h1> Use this app to help build your own pokemon team! </h1>
-      <div className="TeamView-Container">
+      <div className="TeamViewContainer">
         <TeamView 
           searchResult = {result}
           fullTeam={premadeTeam}

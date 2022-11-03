@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import Navbar from "./Nav/Navbar"
+import Navbar from "./components/Navbar"
 
 const AccountPage =()=>{
     return(

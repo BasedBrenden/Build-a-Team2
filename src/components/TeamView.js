@@ -1,19 +1,23 @@
 import React from 'react'
-import { typeCompare, updateSearch, changeTypeColor } from '../Utils'
+import { updateSearch, changeTypeColor } from '../Utils'
 import { useState, useEffect} from 'react'
-import './TeamView.css'
-import './TypeStyles.css'
+import './componentsStyling/TeamView.css'
+import './componentsStyling/TypeStyles.css'
 
+/*
 
+PUT TYPE WEAKNESSES INTO 2 DAY ARRAY WHEN SEARCHED AND ADD THAT TO THE CONVERTED THINGY.
+MAKE A NEW FIELD FOR ADV/WEAKNESSES IN BACKEND
+
+*/
 
 const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
 
     const [focusedPokemon, setFocusedPokemon] = useState('');
     const [focusedAbility, setFocusedAbility] = useState('');
-    const [focusedTypes, setFocusedTypes] = useState('');
+    
 
     const typeAdvWeak = () =>{
-
         if(document.querySelector(".testClass")){
             const typeSelected = document.querySelector(".testClass");
             changeTypeColor(typeSelected)
@@ -22,20 +26,16 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
                 changeTypeColor(typeSelected2)
             }
         }
-
         const allTypesOnPage = document.querySelectorAll(".testClass3");
         for(let i=0; i < allTypesOnPage.length; i++){
             let tempElem = allTypesOnPage[i]
             console.log(tempElem.innerHTML)
             changeTypeColor(tempElem)
         }
-
     }
 
     useEffect(() => {
-        
         typeAdvWeak();
-
     }, [focusedPokemon])
     
     const removePokemon = (pokeId) =>{
@@ -53,16 +53,6 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
     
     const updateFocused = (poke)=>{
         setFocusedPokemon(poke)
-        let currTypes =[]
-        if(poke.pokeType){
-            if(poke.pokeType2){
-                currTypes = [poke.pokeType, poke.pokeType2]
-            }
-            else{
-                currTypes = [poke.pokeType]
-            }
-            setFocusedTypes(typeCompare(currTypes))
-        }
         setFocusedAbility('')
         updateTeamFunc();
     }
@@ -86,6 +76,10 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
                 pokeAbilityEffect2: focusedPokemon.pokeAbilityEffect2,
                 pokeType: focusedPokemon.pokeType,
                 pokeType2: focusedPokemon.pokeType2,
+                pokeTypeCompare:{
+                    adv: focusedPokemon.pokeTypeCompare.adv,
+                    weak: focusedPokemon.pokeTypeCompare.weak,
+                },
                 Username: userId}) 
             })
             .then(()=>{updateTeamFunc(); setFocusedPokemon('')})
@@ -97,7 +91,7 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
 
 
     return (
-        <div className="teamview-container">
+        <div className="teamviewContainer">
             <div className="search2">
                 <input id='input' type="text" placeholder="Search for Pokemon"></input>
                 <button type='button' onClick={()=>{updateSearch(setFocusedPokemon);}}>Search!</button>
@@ -109,13 +103,13 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
                  <div className="infoContainer">
                     <div className="infoViewCard">
                         <p> {focusedPokemon.pokeName}</p>
-                        <img src={focusedPokemon.pokeImage} className="info-image" alt="woooo"></img>
+                        <img src={focusedPokemon.pokeImage} className="infoImage" alt="woooo"></img>
                         <button type='button' onClick={() =>{addPokemonToTeam()}}>+</button>
                     </div>
                     <div id="infoStats">
                             <div id="infoStatsName">
                                 <p>Dex No.:</p>
-                                <p className ="pTest2">{focusedPokemon.pokeID}</p>
+                                <p className ="pTest2First">{focusedPokemon.pokeID}</p>
                             </div>
                             <div id="infoStatsType">
                                 <p className = "statTitleType">Type:</p>
@@ -135,26 +129,21 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
                             <div id="infoStatsAdv">
                                 <p>Advantage: </p>
                                 <div className="pTest2">
-                                { (focusedTypes === '') ?<span></span>: focusedTypes[0].map((type) =>
-                                
-                                        <p className = "testClass3">{type}</p>
-                                    
+                                { focusedPokemon.pokeTypeCompare.adv.map((type, index) =>
+                                        <p key={index} className = "testClass3">{type}</p>
                                 )}
                                 </div>
                             </div>
                             <div id="infoStatsWeak">
                                 <p>Weakness: </p>
-                                <div className="pTest">
-                                { (focusedTypes === '') ?<span></span>: focusedTypes[1].map((type) =>
-                                
-                                        <p className = "testClass3">{type}</p>
-                                    
+                                <div className="pTestFinal">
+                                { focusedPokemon.pokeTypeCompare.weak.map((type, index) =>
+                                        <p key={index} className = "testClass3">{type}</p>    
                                 )}
                                 </div>
                             </div>   
                     </div>
-                  
-                    <div className = "infoAbility">
+                    <div id = "infoAbility">
                         <h2>Abilities</h2>
                             <div className="abilityTitle">
                                 <button type="button" className="abilityButton" onClick={()=>setFocusedAbility(focusedPokemon.pokeAbilityEffect)}>{focusedPokemon.pokeAbility}</button>
@@ -164,21 +153,19 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
                             <div id="abilityDescription">
                                 <p>{focusedAbility}</p>
                             </div>
-                        
                     </div>
                 </div>}
             </div>
-
             <div id="team">
                 {fullTeam.map((pokemon)=>
-                    <div className='teamCard-container' key= {pokemon.pokeName} onClick={() => {updateFocused(pokemon)}}>
-                        <div className="teamCard-header">
+                    <div className='teamCardContainer' key= {pokemon.pokeName} onClick={() => {updateFocused(pokemon)}}>
+                        <div className="teamCardHeader">
                             <p>{pokemon.pokeName}</p>
                             <div>
-                                <button type='button' className="teamCard-delete" onClick={() => {removePokemon(pokemon.pokeID);}} value={pokemon.pokeID}>X</button>
+                                <button type='button' className="teamCardDelete" onClick={() => {removePokemon(pokemon.pokeID);}} value={pokemon.pokeID}>X</button>
                             </div>
                         </div>
-                        <img src={pokemon.pokeImage} alt='wooo' className="poke-sprite"></img>
+                        <img src={pokemon.pokeImage} alt='wooo' className="pokeSprite"></img>
                     </div>
                 )}
             </div>

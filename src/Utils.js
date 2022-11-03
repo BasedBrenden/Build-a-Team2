@@ -1,8 +1,8 @@
 
 
-const typeCompare =( pokeTypes) =>{
+const typeCompare=( pokeTypes) =>{
 
-    const typeCompareArr = [[],[]];
+    let typeCompareArr = [[],[]];
 
     
     //0 =adv
@@ -10,7 +10,8 @@ const typeCompare =( pokeTypes) =>{
 
     //potentially, seperate arr into two arrs, then filter for repeat and join back together into
     // typeArr
-    pokeTypes.forEach(pokeType =>{
+    pokeTypes.forEach( (pokeType) =>{
+        
         if(pokeType === "FIRE"){
 
             typeCompareArr[0].push("GRASS")
@@ -163,18 +164,25 @@ const typeCompare =( pokeTypes) =>{
             typeCompareArr[1].push("GROUND")
             typeCompareArr[1].push("PSYCHIC")
             
-        }else{
-            typeCompareArr[0].push("ICE")
+        }else if(pokeType === "DRAGON"){
             typeCompareArr[0].push("DRAGON")
-            typeCompareArr[0].push("FAIRY")
-            typeCompareArr[0].push("GHOST")
-    
+
+            typeCompareArr[1].push("ICE")
             typeCompareArr[1].push("DRAGON")
+            typeCompareArr[1].push("FAIRY")
+    
+            
+        }else{
+
         }
     })
     
+    typeCompareArr[0] = [...new Set(typeCompareArr[0])]
+    typeCompareArr[1] = [...new Set(typeCompareArr[1])]
+
     return typeCompareArr
 }
+
 
 const changeTypeColor = (item) =>{
 
@@ -218,13 +226,14 @@ const updateSearch = async (setFocusedPokemon) =>{
         foundAbilities.push('')
       }
 
-      let foundTypes = [newTest2.types[0].type.name];
+      let foundTypes = [newTest2.types[0].type.name.toUpperCase()];
       if(newTest2.types.length > 1){
-
-        foundTypes.push(newTest2.types[1].type.name)
+        foundTypes.push(newTest2.types[1].type.name.toUpperCase())
       }else{
         foundTypes.push('')
       }
+
+      const typeCompareTemp = typeCompare(foundTypes);
 
       
       const converted = {
@@ -235,8 +244,12 @@ const updateSearch = async (setFocusedPokemon) =>{
         pokeAbilityEffect: foundAbilities[1],
         pokeAbility2: foundAbilities[2].toUpperCase(), 
         pokeAbilityEffect2: foundAbilities[3],
-        pokeType: foundTypes[0].toUpperCase(),
-        pokeType2: foundTypes[1].toUpperCase(),
+        pokeType: foundTypes[0],
+        pokeType2: foundTypes[1],
+        pokeTypeCompare: {
+            adv: typeCompareTemp[0],
+            weak: typeCompareTemp[1],
+        }
       }
       setFocusedPokemon(converted)
       let searchUpdate = document.querySelector('#input')

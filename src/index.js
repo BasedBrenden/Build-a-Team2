@@ -1,23 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import HomePage from './HomePage';
-import SignUpForm from './components/Nav/LogIn/SignUpPage';
-import reportWebVitals from './reportWebVitals';
-
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import LogInForm from './components/Nav/LogIn/LogInPage';
-import AccountPage from './components/AccountPage';
+import './index.css';
+
+import StartPage from './StartPage';
+import HomePage from './components/HomePage';
+import SignUpForm from './components/SignUpPage';
+import LogInForm from './components/LogInPage';
+
+
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      <Route path = "/" element={<App/>}/>
+      <Route path = "/" element={<StartPage/>}/>
       <Route path ="/Home" element={<HomePage/>}/>
       <Route path ="/sign-up" element={<SignUpForm/>}/>
       <Route path ="/log-in" element={<LogInForm/>}/>
-      <Route path ="/account" element={<AccountPage/>}/>
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
