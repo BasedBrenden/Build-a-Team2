@@ -9,8 +9,8 @@ const StartPage = () =>{
     const navigate = useNavigate()
 
     useEffect(()=>{
-        onAuthStateChanged(auth,(user)=>{
-            if(user){
+        onAuthStateChanged(auth,()=>{
+            if(auth.currentUser){
                 navigate("/home");
             }else{
                 navigate("/")

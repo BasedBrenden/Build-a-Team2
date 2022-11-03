@@ -20,7 +20,7 @@ const SignUpForm = () =>{
 
     const SignUp = () =>{
 
-        createNewDbUser(document.querySelector("#username").value)
+        createNewDbUser(document.querySelector("#username").value.toLowerCase())
 
         createUserWithEmailAndPassword(auth, document.querySelector("#username").value,document.querySelector("#password").value)
         .then((userCredential) => {
