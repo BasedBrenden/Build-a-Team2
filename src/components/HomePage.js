@@ -58,7 +58,7 @@ function HomePage() {
       <div>
         <Navbar/>
       </div>
-      <h1> Use this app to help build your own pokemon team! </h1>
+      <h1> Welcome Back! </h1>
       <div className="TeamViewContainer">
         <TeamView 
           searchResult = {result}
