@@ -15,6 +15,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path = "/" element={<StartPage/>}/>
+      <Route path = "*" element={<StartPage/>}/>
       <Route path ="/Home" element={<HomePage/>}/>
       <Route path ="/sign-up" element={<SignUpForm/>}/>
       <Route path ="/log-in" element={<LogInForm/>}/>
