@@ -4,12 +4,9 @@ const typeCompare=( pokeTypes) =>{
 
     let typeCompareArr = [[],[]];
 
-    
     //0 =adv
     //1 = weak
 
-    //potentially, seperate arr into two arrs, then filter for repeat and join back together into
-    // typeArr
     pokeTypes.forEach( (pokeType) =>{
         
         if(pokeType === "FIRE"){
@@ -171,7 +168,6 @@ const typeCompare=( pokeTypes) =>{
             typeCompareArr[1].push("DRAGON")
             typeCompareArr[1].push("FAIRY")
     
-            
         }else{
 
         }

@@ -24,21 +24,17 @@ const SignUpForm = () =>{
 
         createUserWithEmailAndPassword(auth, document.querySelector("#username").value,document.querySelector("#password").value)
         .then((userCredential) => {
-            // Signed in 
             console.log(userCredential.user.uid)
             navigate("/Home")
-            
         })
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorCode +": " + errorMessage)
             document.querySelector("#errorField").innerHTML= "Please enter a valid email and password";
-            // ..
         });
 
     }
-
 
     return(
         <div id="mainContainer">
@@ -55,7 +51,6 @@ const SignUpForm = () =>{
             </div>
         </div>
     );
-
 };
 
 export default SignUpForm;

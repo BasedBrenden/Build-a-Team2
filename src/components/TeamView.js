@@ -4,19 +4,11 @@ import { useState, useEffect} from 'react'
 import './componentsStyling/TeamView.css'
 import './componentsStyling/TypeStyles.css'
 
-/*
-
-PUT TYPE WEAKNESSES INTO 2 DAY ARRAY WHEN SEARCHED AND ADD THAT TO THE CONVERTED THINGY.
-MAKE A NEW FIELD FOR ADV/WEAKNESSES IN BACKEND
-
-*/
-
 const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
 
     const [focusedPokemon, setFocusedPokemon] = useState('');
     const [focusedAbility, setFocusedAbility] = useState('');
     
-
     const typeAdvWeak = () =>{
         if(document.querySelector(".testClass")){
             const typeSelected = document.querySelector(".testClass");
@@ -59,7 +51,6 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
 
     const addPokemonToTeam = () =>{
         const updateError = document.querySelector('.errorMessage');
-        //Fetch request to update current team roster with a new pokemon to the end
         if(fullTeam.length === 6){
             updateError.innerHTML = "Current team is too large! Try removing a pokemon and trying again"
         }else{
@@ -86,8 +77,6 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
             .catch((error)=>{updateError.innerHTML = error})
         }
     }
-
-
 
 
     return (
