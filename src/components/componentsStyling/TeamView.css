@@ -1,3 +1,9 @@
+@keyframes teamCardHover {
+    from{border-color: white}
+    to{border-color: goldenrod}
+    
+}
+
 .teamviewContainer{
     display: grid;
     grid-template-areas:
@@ -23,11 +29,15 @@
 }
 
 .search2 > input{
-    min-width: 175px;
+    min-width: 200px;
     height: 25px;
+    box-shadow: 0 5px 5px rgb(192, 192, 192);
     border: none;
-    border-bottom: double;
+    border-radius: 12px;
+    padding: 5px;
     margin-right: 1%;
+    text-align: center;
+    outline: none;
 }
 
 
@@ -258,6 +268,7 @@ div#infoStats > div:nth-child(even){
 
 .teamCardContainer:hover{
     cursor: pointer;
+    animation: teamCardHover 1s;
     border-color: goldenrod;
     border-radius: 12px;
 }
