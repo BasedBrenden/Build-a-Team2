@@ -60,6 +60,7 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
             body: JSON.stringify({
                 pokeID: focusedPokemon.pokeID,
                 pokeImage: focusedPokemon.pokeImage,
+                pokeImageAnim: focusedPokemon.pokeImageAnim,
                 pokeName: focusedPokemon.pokeName,
                 pokeAbility: focusedPokemon.pokeAbility, 
                 pokeAbilityEffect: focusedPokemon.pokeAbilityEffect,
@@ -92,7 +93,9 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
                  <div className="infoContainer">
                     <div className="infoViewCard">
                         <p> {focusedPokemon.pokeName}</p>
-                        <img src={focusedPokemon.pokeImage} className="infoImage" alt="woooo"></img>
+                        {(focusedPokemon.pokeImageAnim === "n/a") ? <img src={focusedPokemon.pokeImage} className="infoImage" alt="woooo"></img>
+                        : <img src={focusedPokemon.pokeImageAnim} className="infoImage" alt="woooo"></img> }
+                        
                         <button type='button' onClick={() =>{addPokemonToTeam()}}>Add Pokemon</button>
                     </div>
                     <div id="infoStats">

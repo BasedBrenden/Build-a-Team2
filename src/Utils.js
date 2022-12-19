@@ -1,3 +1,4 @@
+import { LongWithoutOverridesClass } from "bson";
 
 
 const typeCompare=( pokeTypes) =>{
@@ -230,11 +231,17 @@ const updateSearch = async (setFocusedPokemon) =>{
       }
 
       const typeCompareTemp = typeCompare(foundTypes);
+      let anim = "n/a"
+      if(newTest2.sprites.versions['generation-v']['black-white'].animated.front_default){
+        anim = newTest2.sprites.versions["generation-v"]["black-white"].animated.front_default
+        console.log(anim)
+    }
 
       
       const converted = {
         pokeName: newTest2.name.toUpperCase(),
         pokeImage: newTest2.sprites.front_default,
+        pokeImageAnim: anim,
         pokeID: newTest2.id,
         pokeAbility: foundAbilities[0].toUpperCase(), 
         pokeAbilityEffect: foundAbilities[1],
