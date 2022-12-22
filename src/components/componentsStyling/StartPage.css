@@ -1,5 +1,7 @@
 .startContainer{
     display: grid;
+    background-image: url("../../images/landing2.gif");
+    background-size: 100% 100%;
     grid-template-areas:
     '. startWelcome .'
     '. startSignIn .'
@@ -13,7 +15,7 @@
 }
 
 .startWelcome > h2{
-    color: rgb(255, 247, 247);
+    color: rgb(250, 255, 235);
 }
 
 .startSignIn{
