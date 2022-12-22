@@ -23,6 +23,7 @@
 
 #signContainer > h1{
     color: black;
+    padding: 0%;
 }
 
 #signContainer > input{
