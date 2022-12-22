@@ -14,7 +14,7 @@ const LogInForm = () =>{
         }
         signInWithEmailAndPassword(auth, userInfo.username, userInfo.password)
         .catch(() => {
-            errorDisplay.innerHTML = "Please enter a valid email address in the email field above!"
+            errorDisplay.innerHTML = "Please enter a valid email in the email field above!"
         });
     }
 

@@ -84,7 +84,7 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
         <div className="teamviewContainer">
             <div className="search2">
                 <input id='input' type="text" placeholder="Try &quot;Absol&quot; or &quot;Piplup&quot;!"></input>
-                <button type='button' onClick={()=>{updateSearch(setFocusedPokemon);}}>Search!</button>
+                <button type='button' id= "searchBtn"onClick={()=>{updateSearch(setFocusedPokemon);}}>Search!</button>
                 <h1 className="errorMessage"> </h1>
             </div>
       
@@ -96,7 +96,7 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
                         {(focusedPokemon.pokeImageAnim === "n/a") ? <img src={focusedPokemon.pokeImage} className="infoImage" alt="woooo"></img>
                         : <img src={focusedPokemon.pokeImageAnim} className="infoImage" alt="woooo"></img> }
                         
-                        <button type='button' onClick={() =>{addPokemonToTeam()}}>Add Pokemon</button>
+                        <button type='button' id="addPokeBtn" onClick={() =>{addPokemonToTeam()}}>Add Pokemon</button>
                     </div>
                     <div id="infoStats">
                             <div id="infoStatsName">
