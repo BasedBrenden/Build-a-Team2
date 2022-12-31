@@ -41,12 +41,22 @@
 #myDropdown{
     display: grid;
     grid-template-areas: 
+    'home'
+    'safari'
     'account'
     'sign-out'
     ;
     grid-template-columns:1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     grid-gap: .5rem;
+}
+
+.dropdownHome{
+    grid-area: dropdownHome
+}
+
+.dropdownSafari{
+    grid-area: safari
 }
 
 .dropdownAcc{

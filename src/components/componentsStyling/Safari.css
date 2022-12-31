@@ -1,0 +1,136 @@
+.safariContainer{
+    display: grid;
+    grid-template-areas:
+    'nav nav nav'
+    '. main .';
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: .15fr 1fr;
+    height: 100%;
+}
+
+.nav{
+    grid-area: nav
+}
+
+.mainContainer{
+    grid-area: main;
+    display: grid;
+    grid-template-areas: 
+    '. pokeView .'
+    '. optionsView .';
+    min-width: 400px;
+    min-height: 400px;
+    background-color: white;
+    grid-template-rows: 1fr 1fr;
+    text-align: center;
+    
+}
+
+img{
+    width: 30%;
+}
+.safariView > h1{
+    color: black
+}
+
+.safariView{
+    grid-area: pokeView;
+    margin-bottom: 10%
+    
+}
+
+.optionsView{
+    grid-area: optionsView;
+    display: grid;
+    grid-template-areas:
+    'prompt prompt'
+    'pokeball bait'
+    'rock run';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: .75fr 1fr 1fr;
+    border: 3px solid rgb(102, 102, 248);
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.optionsView > button{
+    background-color: transparent;
+    border: none;
+}
+
+.optionsView > button:hover{
+    cursor: pointer;
+    border: 1px solid black;
+    text-decoration: underline;
+}
+
+#prompt{
+    grid-area: prompt;
+    word-wrap: break-word;
+    
+}
+
+#btnBall{
+    grid-area: pokeball
+}
+
+#btnBait{
+    grid-area: bait
+}
+
+#btnRock{
+    grid-area: rock
+}
+
+#btnRun{
+    grid-area: run
+}
+
+
+
+.dot-flashing {
+    position: relative;
+    width: 11px;
+    height: 11px;
+    border-radius: 5px;
+    background-color: #9880ff;
+    color: #9880ff;
+    animation: dot-flashing 1s infinite linear alternate;
+    animation-delay: 0.5s;
+  }
+  .dot-flashing::before, .dot-flashing::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+  }
+  .dot-flashing::before {
+    left: -15px;
+    width: 11px;
+    height: 11px;
+    border-radius: 5px;
+    background-color: #9880ff;
+    color: #9880ff;
+    animation: dot-flashing 1s infinite alternate;
+    animation-delay: 0s;
+  }
+  .dot-flashing::after {
+    left: 15px;
+    width: 11px;
+    height: 11px;
+    border-radius: 5px;
+    background-color: #9880ff;
+    color: #9880ff;
+    animation: dot-flashing 1s infinite alternate;
+    animation-delay: 1s;
+  }
+  
+  @keyframes dot-flashing {
+    0% {
+      background-color: #9880ff;
+    }
+    50%, 100% {
+      background-color: rgba(152, 128, 255, 0.2);
+    }
+  }
+  

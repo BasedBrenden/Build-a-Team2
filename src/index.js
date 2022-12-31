@@ -7,15 +7,17 @@ import StartPage from './StartPage';
 import HomePage from './components/HomePage';
 import SignUpForm from './components/SignUpPage';
 import LogInForm from './components/LogInPage';
-
+import Safari from './components/Safari';
 
 import reportWebVitals from './reportWebVitals';
+
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path = "/" element={<StartPage/>}/>
       <Route path = "*" element={<StartPage/>}/>
+      <Route path = "/safari" element={<Safari/>}/>
       <Route path ="/Home" element={<HomePage/>}/>
       <Route path ="/sign-up" element={<SignUpForm/>}/>
       <Route path ="/log-in" element={<LogInForm/>}/>
