@@ -15,6 +15,7 @@
     grid-area: title;
     color: white;
     font-weight: bolder;
+    text-align: center;
 }
 .navbarDiv > p:hover{
     cursor: pointer
@@ -26,7 +27,8 @@
 
 .dropdown {
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
 }
 
 .dropdownContent {
@@ -35,6 +37,7 @@
     background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin-top: 10%;
     z-index: 1;
 }
 
@@ -79,6 +82,7 @@
 .accntBtn{
     background-color: transparent;
     border:none;
+    
 }
 
 .accntBtn:hover{
