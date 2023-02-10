@@ -18,7 +18,7 @@ const Safari = () =>{
     
     useEffect(() => {
       
-    startGame()
+        startGame()
     
     }, [])
 
@@ -79,7 +79,12 @@ const Safari = () =>{
     }
 
     const throwPokeball = () =>{
-        if(!buttonState){
+
+        if(caughtPokemon.length === 6){
+            updatePrompt("You already have 6 pokemon!",9000)
+        }else{
+
+            if(!buttonState){
             const promptP = document.querySelector('#prompt')
             promptP.innerHTML = "Go! Pokeball!"
             //execute pokeball throw animation
@@ -105,10 +110,14 @@ const Safari = () =>{
                 blockButtons(9001)
                 if ((Math.random()) < pokeStatus.catchRate ){
                     updatePrompt("Got em!",6000)
+                    const encounteredPoke = {
+                        image: document.querySelector('#pokeSprite').getAttribute('src'),
+                        name: document.querySelector('#pokeName').innerHTML
+                    }
                     pokeSprite.classList = ""
                     
                     setTimeout(startGame, 9000)
-                    setCaughtPokemon([...caughtPokemon,document.querySelector('#pokeName').innerHTML])
+                    setCaughtPokemon([...caughtPokemon,encounteredPoke])
                 }else{
                     setTimeout(()=>{
                         pokeSprite.classList.remove("shrinkSprite")
@@ -125,11 +134,12 @@ const Safari = () =>{
                 }
             }
             setItemInventory(inventory=>({...itemInventory, pokeBalls: newPokeballCount}))
-            console.log(caughtPokemon)
+            
             for (let i = 0; i < pokeSprite.classList.length; i++) {
                 pokeSprite.classList.remove(pokeSprite.classList[i]);
               }
-            
+        }
+        
             updatePrompt("What would you like to do?",9000)
             
             //calculate chance of being caught
@@ -257,6 +267,13 @@ const Safari = () =>{
                         <div className="btnContainer">
                             <button type = "button" id="btnRun"  onClick={()=>{startGame()}}     disabled ={buttonState}>Run</button>
                         </div>
+                    </div>
+                    <div className="caughtTeam">
+                        {caughtPokemon.map((pokemon)=>
+                            <div className="caughtPokemon" key = {Math.floor(Math.random()*49)}>
+                                <img src ={pokemon.image} alt="none"></img>
+                                <p>{pokemon.name}</p>
+                            </div>)}
                     </div>
                 </div>
             </div>
