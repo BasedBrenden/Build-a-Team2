@@ -21,7 +21,6 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
         const allTypesOnPage = document.querySelectorAll(".testClass3");
         for(let i=0; i < allTypesOnPage.length; i++){
             let tempElem = allTypesOnPage[i]
-            console.log(tempElem.innerHTML)
             changeTypeColor(tempElem)
         }
     }

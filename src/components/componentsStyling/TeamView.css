@@ -432,7 +432,7 @@ div#infoStats > div:nth-child(even){
         display: grid;
         grid-template-areas: 
         'Pokesprite profile-view';
-        grid-template-columns: 2fr 6fr;
+        grid-template-columns: 3fr 5fr;
         margin-left: 10px;
     }
 
@@ -443,6 +443,10 @@ div#infoStats > div:nth-child(even){
         'abilities abilities';
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr min-content;
+    }
+
+    #pokeSprite{
+        width: 100%;
     }
 
 
