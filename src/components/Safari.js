@@ -8,7 +8,6 @@ import { useEffect, useState } from "react"
 
 const Safari = () =>{
 
-    const [encounter, setEncounter] = useState()
     const [pokeStatus, setPokeStatus] = useState()
     const [itemInventory, setItemInventory] = useState({
         pokeBalls: 20,
@@ -20,8 +19,8 @@ const Safari = () =>{
     useEffect(() => {
       
     startGame()
-    console.log("this happened")
-    }, [encounter])
+    
+    }, [])
 
     //FLOW
     //generate array of 50 random numbers
@@ -147,7 +146,7 @@ const Safari = () =>{
             blockButtons(6001)
             //check if you have bait!
             const baitInventory = itemInventory.bait-1
-            console.log({baitInventory})
+            
             if(baitInventory < 0){
                 updatePrompt("You don't have any bait!",1000)
             }else{
@@ -173,7 +172,7 @@ const Safari = () =>{
             }
             
             updatePrompt("What would you like to do?", 6000)
-            console.log({pokeStatus})
+            
         }
     }
 
@@ -184,7 +183,7 @@ const Safari = () =>{
 
     const throwRock = () =>{
         //execute rock throw animation
-        console.log(buttonState)
+        
         if(!buttonState){
             updatePrompt("Hurled Rock!",0)
             //angry poke animation
@@ -204,7 +203,7 @@ const Safari = () =>{
             //increase anger
             const newAngerPerc = pokeStatus.angerPercentage +10
             const newFleeChance = pokeStatus.fleeChance + .10
-            console.log({newAngerPerc, newFleeChance})
+            
             //if anger too high, pokemon yells, you run away
             if ((newAngerPerc > 100) || ((Math.random()) < newFleeChance) ){
                 const amountLost = Math.floor(Math.random()*10)
