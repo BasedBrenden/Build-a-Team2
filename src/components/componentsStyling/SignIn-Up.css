@@ -61,10 +61,6 @@
     color: rgb(118, 18, 18);
 }
 
-#logInBtn:hover{
-    animation: logInHover .5s;
-    background-color: rgb(22, 102, 208)
-}
 
 hr{
     color: grey;
@@ -97,6 +93,24 @@ a:hover{
     width: 100%;
 }
 
+#guestBtn{
+    background-color:rgb(196, 43, 43);
+    width: 90%;
+    margin: auto;
+}
+
+#logInBtn:hover{
+    animation: logInHover .5s;
+    background-color: rgb(22, 102, 208)
+}
+
+#guestBtn:hover{
+    animation: guestHover .5s;
+    background-color: rgb(118, 18, 18);
+}
+
+
+
 @keyframes createHover {
     from{ background-color: rgb(69, 192, 69);}
     to {background-color: rgb(26, 135, 26);}
@@ -105,6 +119,11 @@ a:hover{
 @keyframes logInHover {
     from{ background-color: rgb(24, 119, 242);}
     to {background-color: rgb(22, 102, 208);}
+}
+
+@keyframes guestHover {
+    from{ background-color: rgb(196, 43, 43);}
+    to {background-color: rgb(118, 18, 18);}
 }
 
 #createBtn{

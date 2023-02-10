@@ -7,7 +7,7 @@ import "./componentsStyling/SignIn-Up.css"
 const LogInForm = () =>{
     const navigate = useNavigate();
     const errorDisplay = document.getElementById("errorField");
-    const LogInFunc = () =>{
+    const logInFunc = () =>{
         const userInfo = {
             username: document.getElementById("username").value,
             password: document.getElementById("password").value
@@ -16,6 +16,12 @@ const LogInForm = () =>{
         .catch(() => {
             errorDisplay.innerHTML = "Please enter a valid email in the email field above!"
         });
+    }
+
+    const testLogFunc = () =>{
+        signInWithEmailAndPassword( auth, "aguestaccount@gmail.com", "atest123").catch(()=>{
+            errorDisplay.innerHTML = "Test Account not available, please try again later!"
+        })
     }
 
     const forgotPassword =() =>{
@@ -35,7 +41,8 @@ const LogInForm = () =>{
                 <input type="text" id="username" placeholder="Enter email" required></input>
                 <input type="password" id="password" placeholder="Enter pasword"></input>
                 <span id="errorField"></span>
-                <button type="button" id="logInBtn" onClick={()=>{LogInFunc()}}>Log In</button>
+                <button type="button" id="logInBtn" onClick={()=>{logInFunc()}}>Log In</button>
+                <button type="button" id="guestBtn" onClick={()=>{testLogFunc()}}>Use Test Account</button>
                 <div id="signInLink">
                     <a onClick={()=>{forgotPassword()}}>Forgot Password?</a>
                 </div>
