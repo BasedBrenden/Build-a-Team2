@@ -1,6 +1,8 @@
 import Navbar from "./Navbar"
 import './componentsStyling/Safari.css'
+import { auth } from "../firebase"
 import { useEffect, useState } from "react"
+import { updateFields } from "../Utils"
 
 //hooks needed
 // useEffect - to run immediately or when an encounter has ended
@@ -14,6 +16,7 @@ const Safari = () =>{
         bait: 10
     })
     const [caughtPokemon, setCaughtPokemon] = useState([])
+    const [foundPokemon, setFoundPokemon]= useState({});
     const [buttonState, setButtonState] = useState(false)
     
     useEffect(() => {
@@ -36,33 +39,33 @@ const Safari = () =>{
             //if brokefree
                 //display poke again
 
+
+
     const startGame = async() =>{
         const pokeNameH1 = document.querySelector('#pokeName')
         const pokeImg = document.querySelector('#pokeSprite')
         const promptP = document.querySelector('#prompt')
         const itemHold = document.querySelector('#item')
-
         itemHold.classList = " "
-
         let availPokemon = [0]
         for(let i=0; i < 50; i++){
             availPokemon.push(Math.floor(Math.random()*493))
         }
-        
         const id = availPokemon[Math.floor(Math.random()*49)]
         pokeImg.classList = " "
         pokeImg.classList.add("dot-flashing")
         pokeImg.src = " "
-        
         pokeNameH1.innerHTML = "Finding new Safari Encounter..."
-
         const selectedPokemon = await (await fetch('https://pokeapi.co/api/v2/pokemon/'+ id)).json()
         const selectedPokemonStatus = {
            catchRate: 0.26,
            fleeChance: 0.10,
            angerPercentage: 0
         }
+        
         setPokeStatus(selectedPokemonStatus)
+        updateFields(selectedPokemon)
+        setFoundPokemon(selectedPokemon)
         setTimeout(()=>{
             
             promptP.innerHTML = `${selectedPokemon.name[0].toUpperCase() + selectedPokemon.name.substring(1)} appeared!` 
@@ -79,45 +82,32 @@ const Safari = () =>{
     }
 
     const throwPokeball = () =>{
-
         if(caughtPokemon.length === 6){
             updatePrompt("You already have 6 pokemon!",9000)
         }else{
-
             if(!buttonState){
             const promptP = document.querySelector('#prompt')
             promptP.innerHTML = "Go! Pokeball!"
             //execute pokeball throw animation
-
             const pokeSprite = document.querySelector('#pokeSprite')
             const pokeball = document.querySelector("#item")
-            
             pokeball.classList = "pokeball"
-            
             setTimeout(()=>{
                 pokeSprite.classList.add("shrinkSprite")
             },500)
-
-            
-
             let newPokeballCount = itemInventory.pokeBalls - 1
             if (newPokeballCount < 0){
                 blockButtons(9001)
                 newPokeballCount = 0
                 updatePrompt("You're all out of pokeballs!", 2000)
-            
             }else{
                 blockButtons(9001)
                 if ((Math.random()) < pokeStatus.catchRate ){
                     updatePrompt("Got em!",6000)
-                    const encounteredPoke = {
-                        image: document.querySelector('#pokeSprite').getAttribute('src'),
-                        name: document.querySelector('#pokeName').innerHTML
-                    }
+
                     pokeSprite.classList = ""
-                    
                     setTimeout(startGame, 9000)
-                    setCaughtPokemon([...caughtPokemon,encounteredPoke])
+                    setCaughtPokemon([...caughtPokemon,foundPokemon])
                 }else{
                     setTimeout(()=>{
                         pokeSprite.classList.remove("shrinkSprite")
@@ -125,8 +115,6 @@ const Safari = () =>{
                         pokeball.classList.remove("pokeball")
                     },7000)
                     updatePrompt("Darn, so close!",6000)
-                    
-                    
                     if((Math.random()) < pokeStatus.fleeChance){
                         updatePrompt("The pokemon ran away...",9000)
                         setTimeout(startGame, 12000)
@@ -134,19 +122,15 @@ const Safari = () =>{
                 }
             }
             setItemInventory(inventory=>({...itemInventory, pokeBalls: newPokeballCount}))
-            
             for (let i = 0; i < pokeSprite.classList.length; i++) {
                 pokeSprite.classList.remove(pokeSprite.classList[i]);
               }
         }
-        
             updatePrompt("What would you like to do?",9000)
-            
             //calculate chance of being caught
             //if caught, say so
             //if not, pokeballs down by one, flee chance up one
         }
-        
     }
 
     //should bait make pokemon easier to catch?
@@ -236,7 +220,18 @@ const Safari = () =>{
         }
     }
 
-
+    const saveTeam = () =>{
+        
+        fetch('https://batbackend.herokuapp.com/saveTeam',{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json' },
+            body: JSON.stringify({team: caughtPokemon, Username: auth.currentUser.email}),
+        })
+        .then((response)=>{
+            {/*Display that the team has been saved, reset game*/}
+        })
+        .catch((error) => console.log(error))
+    }
 
  
     

@@ -192,17 +192,11 @@ const changeTypeColor = (item) =>{
 
 }
 
-const updateSearch = async (setFocusedPokemon) =>{
-    const inputSearch = document.querySelector('#input').value
-    const updateError = document.querySelector('.errorMessage');
+const updateFields = async (selectedPokemon) =>{
     try{
-      const test2 = await fetch('https://pokeapi.co/api/v2/pokemon/' + inputSearch.toLowerCase());
-      const newTest2 = await test2.json();
-      updateError.innerHTML = ' '
-
-      let foundAbilities = [newTest2.abilities[0].ability.name]
+      let foundAbilities = [selectedPokemon.abilities[0].ability.name]
       
-      let effect = await fetch(newTest2.abilities[0].ability.url)
+      let effect = await fetch(selectedPokemon.abilities[0].ability.url)
         .then((response)=>{
          return response.json();
         }).then((data)=>{
@@ -210,9 +204,9 @@ const updateSearch = async (setFocusedPokemon) =>{
         })
     
       foundAbilities.push(effect)
-      if(newTest2.abilities.length > 1){
-        foundAbilities.push(newTest2.abilities[1].ability.name)
-        effect = await fetch(newTest2.abilities[1].ability.url)
+      if(selectedPokemon.abilities.length > 1){
+        foundAbilities.push(selectedPokemon.abilities[1].ability.name)
+        effect = await fetch(selectedPokemon.abilities[1].ability.url)
         .then((response)=>{
          return response.json();
         }).then((data)=>{
@@ -223,26 +217,26 @@ const updateSearch = async (setFocusedPokemon) =>{
         foundAbilities.push('')
       }
 
-      let foundTypes = [newTest2.types[0].type.name.toUpperCase()];
-      if(newTest2.types.length > 1){
-        foundTypes.push(newTest2.types[1].type.name.toUpperCase())
+      let foundTypes = [selectedPokemon.types[0].type.name.toUpperCase()];
+      if(selectedPokemon.types.length > 1){
+        foundTypes.push(selectedPokemon.types[1].type.name.toUpperCase())
       }else{
         foundTypes.push('')
       }
 
       const typeCompareTemp = typeCompare(foundTypes);
       let anim = "n/a"
-      if(newTest2.sprites.versions['generation-v']['black-white'].animated.front_default){
-        anim = newTest2.sprites.versions["generation-v"]["black-white"].animated.front_default
+      if(selectedPokemon.sprites.versions['generation-v']['black-white'].animated.front_default){
+        anim = selectedPokemon.sprites.versions["generation-v"]["black-white"].animated.front_default
         console.log(anim)
     }
 
       
       const converted = {
-        pokeName: newTest2.name.toUpperCase(),
-        pokeImage: newTest2.sprites.front_default,
+        pokeName: selectedPokemon.name.toUpperCase(),
+        pokeImage: selectedPokemon.sprites.front_default,
         pokeImageAnim: anim,
-        pokeID: newTest2.id,
+        pokeID: selectedPokemon.id,
         pokeAbility: foundAbilities[0].toUpperCase(), 
         pokeAbilityEffect: foundAbilities[1],
         pokeAbility2: foundAbilities[2].toUpperCase(), 
@@ -254,15 +248,12 @@ const updateSearch = async (setFocusedPokemon) =>{
             weak: typeCompareTemp[1],
         }
       }
-      setFocusedPokemon(converted)
-      let searchUpdate = document.querySelector('#input')
-      searchUpdate.value = ''
+      selectedPokemon = converted;
     }
     catch(error){
         console.log(error)
-      updateError.innerHTML = 'Enter a valid pokemon name'
     }
   }
 
 
-export {typeCompare, updateSearch, changeTypeColor};
+export {typeCompare, updateFields, changeTypeColor};

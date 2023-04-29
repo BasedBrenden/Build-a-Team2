@@ -1,5 +1,5 @@
 import React from 'react'
-import { updateSearch, changeTypeColor } from '../Utils'
+import { changeTypeColor } from '../Utils'
 import { useState, useEffect} from 'react'
 import './componentsStyling/TeamView.css'
 import './componentsStyling/TypeStyles.css'

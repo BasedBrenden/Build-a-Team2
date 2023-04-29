@@ -12,8 +12,6 @@ const StartPage = () =>{
         onAuthStateChanged(auth,()=>{
             if(auth.currentUser){
                 navigate("/home");
-            }else{
-                navigate("/")
             }
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps
