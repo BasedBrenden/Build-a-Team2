@@ -81,10 +81,18 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
 
     return (
         <div className="teamviewContainer">
-            <div className="search2">
-                <input id='input' type="text" placeholder="Try &quot;Absol&quot; or &quot;Piplup&quot;!"></input>
-                <button type='button' id= "searchBtn"onClick={()=>{updateSearch(setFocusedPokemon);}}>Search!</button>
-                <h1 className="errorMessage"> </h1>
+            <div className="teamDropDown">
+                <div id="input">
+                    <input className="currentTeam" type="text" placeholder="Hover to select a team!"></input>
+                    <div className="teamDropDownContent">
+                        {/*Needs to be a map/foreach that displays all of the teams saved.*/}
+                        <p>Team 1</p>
+                        <p>Team 2</p>
+                        <p>Team 3</p>
+                    </div>
+                    <h1 className="errorMessage"> </h1>
+                </div>
+                
             </div>
       
             <div className="info">
@@ -94,8 +102,8 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
                         <p> {focusedPokemon.pokeName}</p>
                         {(focusedPokemon.pokeImageAnim === "n/a") ? <img src={focusedPokemon.pokeImage} className="infoImage" alt="woooo"></img>
                         : <img src={focusedPokemon.pokeImageAnim} className="infoImage" alt="woooo"></img> }
-                        
-                        <button type='button' id="addPokeBtn" onClick={() =>{addPokemonToTeam()}}>Add Pokemon</button>
+                        {/* will be th new remove pokemon button*/}
+                        <button type='button' id="addPokeBtn" onClick={() => {removePokemon(focusedPokemon.pokeID);}} value={focusedPokemon.pokeID}>Remove Pokemon</button>
                     </div>
                     <div id="infoStats">
                             <div id="infoStatsName">
@@ -152,9 +160,6 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
                     <div className='teamCardContainer' key= {pokemon.pokeName} onClick={() => {updateFocused(pokemon)}}>
                         <div className="teamCardHeader">
                             <p>{pokemon.pokeName}</p>
-                            <div>
-                                <button type='button' className="teamCardDelete" onClick={() => {removePokemon(pokemon.pokeID);}} value={pokemon.pokeID}>X</button>
-                            </div>
                         </div>
                         <img src={pokemon.pokeImage} alt='wooo' className="pokeSprite"></img>
                     </div>
