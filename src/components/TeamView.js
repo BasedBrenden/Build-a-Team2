@@ -1,33 +1,15 @@
 import React from 'react'
-import { updateSearch, changeTypeColor } from '../Utils'
-import { useState, useEffect} from 'react'
+import { updateSearch} from '../Utils'
+import { useState} from 'react'
 import './componentsStyling/TeamView.css'
 import './componentsStyling/TypeStyles.css'
+import InfoCard from './InfoCard'
 
 const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
 
     const [focusedPokemon, setFocusedPokemon] = useState('');
     const [focusedAbility, setFocusedAbility] = useState('');
     
-    const typeAdvWeak = () =>{
-        if(document.querySelector(".testClass")){
-            const typeSelected = document.querySelector(".testClass");
-            changeTypeColor(typeSelected)
-            if(document.querySelector(".testClass2")){
-                const typeSelected2 = document.querySelector(".testClass2");
-                changeTypeColor(typeSelected2)
-            }
-        }
-        const allTypesOnPage = document.querySelectorAll(".testClass3");
-        for(let i=0; i < allTypesOnPage.length; i++){
-            let tempElem = allTypesOnPage[i]
-            changeTypeColor(tempElem)
-        }
-    }
-
-    useEffect(() => {
-        typeAdvWeak();
-    }, [focusedPokemon])
     
     const removePokemon = (pokeId) =>{
         fetch('https://batbackend.herokuapp.com/deletePoke',{
@@ -89,63 +71,8 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
       
             <div className="info">
                 {(focusedPokemon === '') ? <span></span>:
-                 <div className="infoContainer">
-                    <div className="infoViewCard">
-                        <p> {focusedPokemon.pokeName}</p>
-                        {(focusedPokemon.pokeImageAnim === "n/a") ? <img src={focusedPokemon.pokeImage} className="infoImage" alt="woooo"></img>
-                        : <img src={focusedPokemon.pokeImageAnim} className="infoImage" alt="woooo"></img> }
-                        
-                        <button type='button' id="addPokeBtn" onClick={() =>{addPokemonToTeam()}}>Add Pokemon</button>
-                    </div>
-                    <div id="infoStats">
-                            <div id="infoStatsName">
-                                <p>Dex No.:</p>
-                                <p className ="pTest2First">{focusedPokemon.pokeID}</p>
-                            </div>
-                            <div id="infoStatsType">
-                                <p className = "statTitleType">Type:</p>
-                                <div className="typeContainer">
-                                    <span className ="testClass">{focusedPokemon.pokeType}</span>
-                                    {(focusedPokemon.pokeType2 === '') ?<span></span>: <span className ="testClass2">{focusedPokemon.pokeType2}</span>}
-                                </div>
-                            </div>
-                            <div id="infoStatsOT">
-                                <p>OT:</p>
-                                <p className ="pTest2">{trainerStats.trainerName}</p>
-                            </div>
-                            <div id="infoStatsOTID">
-                                <p>OT ID:</p>
-                                <p className = "pTest">{trainerStats.trainerID}</p>
-                            </div>
-                            <div id="infoStatsAdv">
-                                <p>Advantage: </p>
-                                <div className="pTest2">
-                                { focusedPokemon.pokeTypeCompare.adv.map((type, index) =>
-                                        <p key={index} className = "testClass3">{type}</p>
-                                )}
-                                </div>
-                            </div>
-                            <div id="infoStatsWeak">
-                                <p>Weakness: </p>
-                                <div className="pTestFinal">
-                                { focusedPokemon.pokeTypeCompare.weak.map((type, index) =>
-                                        <p key={index} className = "testClass3">{type}</p>    
-                                )}
-                                </div>
-                            </div>   
-                    </div>
-                    <div id = "infoAbility">
-                        <h2>Abilities</h2>
-                            <div className="abilityTitle">
-                                <button type="button" className="abilityButton" onClick={()=>setFocusedAbility(focusedPokemon.pokeAbilityEffect)}>{focusedPokemon.pokeAbility}</button>
-                                {(focusedPokemon.pokeAbility2 === '') ?<span></span>:
-                                <button type="button" className="abilityButton" onClick={()=>setFocusedAbility(focusedPokemon.pokeAbilityEffect2)}>{focusedPokemon.pokeAbility2}</button>}
-                            </div>
-                            <div id="abilityDescription">
-                                <p>{focusedAbility}</p>
-                            </div>
-                    </div>
-                </div>}
+                    <InfoCard Pokemon={focusedPokemon} />
+                }
             </div>
             <div id="team">
                 {fullTeam.map((pokemon)=>

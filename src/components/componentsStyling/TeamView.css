@@ -1,13 +1,4 @@
-@keyframes teamCardHover {
-    from{border-color: white}
-    to{border-color: goldenrod}
-    
-}
 
-@keyframes addHover {
-    from{ background-color: rgb(24, 119, 242);}
-    to {background-color: rgb(17, 91, 189);}
-}
 
 .teamviewContainer{
     display: grid;
@@ -17,7 +8,7 @@
     'team';
     grid-template-columns: 1fr;
     grid-template-rows: min-content 1fr 1fr;
-    background-color: white;
+   
     border-radius: 12px;
     width: 100%;
     min-height: 550px;
@@ -96,6 +87,7 @@
 .infoViewCard{
     grid-area:infoName;
     margin-right: 0;
+    
 }
 .infoViewCard > p{
     padding: 15px;
@@ -119,11 +111,7 @@
     cursor: pointer
 }
 
-.infoImage{
-    width: 100%;
-    height: 75%;
-    
-}
+
 
 .pTest{
     width: 50%;
@@ -132,36 +120,6 @@
     background-color: white;
     margin-top: 0;
     text-align: auto;
-}
-
-.pTestFinal{
-    width: 50%;
-    height: 100%;
-    border-left: 1px solid;
-    background-color: white;
-    margin-top: 0;
-    text-align: auto;
-    
-}
-
-.pTest2{
-    width: 50%;
-    height: 100%;
-    border-left: 1px solid;
-    background-color: rgb(168, 168, 168);
-    margin-top: 0;
-    text-align: center;
-}
-
-.pTest2First{
-    width: 50%;
-    height: 100%;
-    border-left: 1px solid;
-    background-color: rgb(168, 168, 168);
-    padding-top: 13px;
-    margin-top: 0;
-    text-align: center;
-    border-radius: 9px
 }
 
 #infoStats{
@@ -223,23 +181,7 @@ div#infoStats > div:nth-child(even){
     flex-flow: row;
 }
 
-#infoStatsAdv{
-    grid-area: statsAdv;
-    display: flex;
-    flex-flow: row;
-  
-}
 
-#infoStatsWeak{
-    grid-area: statsWeak;
-    display: flex;
-    flex-flow: row;
-    justify-content: center;
-    margin-right: 0px;
-    border-bottom-left-radius: 9px;
-    border-bottom-right-radius: 9px;
-    
-}
 
 .statTitleType{
     height: 18.5%;
@@ -250,43 +192,7 @@ div#infoStats > div:nth-child(even){
     border-bottom: 1px solid black;
 }
 
-#infoAbility{
-    margin-top: 40px;
-    grid-area: infoAbility;
-}
 
-#infoAbility > h2{
-    text-align: left;
-    margin: 0;
-    margin-left: 1%;
-    
-}
-
-.abilityTitle{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-}
-
-.abilityButton{
-    border: 1px solid rgb(0, 110, 255);
-    border-radius: 24px;
-    font-size: medium;
-    min-width: 40%;
-    margin: 5%;
-    margin-bottom: 4%;
-    padding: 3%;
-}
-
-.abilityButton:hover{
-    background-color:rgb(0, 110, 255);
-    color: white;
-}
-
-
-#abilityDescription{
-    max-height: 420px;
-}
 #info >div> p{
     text-align: center;
     font-weight: 600;
@@ -395,28 +301,18 @@ div#infoStats > div:nth-child(even){
     margin: 10px;
 }
 
-.testClass3{
-    border: 1px solid black;
-    border-radius: 6px;
-    padding: .5rem 2rem;
-    color: white;
-    width: 3rem;
-    text-align: center;
-    margin: 10px auto;
-}
-
 
 @media (min-width: 1100px) {
 
     .teamviewContainer{
         display: grid;
         grid-template-areas:
-        'search2 search2'
+        'search2 team'
         'info team'
         ;
         grid-template-columns: 1.5fr 1fr;
         grid-template-rows: min-content 1fr;
-        background-color: white;
+        
         border-radius: 12px;
         width: 80%;
         min-height: 491px;
@@ -426,7 +322,7 @@ div#infoStats > div:nth-child(even){
     .teamCardContainer{
         grid-area: team;
         border: 1px solid white;
-        background-color: white;
+        
         max-width: 100%;
         height: 10rem;
         display: grid;
@@ -449,29 +345,12 @@ div#infoStats > div:nth-child(even){
         width: 100%;
     }
 
-
-
-    #infoAbility{
-        margin-top: 40px;
-        grid-area: abilities;
-    }
-
     .errorMessage{
         color: black;
     }
 
     .statTitleType{
         height: 6.4%;
-    }
-
-    .testClass3{
-        border: 1px solid black;
-        border-radius: 6px;
-        padding: .5rem 1.5rem;
-        color: white;
-        width: 4rem;
-        text-align: center;
-        margin: 10px auto;
     }
     
 }

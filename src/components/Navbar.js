@@ -40,7 +40,6 @@ const Navbar = () =>{
                             <div id="myDropdown" className="dropdownContent">
                                 <button type="button" className="dropdownAcc" onClick={()=>{navigate("/account")}} disabled={true} >Account Settings</button>
                                 <button type="button" className="dropdownHolder" onClick={()=>{navigate("/")}} >Home</button>
-                                <button type="button" className="dropdownSafari" onClick={()=>{navigate("/safari")}} >Safari Mode</button>
                                 <button type="button" className="dropdownSignout" onClick={()=>{ signOutClick()}}>Sign Out</button>
                             </div>
                     </div> 
