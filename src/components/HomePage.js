@@ -7,19 +7,17 @@ import './componentsStyling/HomePage.css';
 
 function HomePage() {
 
-  const [result, setresult] = useState([])
-  const [premadeTeam, setPremadeTeam] = useState([])
+  const [premadeTeams, setPremadeTeams] = useState([])
   const [userId, setUserId] = useState('no');
-  const [trainerStats, setTrainerStats] = useState('');
   const navigate = useNavigate();
  
   useEffect(() => {
-    renderTeam();
+    renderTeams();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   
-  const renderTeam = async() =>{
-    const newTeam = []
+  const renderTeams = async() =>{
+    const newTeams = []
     
       if(auth.currentUser){
         const uid = auth.currentUser.email;
@@ -33,15 +31,12 @@ function HomePage() {
         })
         .then((response)=> { return response.json()})
         .then((data) => {
-          if(data[0]){
-            for (let i = 0; i < data[0].Team.length; ++i ) {
-            newTeam.push(data[0].Team[i]);
+          if(data[0].Teams){
+            console.log(data[0].Teams);
+            for (let i = 0; i < data[0].Teams.length; ++i ) {
+            newTeams.push(data[0].Teams[i]);
             }
-            setPremadeTeam([...newTeam])
-            setresult([])
-            setTrainerStats({
-              trainerName: data[0].trainerName,
-              trainerID: data[0].trainerID})
+            setPremadeTeams([...newTeams]) 
           }
           
         })
@@ -61,11 +56,9 @@ function HomePage() {
       <h1> Welcome Back! </h1>
       <div className="TeamViewContainer">
         <TeamView 
-          searchResult = {result}
-          fullTeam={premadeTeam}
-          updateTeamFunc={renderTeam}
+          fullTeam={premadeTeams}
+          updateTeamsFunc={renderTeams}
           userId = {userId}
-          trainerStats = {trainerStats}
         />
       </div>
       <div className="footer">

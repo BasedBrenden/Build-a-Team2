@@ -1,14 +1,15 @@
 import React from 'react'
 import { updateSearch} from '../Utils'
-import { useState} from 'react'
+import { useState, useEffect} from 'react'
 import './componentsStyling/TeamView.css'
 import './componentsStyling/TypeStyles.css'
 import InfoCard from './InfoCard'
 
-const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
+const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
 
     const [focusedPokemon, setFocusedPokemon] = useState('');
     const [focusedAbility, setFocusedAbility] = useState('');
+    const [focusedTeam, setFocusedTeam] = useState();
     
     
     const removePokemon = (pokeId) =>{
@@ -53,12 +54,23 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
                     adv: focusedPokemon.pokeTypeCompare.adv,
                     weak: focusedPokemon.pokeTypeCompare.weak,
                 },
-                Username: userId}) 
+                Username: userId,
+                Team: "Team1Test"}) 
             })
             .then(()=>{updateTeamFunc(); setFocusedPokemon('')})
             .catch((error)=>{updateError.innerHTML = error})
         }
     }
+
+    const toggleTeamDropdown = () =>{
+        const teamDropdown = document.querySelector('.teamDropdownContent');
+        if(teamDropdown.style.display === 'flex'){
+            teamDropdown.style.display = 'none';
+        }else{
+            teamDropdown.style.display = 'flex';
+        }
+    }
+
 
 
     return (
@@ -68,11 +80,24 @@ const TeamView = ({fullTeam, updateTeamFunc, userId, trainerStats}) => {
                 <button type='button' id= "searchBtn"onClick={()=>{updateSearch(setFocusedPokemon);}}>Search!</button>
                 <h1 className="errorMessage"> </h1>
             </div>
+
+            
+                
+                <div className="teamDropdown">
+                    <button type="button" className="teamDropdownBtn" onClick={()=>{setFocusedTeam('Team1Test')}}>Team 1</button>
+                    <button type="button" className="teamDropdownBtn" onClick={()=>{setFocusedTeam('Team2Test')}}>Team 2</button>
+                    <button type="button" className="teamDropdownBtn" onClick={()=>{setFocusedTeam('Team3Test')}}>Team 3</button>
+                </div>
+            
       
             <div className="info">
                 {(focusedPokemon === '') ? <span></span>:
-                    <InfoCard Pokemon={focusedPokemon} />
+                    <div>
+                        <InfoCard Pokemon={focusedPokemon} />
+                        <button type="button" onClick={()=>{addPokemonToTeam()}}> add pokemon</button>
+                    </div>
                 }
+                
             </div>
             <div id="team">
                 {fullTeam.map((pokemon)=>

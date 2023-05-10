@@ -60,6 +60,27 @@
     cursor: pointer;
 }
 
+.teamDropdown{
+    grid-area: teamBtn;
+    display: flex;
+    align-items: end;
+}
+
+.teamDropdownBtn{
+    cursor: pointer;
+    width: 8rem;
+    margin-right: 1%;
+    height: 3rem;
+    box-shadow: 0 5px 5px rgb(192, 192, 192);
+    border: 1px solid black;
+    border-radius: 12px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding: 5px;
+    outline: none;
+}
+
+
 
 .errorMessage{
     padding-top: 1%;
@@ -307,7 +328,7 @@ div#infoStats > div:nth-child(even){
     .teamviewContainer{
         display: grid;
         grid-template-areas:
-        'search2 team'
+        'search2 teamBtn'
         'info team'
         ;
         grid-template-columns: 1.5fr 1fr;

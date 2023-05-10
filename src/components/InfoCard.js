@@ -58,13 +58,17 @@ const InfoCard = ({Pokemon}) => {
             
             <div className="pokeCardTypesComp">
                 
-                {(typeAdvToggle) ? 
+                {(typeAdvToggle === true) ? 
                     <div id="infoStatsAdv">
                         <p>Advantage: </p>
                         <div className="typesContainer">
                             {Pokemon.pokeTypeCompare.adv.map((type, index) =>
                                 <p key={index} className = "types">{type}</p>
                             )}
+                        </div>
+                        <div id="carousel">
+                            <span className="material-symbols-outlined" onClick={()=> toggleTypeAdvWeak()}> radio_button_checked </span>
+                            <span className="material-symbols-outlined" onClick={()=> toggleTypeAdvWeak()}> circle </span>
                         </div>
                     </div> 
                     : 
@@ -75,27 +79,10 @@ const InfoCard = ({Pokemon}) => {
                                 <p key={index} className = "types">{type}</p>    
                             )}
                         </div>
-                    </div>
-                }
-                
-                {/*
-                <div id="infoStatsWeak">
-                    <p>Weakness: </p>
-                    <div className="pTestFinal">
-                        {Pokemon.pokeTypeCompare.weak.map((type, index) =>
-                            <p key={index} className = "testClass3">{type}</p>    
-                        )}
-                    </div>
-                </div>
-                */}
-
-                {(typeAdvToggle) ? <div>
-                    <span className="material-symbols-outlined carousel" onClick={()=> toggleTypeAdvWeak()}> radio_button_checked </span>
-                    <span className="material-symbols-outlined carousel" onClick={()=> toggleTypeAdvWeak()}> circle </span>
-                    </div>
-                    : <div>
-                        <span className="material-symbols-outlined carousel" onClick={()=> toggleTypeAdvWeak()}> circle </span>
-                        <span className="material-symbols-outlined carousel" onClick={()=> toggleTypeAdvWeak()}> radio_button_checked </span>
+                        <div id="carousel">
+                            <span className="material-symbols-outlined carousel" onClick={()=> toggleTypeAdvWeak()}> circle </span>
+                            <span className="material-symbols-outlined carousel" onClick={()=> toggleTypeAdvWeak()}> radio_button_checked </span>
+                        </div>
                     </div>
                 }
             </div>

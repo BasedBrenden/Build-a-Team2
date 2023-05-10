@@ -53,6 +53,7 @@
     margin: auto;
     text-align: center;
     color: black;
+    height: 100%;
 }
 
 .pokeCardTypesComp{
@@ -122,11 +123,11 @@
     max-height: 420px;
 }
 
-.carousel{
+#carousel{
     color:rgb(24, 235, 242)
 }
 
-.carousel:hover{
+#carousel:hover{
     cursor: pointer;
 }
 
