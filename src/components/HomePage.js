@@ -17,7 +17,11 @@ function HomePage() {
   },[])
   
   const renderTeams = async() =>{
-    const newTeams = []
+    const teams = {
+      team1: [],
+      team2: [],
+      team3: []
+    }
     
       if(auth.currentUser){
         const uid = auth.currentUser.email;
@@ -31,15 +35,18 @@ function HomePage() {
         })
         .then((response)=> { return response.json()})
         .then((data) => {
-          if(data[0].Teams){
-            console.log(data[0].Teams);
-            for (let i = 0; i < data[0].Teams.length; ++i ) {
-            newTeams.push(data[0].Teams[i]);
-            }
-            setPremadeTeams([...newTeams]) 
+          for (let i = 0; i < data[0].Team1.length; ++i ) {
+            teams.team1.push(data[0].Team1[i]);
           }
-          
-        })
+          for (let i = 0; i < data[0].Team2.length; i++ ) {
+            teams.team2.push(data[0].Team2[i]);
+          }
+          for (let i = 0; i < data[0].Team3.length; i++ ) {
+            teams.team3.push(data[0].Team3[i]);
+          }
+          setPremadeTeams(teams) 
+          }
+        )
         .catch((error) =>console.log(error))
       }else{
         navigate("/")

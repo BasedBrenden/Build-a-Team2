@@ -5,21 +5,33 @@ import './componentsStyling/TeamView.css'
 import './componentsStyling/TypeStyles.css'
 import InfoCard from './InfoCard'
 
-const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
+const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
 
     const [focusedPokemon, setFocusedPokemon] = useState('');
     const [focusedAbility, setFocusedAbility] = useState('');
-    const [focusedTeam, setFocusedTeam] = useState();
+    const [focusedTeam, setFocusedTeam] = useState(fullTeam.team1);
     
     
     const removePokemon = (pokeId) =>{
+
+        let teamName = '';
+        if(focusedTeam === fullTeam.team1){
+            teamName = 'Team 1'
+        }else if(focusedTeam === fullTeam.team2){
+            teamName = 'Team 2'
+        }else{
+            teamName = 'Team 3'
+        }
+
         fetch('https://batbackend.herokuapp.com/deletePoke',{
             method: 'POST',
             headers: {'Content-Type': 'application/json' },
-            body: JSON.stringify({id: pokeId, Username: userId}),
+            body: JSON.stringify({id: pokeId, 
+                Username: userId,
+                team: teamName}),
         })
         .then((response)=>{
-            updateTeamFunc();
+            updateTeamsFunc();
             setFocusedPokemon('');
         })
         .catch((error) => console.log(error))
@@ -28,11 +40,19 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
     const updateFocused = (poke)=>{
         setFocusedPokemon(poke)
         setFocusedAbility('')
-        updateTeamFunc();
+        updateTeamsFunc();
     }
 
     const addPokemonToTeam = () =>{
         const updateError = document.querySelector('.errorMessage');
+        let teamName = '';
+        if(focusedTeam === fullTeam.team1){
+            teamName = 'Team 1'
+        }else if(focusedTeam === fullTeam.team2){
+            teamName = 'Team 2'
+        }else{
+            teamName = 'Team 3'
+        }
         if(fullTeam.length === 6){
             updateError.innerHTML = "Current team is too large! Try removing a pokemon and trying again"
         }else{
@@ -55,9 +75,9 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
                     weak: focusedPokemon.pokeTypeCompare.weak,
                 },
                 Username: userId,
-                Team: "Team1Test"}) 
+                team: teamName}) 
             })
-            .then(()=>{updateTeamFunc(); setFocusedPokemon('')})
+            .then(()=>{updateTeamsFunc(); setFocusedPokemon('')})
             .catch((error)=>{updateError.innerHTML = error})
         }
     }
@@ -70,6 +90,8 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
             teamDropdown.style.display = 'flex';
         }
     }
+
+    
 
 
 
@@ -84,9 +106,9 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
             
                 
                 <div className="teamDropdown">
-                    <button type="button" className="teamDropdownBtn" onClick={()=>{setFocusedTeam('Team1Test')}}>Team 1</button>
-                    <button type="button" className="teamDropdownBtn" onClick={()=>{setFocusedTeam('Team2Test')}}>Team 2</button>
-                    <button type="button" className="teamDropdownBtn" onClick={()=>{setFocusedTeam('Team3Test')}}>Team 3</button>
+                    <button type="button" className="teamDropdownBtn" onClick={()=>{setFocusedTeam(fullTeam.team1)}}>Team 1</button>
+                    <button type="button" className="teamDropdownBtn" onClick={()=>{setFocusedTeam(fullTeam.team2)}}>Team 2</button>
+                    <button type="button" className="teamDropdownBtn" onClick={()=>{setFocusedTeam(fullTeam.team3)}}>Team 3</button>
                 </div>
             
       
@@ -100,7 +122,7 @@ const TeamView = ({fullTeam, updateTeamFunc, userId}) => {
                 
             </div>
             <div id="team">
-                {fullTeam.map((pokemon)=>
+                {focusedTeam && focusedTeam.map((pokemon)=>
                     <div className='teamCardContainer' key= {pokemon.pokeName} onClick={() => {updateFocused(pokemon)}}>
                         <div className="teamCardHeader">
                             <p>{pokemon.pokeName}</p>
