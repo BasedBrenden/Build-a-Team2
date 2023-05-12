@@ -66,8 +66,8 @@ const InfoCard = ({Pokemon}) => {
                                 <p key={index} className = "types">{type}</p>
                             )}
                         </div>
-                        <div id="carousel">
-                            <span className="material-symbols-outlined" onClick={()=> toggleTypeAdvWeak()}> radio_button_checked </span>
+                        <div >
+                            <span id="carousel" className="material-symbols-outlined" onClick={()=> toggleTypeAdvWeak()}> radio_button_checked </span>
                             <span className="material-symbols-outlined" onClick={()=> toggleTypeAdvWeak()}> circle </span>
                         </div>
                     </div> 
@@ -81,7 +81,7 @@ const InfoCard = ({Pokemon}) => {
                         </div>
                         <div id="carousel">
                             <span className="material-symbols-outlined carousel" onClick={()=> toggleTypeAdvWeak()}> circle </span>
-                            <span className="material-symbols-outlined carousel" onClick={()=> toggleTypeAdvWeak()}> radio_button_checked </span>
+                            <span id="carousel" className="material-symbols-outlined carousel" onClick={()=> toggleTypeAdvWeak()}> radio_button_checked </span>
                         </div>
                     </div>
                 }

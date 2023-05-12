@@ -13,7 +13,7 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
     
     
     const removePokemon = (pokeId) =>{
-
+        
         let teamName = '';
         if(focusedTeam === fullTeam.team1){
             teamName = 'Team 1'
@@ -30,9 +30,12 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
                 Username: userId,
                 team: teamName}),
         })
-        .then((response)=>{
+        .then( (response)=>{
+
             updateTeamsFunc();
+            setFocusedTeam(focusedTeam.filter(poke=>poke.pokeID !== pokeId))
             setFocusedPokemon('');
+            
         })
         .catch((error) => console.log(error))
     }
@@ -53,7 +56,7 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
         }else{
             teamName = 'Team 3'
         }
-        if(fullTeam.length === 6){
+        if(focusedTeam.length === 6){
             updateError.innerHTML = "Current team is too large! Try removing a pokemon and trying again"
         }else{
             fetch('https://batbackend.herokuapp.com/addPoke',{
@@ -77,21 +80,12 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
                 Username: userId,
                 team: teamName}) 
             })
-            .then(()=>{updateTeamsFunc(); setFocusedPokemon('')})
+            .then(()=>{updateTeamsFunc(); setFocusedTeam([...focusedTeam, focusedPokemon]);setFocusedPokemon('')})
             .catch((error)=>{updateError.innerHTML = error})
         }
     }
 
-    const toggleTeamDropdown = () =>{
-        const teamDropdown = document.querySelector('.teamDropdownContent');
-        if(teamDropdown.style.display === 'flex'){
-            teamDropdown.style.display = 'none';
-        }else{
-            teamDropdown.style.display = 'flex';
-        }
-    }
 
-    
 
 
 
