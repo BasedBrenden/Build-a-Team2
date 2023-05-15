@@ -1,5 +1,5 @@
 
-
+//most of this needs to moved to the backend as well
 
 const typeCompare=( pokeTypes) =>{
 

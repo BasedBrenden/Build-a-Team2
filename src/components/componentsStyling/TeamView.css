@@ -227,21 +227,20 @@ div#infoStats > div:nth-child(even){
 }
 
 #team{
-    border: 1px solid white;
-    height: 60rem;
-    background-color: white;
+    height: min-content;
 }
 
 .teamCardContainer{
     grid-area: team;
-    border: 1px solid white;
-    background-color: white;
+    border: 1px solid rgb(6, 22, 17);
+    border-radius: 12px;
+    background: linear-gradient(180deg,rgb(71, 141, 114) 60%, rgb(102, 202, 164) 40%);
     max-width: 100%;
-    height: min-content;
+    height: 5rem;
     display: grid;
     grid-template-areas: 
-    'Pokesprite profile-view';
-    grid-template-columns: 2fr 6fr;
+    'Pokesprite profile-view HP';
+    grid-template-columns: 3fr 4fr 4fr;
     margin-left: 0px;
 }
 
@@ -257,17 +256,67 @@ div#infoStats > div:nth-child(even){
 
 .teamCardHeader{
     grid-area: profile-view;
-    display: grid;
-    grid-template-areas:
-    ' name . delete';
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
     align-content: center;
+}
+
+.cardName{
+    margin-bottom: 0px;
+    margin-top: 10px;
+    font-size: x-large;
+    color: white;
+
+}
+
+.cardLvl{
+    margin-top: 10px;
+    font-size: large;
+    color: white;
 }
 
 .teamCardHeader > div{
     display: grid;
-    grid-area: delete;
+    
     height: min-content;
     justify-content: end;
+}
+
+.teamCardHP{
+    grid-area: HP;
+}
+
+.hpBar{
+    display: flex;
+    width: 90%;
+    margin-top: 15%;
+    background-color: black;
+    border-radius: 12px;
+    padding: 0;
+    height: 20%;
+    
+}
+
+.hpBar > p{
+    align-self: flex-start;
+    margin:0%;
+    margin-left: 5%;
+    font-weight: 800;
+    background: linear-gradient(180deg,rgb(243, 180, 7), rgb(150, 56, 1));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    
+}
+
+.hpBar > span{
+    width: 75%;
+    background: rgb(105, 211, 105);
+    border: 1px solid white;
+    border-radius: 12px;
+    height: 10px;
+    margin: auto;
 }
 
 
@@ -329,6 +378,23 @@ div#infoStats > div:nth-child(even){
     margin: 10px;
 }
 
+.pokeSpriteImgHover{
+    animation-name: bounce;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes bounce{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.5);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
 
 @media (min-width: 1100px) {
 
@@ -346,20 +412,6 @@ div#infoStats > div:nth-child(even){
         min-height: 491px;
         padding: 12px;
     }
-
-    .teamCardContainer{
-        grid-area: team;
-        border: 1px solid white;
-        
-        max-width: 100%;
-        height: 10rem;
-        display: grid;
-        grid-template-areas: 
-        'Pokesprite profile-view';
-        grid-template-columns: 3fr 5fr;
-        margin-left: 0px;
-    }
-
     .infoContainer{
         display: grid;
         grid-template-areas: 
@@ -369,7 +421,8 @@ div#infoStats > div:nth-child(even){
         grid-template-rows: 1fr min-content;
     }
 
-    #pokeSprite{
+    .pokeSprite{
+        grid-area: Pokesprite;
         width: 100%;
     }
 

@@ -59,6 +59,7 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
         if(focusedTeam.length === 6){
             updateError.innerHTML = "Current team is too large! Try removing a pokemon and trying again"
         }else{
+            //this conversion should be in the backend
             fetch('https://batbackend.herokuapp.com/addPoke',{
             method: 'POST',
             headers: {'Content-Type': 'application/json' },
@@ -83,6 +84,16 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
             .then(()=>{updateTeamsFunc(); setFocusedTeam([...focusedTeam, focusedPokemon]);setFocusedPokemon('')})
             .catch((error)=>{updateError.innerHTML = error})
         }
+    }
+
+    const pokeHover = (poke) =>{
+        const pokeElement = document.getElementById(poke);
+        pokeElement.classList.add("pokeSpriteImgHover");
+    }
+
+    const removePokeHover = (poke) =>{
+        const pokeElement = document.getElementById(poke);
+        pokeElement.classList.remove("pokeSpriteImgHover");
     }
 
 
@@ -117,14 +128,26 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
             </div>
             <div id="team">
                 {focusedTeam && focusedTeam.map((pokemon)=>
-                    <div className='teamCardContainer' key= {pokemon.pokeName} onClick={() => {updateFocused(pokemon)}}>
+                    <div className='teamCardContainer' key= {pokemon.pokeName} onClick={() => {updateFocused(pokemon)}} onMouseOver={()=>{pokeHover(pokemon.pokeID)}} onMouseLeave={()=>{removePokeHover(pokemon.pokeID)}}>
+                        <div className="pokeSprite">
+                            <img className="pokeSpriteImg" src={pokemon.pokeImage} alt='wooo' id={pokemon.pokeID}></img>
+                        </div>
                         <div className="teamCardHeader">
-                            <p>{pokemon.pokeName}</p>
+                            <p className="cardName">{pokemon.pokeName}</p>
+                            <p className="cardLvl">Lv 99</p>
+                            {/*
                             <div>
                                 <button type='button' className="teamCardDelete" onClick={() => {removePokemon(pokemon.pokeID);}} value={pokemon.pokeID}>X</button>
                             </div>
+                            */}
                         </div>
-                        <img src={pokemon.pokeImage} alt='wooo' className="pokeSprite"></img>
+                        <div className="teamCardHP">
+                            <div className ="hpBar">
+                                <p>HP</p>
+                                <span></span>
+                            </div>
+                        </div>
+                        
                     </div>
                 )}
             </div>
