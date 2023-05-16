@@ -1,6 +1,7 @@
 import React from 'react'
 import { updateSearch} from '../Utils'
 import { useState, useEffect} from 'react'
+import { useNavigate } from 'react-router-dom'
 import './componentsStyling/TeamView.css'
 import './componentsStyling/TypeStyles.css'
 import InfoCard from './InfoCard'
@@ -10,8 +11,12 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
     const [focusedPokemon, setFocusedPokemon] = useState('');
     const [focusedAbility, setFocusedAbility] = useState('');
     const [focusedTeam, setFocusedTeam] = useState(fullTeam.team1);
+
+    useEffect(() => {
+        setFocusedTeam(fullTeam.team1)
+    }, [fullTeam])
     
-    
+    const navigate = useNavigate();
     const removePokemon = (pokeId) =>{
         
         let teamName = '';
@@ -96,6 +101,19 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
         pokeElement.classList.remove("pokeSpriteImgHover");
     }
 
+    const goToTrainerCard = () =>{
+        let teamName = '';
+        if(focusedTeam === fullTeam.team1){
+            teamName = 'Team1'
+        }else if(focusedTeam === fullTeam.team2){
+            teamName = 'Team2'
+        }else{
+            teamName = 'Team3'
+        }
+
+        navigate("/trainer-card/"+teamName);
+
+    }
 
 
 
@@ -150,6 +168,9 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
                         
                     </div>
                 )}
+                <div>
+                    <button type="button" onClick={()=>{goToTrainerCard()}}> Share Team</button>
+                </div>
             </div>
         </div>
     )

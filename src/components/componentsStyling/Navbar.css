@@ -46,6 +46,7 @@
     grid-template-areas: 
     'home'
     'account'
+    'trainer-card'
     'sign-out'
     ;
     grid-template-columns:1fr;
@@ -57,9 +58,6 @@
     grid-area: dropdownHome
 }
 
-.dropdownSafari{
-    grid-area: safari
-}
 
 .dropdownAcc{
     grid-area: account
@@ -68,6 +66,10 @@
 
 .dropdownSignout{
     grid-area: sign-out
+}
+
+.dropdownTrainerCard{
+    grid-area: trainer-card
 }
 
 .material-symbols-outlined{
