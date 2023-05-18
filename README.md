@@ -2,8 +2,7 @@
 
 This is a fun full-stack project created by Brenden Thomas that allows you to securely create and save your own 6 monster pokemon team! Create an account and get started building today!
 
-
-![test](https://user-images.githubusercontent.com/19752877/215657795-00865903-9857-4f65-92cb-26cd981e2ed6.gif)
+![bat2](https://github.com/BasedBrenden/Build-a-Team2/assets/19752877/59b2b833-a805-41f3-9bfc-1653b94def33)
 
 ## Motivation
 
