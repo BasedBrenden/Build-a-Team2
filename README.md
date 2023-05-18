@@ -23,6 +23,7 @@ With the current iteration of Build-A-Team, you can do the following:
  - Add and remove Pokemon from a 6 monster roster that is saved to a cloud database.
  - Access your personal team by signing into your account through Desktop and Mobile browsers.
  - See individual Pokemon's abilities and type match ups.
+ - Download a version of your very own trainer card, for use as a custome credit card background!
 ### Coming soon
  
 Safari Mode
