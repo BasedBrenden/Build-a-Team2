@@ -2,7 +2,7 @@
     display: grid;
     grid-template-areas:
     '. title login';
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:1fr 1fr .9fr;
     align-items: center;
     background-color: black;
     width: 100%;
@@ -35,9 +35,10 @@
     visibility: hidden;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 160px;
+    width: 6rem;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     margin-top: 3rem;
+    right: 20px;
     z-index: 1;
 }
 

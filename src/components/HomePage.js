@@ -57,9 +57,7 @@ function HomePage() {
 
   return (
     <div className="App">
-      <div>
         <Navbar/>
-      </div>
       <h1> Welcome Back! </h1>
       <div className="TeamViewContainer">
         <TeamView 

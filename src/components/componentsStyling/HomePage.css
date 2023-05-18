@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  width: 100%;
 }
 .footer{
   height: 10%;
@@ -31,7 +32,6 @@ nav > p{
 }
 
 .TeamViewContainer{
-  display: flex;
   justify-content: center;
 }
 

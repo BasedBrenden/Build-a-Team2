@@ -60,7 +60,7 @@ const InfoCard = ({Pokemon}) => {
                 
                 {(typeAdvToggle === true) ? 
                     <div id="infoStatsAdv">
-                        <p>Advantage: </p>
+                        <h2>Advantages </h2>
                         <div className="typesContainer">
                             {Pokemon.pokeTypeCompare.adv.map((type, index) =>
                                 <p key={index} className = "types">{type}</p>
@@ -73,7 +73,7 @@ const InfoCard = ({Pokemon}) => {
                     </div> 
                     : 
                     <div id="infoStatsAdv">
-                        <p>Weakness: </p>
+                        <h2>Weaknesses </h2>
                         <div className="typesContainer">
                             {Pokemon.pokeTypeCompare.weak.map((type, index) =>
                                 <p key={index} className = "types">{type}</p>    
@@ -86,8 +86,8 @@ const InfoCard = ({Pokemon}) => {
                     </div>
                 }
             </div>
-            
             <div id = "infoAbility">
+                <div>
                 <h2>Abilities</h2>
                 <div className="abilityTitle">
                     <button type="button" className="abilityButton" onClick={()=>setFocusedAbility(Pokemon.pokeAbilityEffect)}>{Pokemon.pokeAbility}</button>
@@ -97,7 +97,10 @@ const InfoCard = ({Pokemon}) => {
                 <div id="abilityDescription">
                     <p>{focusedAbility}</p>
                 </div>
+                </div>
+
             </div>
+            
             
         </div>
     )
