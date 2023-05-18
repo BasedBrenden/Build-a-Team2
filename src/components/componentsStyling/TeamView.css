@@ -241,27 +241,63 @@
     }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1600px) {
     .teamviewContainer{
         display: grid;
         grid-template-areas:
         'search2 teamBtn'
         'info team';
-        grid-template-columns: 1.5fr 1fr;
+        grid-template-columns: 1.5fr .8fr;
         grid-template-rows: min-content 1fr;
         border-radius: 12px;
         width: 80%;
         min-height: 491px;
         padding: 12px;
+        margin: auto;
     }
 
-    .infoContainer{
+    .teamDropdown{
+        margin-bottom: 0%;
+    }
+
+    .teamCardContainer{
+        grid-area: team;
+        width: 90%;
+        height: 5rem;
         display: grid;
         grid-template-areas: 
-        'infoName infoStats'
-        'abilities abilities';
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr min-content;
+        'Pokesprite profile-view HP';
+        grid-template-columns: 3fr 4fr 4fr;
+        margin: auto;
+    }
+
+    .teamCardHeader{
+        grid-area: profile-view;
+        height: 5rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        font-weight: 600;
+        letter-spacing: .12rem;
+    }
+    
+    .cardName{
+        margin-right: 0%;
+        margin-bottom: 0px;
+        margin-top: 10px;
+        font-size: large;
+        color: white;
+        width: 100%;
+        text-align: center;
+    }
+
+    .cardLvl{
+        margin-right: 15%;
+    }
+    
+    .teamCardHP{
+        margin-top: 2.4rem;
     }
 
     .pokeSprite{
@@ -273,7 +309,4 @@
         color: white;
     }
 
-    .statTitleType{
-        height: 6.4%;
-    }
 }
