@@ -185,9 +185,7 @@ const TrainerCard = () => {
                         </div>
                         <div className="cardTeam">
                         {trainerTeam.map((poke, index)=>
-                            <div className="memberBackground">
-                                <img key={index} src={poke.pokeImage} alt="pokemonSprite"></img>
-                            </div>
+                            <img key={index} src={poke.pokeImage} alt="pokemonSprite" className="memberBackground"></img>
                         )}
                         </div>
                     {/* open circles for pokemon team sprites */}
