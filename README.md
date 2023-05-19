@@ -2,8 +2,7 @@
 
 This is a fun full-stack project created by Brenden Thomas that allows you to securely create and save your own 6 monster pokemon team! Create an account and get started building today!
 
-
-![test](https://user-images.githubusercontent.com/19752877/215657795-00865903-9857-4f65-92cb-26cd981e2ed6.gif)
+![bat2](https://github.com/BasedBrenden/Build-a-Team2/assets/19752877/59b2b833-a805-41f3-9bfc-1653b94def33)
 
 ## Motivation
 
@@ -23,6 +22,7 @@ With the current iteration of Build-A-Team, you can do the following:
  - Add and remove Pokemon from a 6 monster roster that is saved to a cloud database.
  - Access your personal team by signing into your account through Desktop and Mobile browsers.
  - See individual Pokemon's abilities and type match ups.
+ - Download a version of your very own trainer card, for use as a custome credit card background!
 ### Coming soon
  
 Safari Mode
