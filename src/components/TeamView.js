@@ -31,7 +31,8 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
         fetch('https://batbackend.herokuapp.com/deletePoke',{
             method: 'POST',
             headers: {'Content-Type': 'application/json' },
-            body: JSON.stringify({id: pokeId, 
+            body: JSON.stringify({
+                id: pokeId, 
                 Username: userId,
                 team: teamName}),
         })
@@ -139,7 +140,8 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
                 {(focusedPokemon === '') ? <span></span>:
                     <div>
                         <InfoCard Pokemon={focusedPokemon} />
-                        <button type="button" onClick={()=>{addPokemonToTeam()}}> add pokemon</button>
+                        <button type="button" className="addBtn" onClick={()=>{addPokemonToTeam()}}> Add Pokemon</button>
+                        <button type="button" className="removeBtn" onClick={()=>{removePokemon(focusedPokemon.pokeID)}}>Remove Pokemon</button>
                     </div>
                 }
                 
@@ -169,7 +171,7 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
                     </div>
                 )}
                 <div>
-                    <button type="button" onClick={()=>{goToTrainerCard()}}> Share Team</button>
+                    <button type="button" className="shareBtn" onClick={()=>{goToTrainerCard()}}> Share Team</button>
                 </div>
             </div>
         </div>

@@ -87,20 +87,51 @@
     grid-area: info;
 }
 
-#addPokeBtn{
+.addBtn{
     border: none;
     border-radius: 12px;
-    background-color: rgb(24, 119, 242);
+    background-color: rgb(69, 192, 69);;
     font-weight: 600;
     color: white;
     padding: 10px;
 }
 
-#addPokeBtn:hover{
+.addBtn:hover{
     animation: addHover 1s;
-    background-color: rgb(17, 91, 189);
+    background-color: rgb(26, 135, 26);
     cursor: pointer
 }
+
+.removeBtn{
+    border: none;
+    border-radius: 12px;
+    background-color:  rgb(196, 43, 43);;
+    font-weight: 600;
+    color: white;
+    padding: 10px;
+}
+
+.shareBtn{
+    border: none;
+    border-radius: 12px;
+    background-color: rgb(69, 192, 69);;
+    font-weight: 600;
+    color: white;
+    padding: 10px;
+}
+
+.shareBtn:hover{
+    animation: addHover 1s;
+    background-color: rgb(26, 135, 26);
+    cursor: pointer
+}
+
+.removeBtn:hover{
+    animation: removeHover 1s;
+    background-color: rgb(118, 18, 18);
+    cursor: pointer
+}
+
 
 #team{
     height: 100%;
@@ -191,20 +222,6 @@
     margin: auto;
 }
 
-.teamCardDelete{
-    border: none;
-    font-size: large;
-    width: 2rem;
-    height: 50%;
-    background-color: transparent;
-    color: red;
-}
-
-.teamCardDelete:hover{
-    color: rgb(128, 0, 0);
-    cursor: pointer;
-}
-
 .pokeSprite{
     height: 5rem;
     align-content: center;
@@ -240,6 +257,16 @@
         transform: scale(1);
     }
 }
+
+@keyframes addHover {
+    from{ background-color: rgb(69, 192, 69);}
+    to {background-color: rgb(26, 135, 26);}
+}
+@keyframes removeHover {
+    from{ background-color: rgb(196, 43, 43);}
+    to {background-color: rgb(118, 18, 18);}
+}
+
 
 @media (min-width: 1600px) {
     .teamviewContainer{
