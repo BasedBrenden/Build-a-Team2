@@ -211,6 +211,7 @@
     background: linear-gradient(180deg,rgb(243, 180, 7), rgb(150, 56, 1));
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+    background-clip: text;
 }
 
 .hpBar > span{
