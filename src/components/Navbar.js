@@ -42,7 +42,7 @@ const Navbar = () =>{
                                 <button type="button" className="dropdownAcc" onClick={()=>{navigate("/account")}} disabled={true} >Account Settings</button>
                                 <button type="button" className="dropdownHolder" onClick={()=>{navigate("/")}} >Home</button>
                                 <button type="button" className="dropdownSignout" onClick={()=>{ signOutClick()}}>Sign Out</button>
-                                <button type="button" className="dropdownTrainerCard" onClick={()=>{navigate("/trainer-card/team1")}} >Trainer Card</button>
+                                <button type="button" className="dropdownTrainerCard" onClick={()=>{navigate("/trainer-card/Team1")}} >Trainer Card</button>
                             </div>
                     </div> 
                 </div>

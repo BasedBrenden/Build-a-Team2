@@ -136,7 +136,15 @@
     color:rgb(24, 235, 242)
 }
 
+#carouselNot{
+    color:rgb(24, 126, 242)
+}
+
 #carousel:hover{
+    cursor: pointer;
+}
+
+#carouselNot:hover{
     cursor: pointer;
 }
 

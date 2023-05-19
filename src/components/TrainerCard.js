@@ -6,13 +6,18 @@ import { useState,useEffect } from "react";
 import gen1boy from "../images/gen1boy.png";
 import { useNavigate } from "react-router-dom";
 import './componentsStyling/TrainerCard.css'
+//honestly unsure about this, double check to see if this is redundant
+import {getStorage, ref, getDownloadURL} from "firebase/storage";
 
 const TrainerCard = () => {
     const {teamParam} = useParams();
     const [selectedTeam, setSelectedTeam] = useState(teamParam)
     const [trainerTeam, setTrainerTeam] = useState([])
     const [trainerName, setTrainerName] = useState('')
+
     const navigate = useNavigate();
+    const storage = getStorage();
+    
     const renderTeam = async() =>{
         
         const team = []
@@ -81,6 +86,38 @@ const TrainerCard = () => {
         
     }
 
+    const getBackgrounds = () =>{
+        const bucketParam = document.querySelector(".backgroundsSelect").value;
+        getDownloadURL(ref(storage, 'backgrounds/'+ bucketParam + '.png'))
+        .then((url) => {
+            document.querySelector('.card-body').style.backgroundImage = "url("+url+")";
+        })
+        .catch((error) => {
+            alert(error)
+        })
+
+    }
+
+    const getTrainerSprites = () =>{
+        const bucketParam = document.querySelector(".trainersSelect").value;
+        getDownloadURL(ref(storage, 'trainersprites/'+ bucketParam + '.png'))
+        .then((url) => {
+            document.querySelector('.trainerHeadshot').setAttribute('src', url);
+        })
+        .catch((error) => {
+            alert(error)
+        })
+    }
+
+    const changeBorderColors = () =>{
+        const newColor = document.querySelector(".bordersSelect").value;
+        console.log(newColor)
+        document.querySelector('.card-body').style.borderColor = newColor;
+    
+    }
+
+
+
     useEffect(() => {
         setSelectedTeam(teamParam)
         renderTeam();
@@ -92,40 +129,49 @@ const TrainerCard = () => {
             
             <div>
                 <div className="card-buttons">
-                    <form>
-                        <label>Change Outline Colors</label>
-                        <select>
-                            <option value="">Red</option>
-                            <option value="">Blue</option>
-                            <option value="">Green</option>
-                            <option value="">Yellow</option>
-                            <option value="">Grey</option>
+                    <form name="cardBorders">
+                        <label>Change Border Colors</label>
+                        <select className="bordersSelect" onChange={()=>{changeBorderColors()}}>
+                            <option value="Red">Red</option>
+                            <option value="Blue">Blue</option>
+                            <option value="Green">Green</option>
+                            <option value="Yellow">Yellow</option>
+                            <option value="Grey">Grey</option>
                         </select>
                     </form>
-                    <form>
+                    <form name="backgrounds">
                         <label>Change Background</label>
-                        <select>
-                            <option value="">Volcano</option>
-                            <option value="">Antarctic</option>
-                            <option value="">Rainforest</option>
-                            <option value="">Dunes</option>
-                            <option value="">Cave</option>
-                            <option value="">Open Ocean</option>
-                            <option value="">Black Hole</option>
-                            <option value="">Star Nursery</option>
-                            <option value="">Fighting Ring</option>
-                            <option value="">Midas Touch</option>
-                        
+                        <select className="backgroundsSelect" onChange={()=>{getBackgrounds()}}>
+                            <option value="Volcano">Volcano</option>
+                            <option value="Antarctic">Antarctic</option>
+                            <option value="Rainforest">Rainforest</option>
+                            <option value="Dunes">Dunes</option>
+                            <option value="Cave">Cave</option>
+                            <option value="Deep Sea">Deep Sea</option>
+                            <option value="Black Hole">Black Hole</option>
+                            <option value="Star Nursery">Star Nursery</option>
+                            <option value="Fighting Ring">Fighting Ring</option>
+                            <option value="Midas Touch">Midas Touch</option>
                         </select>
                     </form>
-                    <form>
+                    <form name="trainerSprites">
                         <label>Change Trainer Sprite</label>
-                        <select>
-                            <option value="">Gen1 Boy</option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
+                        <select className="trainersSelect" onChange={()=>{getTrainerSprites()}}>
+                            <option value="Boy Gen1">Gen1 Boy</option>
+                            <option value="Gold">Gold</option>
+                            <option value="Leaf">Leaf</option>
+                            <option value="bugcatcher">bugcatcher</option>
+                            <option value="elite">elite</option>
+                            <option value="elitef">elite f</option>
+                            <option value="elite2">elite2</option>
+                            <option value="elitef2">elite2 f</option>
+                            <option value="gigachad">Giga Chad</option>
+                            <option value="trainer1">trainer</option>
+                            <option value="trainer1f">trainer f</option>
+                            <option value="trainer2">trainer2</option>
+                            <option value="trainer2f">trainer2 f</option>
+                            <option value="wrangler">wrangler</option>
+                            <option value="wranglerf">wrangler f</option>
                         </select>
                     </form>
                 </div>

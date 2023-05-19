@@ -13,11 +13,11 @@
 
 .card-container{
     background-color: rgb(153, 153, 153);
-    height: 24rem;
+    height: 24.5rem;
 }
 
 .card-body{
-    background-image: url("../../images/volcano.jpg");
+    background-image: url("../../images/Volcano.jpg");
     background-size: 100% 100%;
     height: 24rem;
     width:40rem;
@@ -29,6 +29,8 @@
     'photo'
     'teamStand';
     grid-template-rows: 1fr 1fr 1fr;
+    border: 3px solid red;
+    outline: .5px solid white;
 }
 
 .card-buttons{
