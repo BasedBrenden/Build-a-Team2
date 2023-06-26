@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react"
-import {  auth, signInWithEmailAndPassword, sendPasswordResetEmail} from "../firebase";
+import { auth } from "../firebase";
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./componentsStyling/SignIn-Up.css"
 

@@ -17,8 +17,9 @@ const InfoCard = ({Pokemon}) => {
         }
         const allTypesOnPage = document.querySelectorAll(".types");
         for(let i=0; i < allTypesOnPage.length; i++){
-            let tempElem = allTypesOnPage[i]
-            changeTypeColor(tempElem)
+
+            changeTypeColor(allTypesOnPage[i])
+ 
         }
 
         //changing the background colors of the card
@@ -40,24 +41,20 @@ const InfoCard = ({Pokemon}) => {
 
     return(
         <div className="infoCardContainer">
-            
+            <p className="pokeCardName">{Pokemon.pokeName}</p>
+            <p className="pokeCardId">#{Pokemon.pokeID}</p>
                 
-                    <p className="pokeCardName">{Pokemon.pokeName}</p>
-                    <p className="pokeCardId">#{Pokemon.pokeID}</p>
+            <div className="pokeCardMainTypes">
+                <p className = "types">{Pokemon.pokeType}</p>
+                {(Pokemon.pokeType2 === '') ?<span></span>:
+                    <p className = "types">{Pokemon.pokeType2}</p>}
                 
-                <div className="pokeCardMainTypes">
-                    <p className = "types">{Pokemon.pokeType}</p>
-                    {(Pokemon.pokeType2 === '') ?<span></span>:
-                        <p className = "types">{Pokemon.pokeType2}</p>}
-                    
-                </div>
+            </div>
                 
-                {(Pokemon.pokeImageAnim === "n/a") ? <img src={Pokemon.pokeImage} className="infoImage" alt="woooo"></img>
-                        : <img src={Pokemon.pokeImageAnim} className="infoImage" alt="woooo"></img> }
-                
+            {(Pokemon.pokeImageAnim === "n/a") ? <img src={Pokemon.pokeImage} className="infoImage" alt="woooo"></img>
+                    : <img src={Pokemon.pokeImageAnim} className="infoImage" alt="woooo"></img> }
             
             <div className="pokeCardTypesComp">
-                
                 {(typeAdvToggle === true) ? 
                     <div id="infoStatsAdv">
                         <h2>Advantages </h2>
@@ -98,13 +95,9 @@ const InfoCard = ({Pokemon}) => {
                     <p>{focusedAbility}</p>
                 </div>
                 </div>
-
             </div>
-            
-            
         </div>
     )
-
 }
 
 export default InfoCard;

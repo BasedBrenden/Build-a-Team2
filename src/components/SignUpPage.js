@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import './componentsStyling/SignIn-Up.css';
-import { auth, createUserWithEmailAndPassword } from "../firebase";
+import { auth } from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignUpForm = () =>{
     const navigate = useNavigate();
@@ -19,9 +20,7 @@ const SignUpForm = () =>{
     }
 
     const SignUp = () =>{
-
         createNewDbUser(document.querySelector("#username").value.toLowerCase())
-
         createUserWithEmailAndPassword(auth, document.querySelector("#username").value,document.querySelector("#password").value)
         .then((userCredential) => {
             console.log(userCredential.user.uid)
@@ -33,7 +32,6 @@ const SignUpForm = () =>{
             console.log(errorCode +": " + errorMessage)
             document.querySelector("#errorField").innerHTML= "Please enter a valid email and password";
         });
-
     }
 
     return(

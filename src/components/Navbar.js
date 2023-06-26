@@ -1,6 +1,7 @@
 import { useNavigate} from "react-router-dom"
 import './componentsStyling/Navbar.css'
-import { auth, signOut } from '../firebase'
+import { auth } from '../firebase'
+import { signOut } from "firebase/auth";
 
 
 
@@ -19,10 +20,6 @@ const Navbar = () =>{
 
     }
 
-    
-    
-    
-
     window.onclick = function(event) {
         if (!event.target.matches('.material-symbols-outlined')) {
             if(document.querySelector(".dropdownContent") && document.querySelector(".dropdownContent").classList.contains("show"))
@@ -30,12 +27,10 @@ const Navbar = () =>{
         }
       } 
 
-
     return(
         <div className="navbarDiv"> 
             <p onClick={()=>{navigate("/Home")}}>Build-a-Team!</p>
                 <div className="logInDiv">
-                 
                     <div className="dropdown">
                         <button onClick={()=>{toggleDropdown()}} className="accntBtn"><span className="material-symbols-outlined"> account_circle </span></button>
                             <div id="myDropdown" className="dropdownContent">

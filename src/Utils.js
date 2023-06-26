@@ -1,200 +1,112 @@
-
-//most of this needs to moved to the backend as well
-
 const typeCompare=( pokeTypes) =>{
 
     let typeCompareArr = [[],[]];
-
-    //0 =adv
-    //1 = weak
-
+    let types = new Map([
+        ["FIRE", {
+            "adv": ["GRASS", "ICE", "BUG", "STEEL"],
+            "weak": ["WATER", "GROUND", "ROCK"]
+        }],
+        ["FLYING", {
+            "adv": ["GRASS", "FIGHTING", "BUG"],
+            "weak": ["ROCK", "ICE", "ELECTRIC"]
+        }],
+        ["STEEL", {
+            "adv": ["ICE", "FAIRY", "ROCK"],
+            "weak": ["FIRE", "FIGHTING", "GROUND"]
+        }],
+        ["WATER", {
+            "adv": ["FIRE", "GROUND", "ROCK"],
+            "weak": ["GRASS", "ELECTRIC"]
+        }],
+        ["GRASS", {
+            "adv": ["WATER", "GROUND", "ROCK"],
+            "weak": ["FIRE", "ICE", "POISON", "FLYING", "BUG"]
+        }],
+        ["DARK", {
+            "adv": ["PSYCHIC", "GHOST"],
+            "weak": ["POISON", "BUG", "FAIRY"]
+        }],
+        ["ELECTRIC", {
+            "adv": ["WATER", "FLYING"],
+            "weak": ["GROUND"]
+        }],
+        ["BUG", {
+            "adv": ["GRASS", "PSYCHIC", "DARK"],
+            "weak": ["FIRE", "ROCK", "FLYING"]
+        }],
+        ["PSYCHIC", {
+            "adv": ["FIGHTING", "POISON"],
+            "weak": ["BUG", "GHOST", "DARK"]
+        }],
+        ["ROCK", {
+            "adv": ["FIRE", "ICE", "FLYING", "BUG"],
+            "weak": ["WATER", "GRASS", "FIGHTING", "GROUND", "STEEL"]
+        }],
+        ["GROUND", {
+            "adv": ["ELECTRIC", "FIRE", "POISON", "ROCK", "STEEL"],
+            "weak": ["WATER", "GRASS", "ICE"]
+        }],
+        ["FAIRY", {
+            "adv": ["FIGHTING", "DRAGON", "DARK"],
+            "weak": ["STEEL", "POISON"]
+        }],
+        ["FIGHTING", {
+            "adv": ["NORMAL", "ICE", "ROCK", "DARK", "STEEL"],
+            "weak": ["FLYING", "PSYCHIC", "FAIRY"]
+        }],
+        ["GHOST", {
+            "adv": ["PSYCHIC", "GHOST"],
+            "weak": ["GHOST", "DARK"]
+        }],
+        ["ICE", {
+            "adv": ["GRASS", "GROUND", "FLYING", "DRAGON"],
+            "weak": ["FIRE", "FIGHTING", "ROCK", "STEEL"]
+        }],
+        ["NORMAL", {
+            "adv": ["None"],
+            "weak": ["FIGHTING"]
+        }],
+        ["POISON", {
+            "adv": ["GRASS", "FAIRY"],
+            "weak": ["GROUND", "PSYCHIC"]
+        }],
+        ["DRAGON", {
+            "adv": ["DRAGON"],
+            "weak": ["ICE", "DRAGON", "FAIRY"]
+        }]
+    ]);
+    
     pokeTypes.forEach( (pokeType) =>{
-        
-        if(pokeType === "FIRE"){
-
-            typeCompareArr[0].push("GRASS")
-            typeCompareArr[0].push("ICE")
-            typeCompareArr[0].push("BUG")
-            typeCompareArr[0].push("STEEL")
-    
-            typeCompareArr[1].push("WATER")
-            typeCompareArr[1].push("GROUND")
-            typeCompareArr[1].push("ROCK")
-        }else if(pokeType === "FLYING"){
-            typeCompareArr[0].push("GRASS")
-            typeCompareArr[0].push("FIGHTING")
-            typeCompareArr[0].push("BUG")
-    
-            typeCompareArr[1].push("ROCK")
-            typeCompareArr[1].push("ICE")
-            typeCompareArr[1].push("ELECTRIC")
-    
-        }else if(pokeType === "STEEL"){
-    
-            typeCompareArr[0].push("ICE")
-            typeCompareArr[0].push("FAIRY")
-            typeCompareArr[0].push("ROCK")
-    
-            typeCompareArr[1].push("FIRE")
-            typeCompareArr[1].push("FIGHTING")
-            typeCompareArr[1].push("GROUND")
-            
-        }else if(pokeType === "WATER"){
-            typeCompareArr[0].push("FIRE")
-            typeCompareArr[0].push("GROUND")
-            typeCompareArr[0].push("ROCK")
-    
-            typeCompareArr[1].push("GRASS")
-            typeCompareArr[1].push("ELECTRIC")
-        }else if(pokeType === "GRASS"){
-            typeCompareArr[0].push("WATER")
-            typeCompareArr[0].push("GROUND")
-            typeCompareArr[0].push("ROCK")
-    
-            typeCompareArr[1].push("FIRE")
-            typeCompareArr[1].push("ICE")
-            typeCompareArr[1].push("POISON")
-            typeCompareArr[1].push("FLYING")
-            typeCompareArr[1].push("BUG")
-    
-        }else if(pokeType === "DARK"){
-            typeCompareArr[0].push("PSYCHIC")
-            typeCompareArr[0].push("GHOST")
-            
-            typeCompareArr[1].push("POISON")
-            typeCompareArr[1].push("BUG")
-            typeCompareArr[1].push("FAIRY")
-    
-    
-        }else if(pokeType === "ELECTRIC"){
-            typeCompareArr[0].push("WATER")
-            typeCompareArr[0].push("FLYING")
-    
-            typeCompareArr[1].push("GROUND")
-        }else if(pokeType === "BUG"){
-    
-            typeCompareArr[0].push("GRASS")
-            typeCompareArr[0].push("PSYCHIC")
-            typeCompareArr[0].push("DARK")
-    
-            typeCompareArr[1].push("FIRE")
-            typeCompareArr[1].push("ROCK")
-            typeCompareArr[1].push("FLYING")
-            
-        }else if(pokeType === "PSYCHIC"){
-    
-            typeCompareArr[0].push("FIGHTING")
-            typeCompareArr[0].push("POISON")
-    
-            typeCompareArr[1].push("BUG")
-            typeCompareArr[1].push("GHOST")
-            typeCompareArr[1].push("DARK")
-            
-        }else if(pokeType === "ROCK"){
-            typeCompareArr[0].push("FIRE")
-            typeCompareArr[0].push("ICE")
-            typeCompareArr[0].push("FLYING")
-            typeCompareArr[0].push("BUG")
-    
-            typeCompareArr[1].push("WATER")
-            typeCompareArr[1].push("GRASS")
-            typeCompareArr[1].push("FIGHTING")
-            typeCompareArr[1].push("GROUND")
-            typeCompareArr[1].push("STEEL")
-            
-        }else if(pokeType === "GROUND"){
-            typeCompareArr[0].push("ELECTRIC")
-            typeCompareArr[0].push("FIRE")
-            typeCompareArr[0].push("POISON")
-            typeCompareArr[0].push("ROCK")
-            typeCompareArr[0].push("STEEL")
-    
-            typeCompareArr[1].push("WATER")
-            typeCompareArr[1].push("GRASS")
-            typeCompareArr[1].push("ICE")
-            
-        }else if(pokeType === "FAIRY"){
-            
-            typeCompareArr[0].push("FIGHTING")
-            typeCompareArr[0].push("DRAGON")
-            typeCompareArr[0].push("DARK")
-    
-            typeCompareArr[1].push("STEEL")
-            typeCompareArr[1].push("POISON")
-    
-        }else if(pokeType === "FIGHTING"){
-    
-            typeCompareArr[0].push("NORMAL")
-            typeCompareArr[0].push("ICE")
-            typeCompareArr[0].push("ROCK")
-            typeCompareArr[0].push("DARK")
-            typeCompareArr[0].push("STEEL")
-            
-            typeCompareArr[1].push("FLYING")
-            typeCompareArr[1].push("PSYCHIC")
-            typeCompareArr[1].push("FAIRY")
-    
-        }else if(pokeType === "GHOST"){
-    
-            typeCompareArr[0].push("PSYCHIC")
-            typeCompareArr[0].push("GHOST")
-    
-            typeCompareArr[1].push("GHOST")
-            typeCompareArr[1].push("DARK")
-            
-        }else if(pokeType === "ICE"){
-            typeCompareArr[0].push("GRASS")
-            typeCompareArr[0].push("GROUND")
-            typeCompareArr[0].push("FLYING")
-            typeCompareArr[0].push("DRAGON")
-    
-            typeCompareArr[1].push("FIRE")
-            typeCompareArr[1].push("FIGHTING")
-            typeCompareArr[1].push("ROCK")
-            typeCompareArr[1].push("STEEL")
-        }else if(pokeType === "NORMAL"){
-            typeCompareArr[1].push("FIGHTING")
-        }else if(pokeType === "POISON"){
-    
-            typeCompareArr[0].push("GRASS")
-            typeCompareArr[0].push("FAIRY")
-    
-            typeCompareArr[1].push("GROUND")
-            typeCompareArr[1].push("PSYCHIC")
-            
-        }else if(pokeType === "DRAGON"){
-            typeCompareArr[0].push("DRAGON")
-
-            typeCompareArr[1].push("ICE")
-            typeCompareArr[1].push("DRAGON")
-            typeCompareArr[1].push("FAIRY")
-    
-        }else{
-
+        console.log(pokeType, types.has(pokeType))
+        if (types.has(pokeType)){
+        // push the corresponding dictIndex into the array
+            typeCompareArr[0].push(...types.get(pokeType).adv)
+            typeCompareArr[1].push(...types.get(pokeType).weak)
         }
     })
-    
+        //get rid of duplicates
     typeCompareArr[0] = [...new Set(typeCompareArr[0])]
     typeCompareArr[1] = [...new Set(typeCompareArr[1])]
+    typeCompareArr[0] = typeCompareArr[0].filter(e => e !== 'None')
 
     return typeCompareArr
 }
 
 
 const changeTypeColor = (item) =>{
-
-    let currClasses = item.classList;
-    if (currClasses["1"]){
-        item.classList.remove(currClasses["1"])
+    if (item){
+        let currClasses = item.classList;
+        if (currClasses["1"]){
+            item.classList.remove(currClasses["1"])
+        }
+        item.classList.add(item.innerHTML)
     }
-    
-    item.classList.add(item.innerHTML)
-
 }
 
 const updateSearch = async (setFocusedPokemon) =>{
     const inputSearch = document.querySelector('#input').value
     const updateError = document.querySelector('.errorMessage');
+
     try{
       const test2 = await fetch('https://pokeapi.co/api/v2/pokemon/' + inputSearch.toLowerCase());
       const newTest2 = await test2.json();
@@ -227,7 +139,7 @@ const updateSearch = async (setFocusedPokemon) =>{
       if(newTest2.types.length > 1){
         foundTypes.push(newTest2.types[1].type.name.toUpperCase())
       }else{
-        foundTypes.push('')
+        foundTypes.push("")
       }
 
       const typeCompareTemp = typeCompare(foundTypes);
@@ -237,7 +149,6 @@ const updateSearch = async (setFocusedPokemon) =>{
         console.log(anim)
     }
 
-      
       const converted = {
         pokeName: newTest2.name.toUpperCase(),
         pokeImage: newTest2.sprites.front_default,
