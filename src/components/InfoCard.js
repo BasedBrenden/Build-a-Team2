@@ -7,21 +7,10 @@ const InfoCard = ({Pokemon}) => {
     const [typeAdvToggle, setTypeAdvToggle] = useState(false);
 
     const typeAdvWeak = () =>{
-        if(document.querySelector(".testClass")){
-            const typeSelected = document.querySelector(".testClass");
-            changeTypeColor(typeSelected)
-            if(document.querySelector(".testClass2")){
-                const typeSelected2 = document.querySelector(".testClass2");
-                changeTypeColor(typeSelected2)
-            }
-        }
         const allTypesOnPage = document.querySelectorAll(".types");
-        for(let i=0; i < allTypesOnPage.length; i++){
-
-            changeTypeColor(allTypesOnPage[i])
- 
-        }
-
+        allTypesOnPage.forEach((type) => {
+            changeTypeColor(type)
+        })
         //changing the background colors of the card
         if (Pokemon.pokeType2 === ''){
             document.querySelector(".infoCardContainer").style.background = "linear-gradient(180deg,"+ window.getComputedStyle(allTypesOnPage[0]).backgroundColor +", white)";
