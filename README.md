@@ -1,4 +1,6 @@
 # Build-A-Team
+## Link to Build-A-Team backend
+https://github.com/BasedBrenden/batBackEnd
 
 This is a fun full-stack project created by Brenden Thomas that allows you to securely create and save your own 6 monster pokemon team! Create an account and get started building today!
 
