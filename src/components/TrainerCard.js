@@ -66,13 +66,10 @@ const TrainerCard = () => {
 
     const downloadCard = () =>{
         const card = document.querySelector(".card-body");
-
         html2canvas(card, { logging: false, letterRendering: 1,  allowTaint: false , useCORS: true }).then(canvas => {
-            download(canvas.toDataURL("image/png"),"trainerCard.png");
-            console.log("enjoy your card!")
+            download(canvas.toDataURL("image/jpeg"),"trainerCardee.jpg");
+            window.open("https://cucucovers.com/pages/custom-covers")
         });
-        console.log("Downloading your card!");
-        
     }
 
     const getBackgrounds = () =>{
@@ -149,18 +146,18 @@ const TrainerCard = () => {
                             <option value="Boy Gen1">Gen1 Boy</option>
                             <option value="Gold">Gold</option>
                             <option value="Leaf">Leaf</option>
-                            <option value="bugcatcher">bugcatcher</option>
-                            <option value="elite">elite</option>
-                            <option value="elitef">elite f</option>
-                            <option value="elite2">elite2</option>
-                            <option value="elitef2">elite2 f</option>
+                            <option value="bugcatcher">Bugcatcher</option>
+                            <option value="elite">Elite</option>
+                            <option value="elitef">Elite f</option>
+                            <option value="elite2">Elite2</option>
+                            <option value="elitef2">Elite2 f</option>
                             <option value="gigachad">Giga Chad</option>
-                            <option value="trainer1">trainer</option>
-                            <option value="trainer1f">trainer f</option>
-                            <option value="trainer2">trainer2</option>
-                            <option value="trainer2f">trainer2 f</option>
-                            <option value="wrangler">wrangler</option>
-                            <option value="wranglerf">wrangler f</option>
+                            <option value="trainer1">Trainer</option>
+                            <option value="trainer1f">Trainer f</option>
+                            <option value="trainer2">Trainer2</option>
+                            <option value="trainer2f">Trainer2 f</option>
+                            <option value="wrangler">Wrangler</option>
+                            <option value="wranglerf">Wrangler f</option>
                         </select>
                     </form>
                 </div>
@@ -184,7 +181,7 @@ const TrainerCard = () => {
             </div>
             <div className="options">
                 <button type="button" className="homeBtn" onClick={()=>{navigate("/")}}>Home</button>
-                <button type="button" id="downloadBtn" onClick={()=>{downloadCard()}}>Download</button>
+                <button type="button" id="downloadBtn" onClick={()=>{downloadCard()}}>Download and Create Trainer Card</button>
             </div>
             
         </div>
