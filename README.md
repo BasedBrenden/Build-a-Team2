@@ -2,7 +2,7 @@
 ## Link to Build-A-Team backend
 https://github.com/BasedBrenden/batBackEnd
 
-This is a fun full-stack project created by Brenden Thomas that allows you to securely create and save your own 6 monster pokemon team! Create an account and get started building today!
+A full-stack web app by Brenden Thomas that lets users build and manage a custom 6-Pokémon team. Features include secure authentication, persistent team storage, and a downloadable team image generator for printing on items like debit or credit cards. This project highlights skills in authentication, database design, and image generation, while delivering a fun and interactive user experience.
 
 ![bat2](https://github.com/BasedBrenden/Build-a-Team2/assets/19752877/59b2b833-a805-41f3-9bfc-1653b94def33)
 
@@ -14,6 +14,7 @@ While browsing different iterations of pokedex sites, i noticed that there wasn'
 
 1. Build a Custom Pokemon Team and have it be saved for quick access via the cloud
 2. Quickly be able to see the types, type advantage and type weaknesses of the individual Pokemon in a premade team.
+3. An option to make the teams more real by bringing nostalgic teams with you to the real world.
 
 ## Features
 
