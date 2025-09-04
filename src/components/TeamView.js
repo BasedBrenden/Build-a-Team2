@@ -155,11 +155,6 @@ const TeamView = ({fullTeam, updateTeamsFunc, userId}) => {
                         <div className="teamCardHeader">
                             <p className="cardName">{pokemon.pokeName}</p>
                             <p className="cardLvl">Lv.99</p>
-                            {/*
-                            <div>
-                                <button type='button' className="teamCardDelete" onClick={() => {removePokemon(pokemon.pokeID);}} value={pokemon.pokeID}>X</button>
-                            </div>
-                            */}
                         </div>
                         <div className="teamCardHP">
                             <div className ="hpBar">

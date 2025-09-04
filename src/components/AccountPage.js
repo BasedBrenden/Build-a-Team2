@@ -7,7 +7,7 @@ const AccountPage =()=>{
             <div>
                 <Navbar/>
             </div>
-                <p>Welcome to the account page!</p>
+                <p>Welcome to your account page!</p>
                 <Link to="/Home"><button type="button">Go Home</button></Link>
         </div>
 

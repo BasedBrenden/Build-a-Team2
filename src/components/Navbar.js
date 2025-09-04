@@ -34,7 +34,6 @@ const Navbar = () =>{
                     <div className="dropdown">
                         <button onClick={()=>{toggleDropdown()}} className="accntBtn"><span className="material-symbols-outlined"> account_circle </span></button>
                             <div id="myDropdown" className="dropdownContent">
-                                <button type="button" className="dropdownAcc" onClick={()=>{navigate("/account")}} disabled={true} >Account Settings</button>
                                 <button type="button" className="dropdownHolder" onClick={()=>{navigate("/")}} >Home</button>
                                 <button type="button" className="dropdownSignout" onClick={()=>{ signOutClick()}}>Sign Out</button>
                                 <button type="button" className="dropdownTrainerCard" onClick={()=>{navigate("/trainer-card/Team1")}} >Trainer Card</button>
